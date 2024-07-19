@@ -1,12 +1,18 @@
 {
-    "name": "mateusz/creative-wallet_fe_be_mvc",
-    "description": "A web application for keeping records of expenses and incomes",
-    "type": "project",
-    "authors": [
-        {
-            "name": "Mateusz Przybyla",
-            "email": "mateusz.przybyla.programista@gmail.com"
-        }
-    ],
-    "require": {}
+  "name": "mateusz/creative-wallet_fe_be_mvc",
+  "description": "A web application for keeping records of expenses and incomes",
+  "type": "project",
+  "authors": [
+    {
+      "name": "Mateusz Przybyla",
+      "email": "mateusz.przybyla.programista@gmail.com"
+    }
+  ],
+  "require": {},
+  "autoload": {
+    "psr-4": {
+      "Framework\\": "src/Framework",
+      "App\\": "src/App"
+    }
+  }
 }
