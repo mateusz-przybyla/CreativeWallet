@@ -7,10 +7,12 @@ namespace Framework;
 class App
 {
   private Router $router;
+  private Container $contaier;
 
   public function __construct()
   {
     $this->router = new Router();
+    $this->contaier = new Container();
   }
 
   public function run()
