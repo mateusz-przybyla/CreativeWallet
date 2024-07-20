@@ -42,8 +42,23 @@ class Router
 
     [$class, $function] = $route['controller'];
 
-    $controllerInstance = $container ? $container->resolve($class) : new $class;
-    $controllerInstance->$function();
+    $controllerInstance = $container ?
+      $container->resolve($class) :
+      new $class;
+
+    $action = fn () => $controllerInstance->$function(); //recursion (main content)
+
+    foreach ($this->middlewares as $middleware) {
+      $middlewareInstance = $container ?
+        $container->resolve($middleware) :
+        new $middleware;
+
+      $action = fn () => $middlewareInstance->process($action); //recursion (before main content)
+    }
+
+    $action(); //start the chain of functions
+
+    return;
   }
 
   public function addMiddleware(string $middleware)

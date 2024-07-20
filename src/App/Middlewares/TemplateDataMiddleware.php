@@ -2,7 +2,7 @@
 
 declare(strict_types=1);
 
-namespace App\Middleware;
+namespace App\Middlewares;
 
 use Framework\Contracts\MiddlewareInterface;
 use Framework\TemplateEngine;
@@ -15,5 +15,8 @@ class TemplateDataMiddleware implements MiddlewareInterface
 
   public function process(callable $next)
   {
+    $this->view->addGlobal('title', 'CreativeWallet');
+
+    $next();
   }
 }
