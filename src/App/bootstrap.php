@@ -8,4 +8,9 @@ use Framework\App;
 
 $app = new App();
 
+$app->get("/");
+$app->get("/about");
+
+dd($app);
+
 return $app;

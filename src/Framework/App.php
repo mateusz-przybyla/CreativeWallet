@@ -6,8 +6,25 @@ namespace Framework;
 
 class App
 {
+  private Router $router;
+
+  public function __construct()
+  {
+    $this->router = new Router();
+  }
+
   public function run()
   {
     echo "Application is running!";
+  }
+
+  public function get(string $path)
+  {
+    $this->router->addRoute("GET", $path);
+  }
+
+  public function post(string $path)
+  {
+    $this->router->addRoute("POST", $path);
   }
 }
