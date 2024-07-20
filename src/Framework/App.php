@@ -7,12 +7,17 @@ namespace Framework;
 class App
 {
   private Router $router;
-  private Container $contaier;
+  private Container $container;
 
-  public function __construct()
+  public function __construct(string $containerDefinitionsPath = null)
   {
     $this->router = new Router();
-    $this->contaier = new Container();
+    $this->container = new Container();
+
+    if ($containerDefinitionsPath) {
+      $containerDefinitions = include $containerDefinitionsPath;
+      $this->container->addDefinitions($containerDefinitions);
+    }
   }
 
   public function run()
