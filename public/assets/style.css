@@ -1,0 +1,79 @@
+.pb-60 {
+  padding-bottom: 60px;
+}
+
+.pb-75 {
+  padding-bottom: 75px;
+}
+
+.line {
+  color: rgb(255, 255, 255, 0.623);
+}
+
+.h-100 {
+  min-height: 100vh;
+}
+
+.fw-500 {
+  font-weight: 500;
+}
+
+.bg-home {
+  background-image: url("./assets/images/stacked-stones-2.jpg");
+  background-repeat: no-repeat;
+  background-size: cover;
+}
+
+.bg-main-home {
+  background-color: rgba(239, 188, 155, 0.6);
+}
+
+.bg-cream {
+  background-color: #fbf3d5;
+}
+
+.bg-light-red {
+  background-color: #efbc9b;
+}
+
+.bg-grey-blue {
+  background-color: #9cafaa;
+}
+
+#chartContainer {
+  height: 370px;
+  width: 100%;
+}
+
+caption {
+  caption-side: top;
+  text-align: center;
+}
+
+@media (min-width: 992px) {
+  .w-lg-50 {
+    width: 50% !important;
+  }
+
+  .w-lg-75 {
+    width: 75% !important;
+  }
+
+  #scrollToTop {
+    background: #9cafaa url(./assets/svg/arrow-up.svg) no-repeat 50%;
+    height: 44px;
+    width: 44px;
+    border-radius: 8px;
+    position: fixed;
+    right: 10px;
+    bottom: 50px;
+    cursor: pointer;
+  }
+}
+
+@media (min-width: 1200px) {
+  #chartContainer {
+    height: 370px;
+    width: 50%;
+  }
+}
