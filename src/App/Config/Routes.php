@@ -8,7 +8,8 @@ use Framework\App;
 use App\Controllers\{
   HomeController,
   AuthController,
-  WelcomeController
+  WelcomeController,
+  UserpageController
 };
 
 function registerRoutes(App $app)
@@ -19,4 +20,5 @@ function registerRoutes(App $app)
   $app->get('/login', [AuthController::class, 'loginView']);
   $app->post('/login', [AuthController::class, 'login']);
   $app->get('/welcome', [WelcomeController::class, 'welcome']);
+  $app->get('/user-page', [UserpageController::class, 'userpage']);
 }
