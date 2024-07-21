@@ -37,4 +37,36 @@ class UserService
       ]
     );
   }
+
+  public function copyDefaultTables()
+  {
+    $userId = $this->db->id();
+
+    $this->db->query(
+      "INSERT INTO `incomes_category_assigned_to_users` (`user_id`, `name`) 
+      SELECT :user_id, `name` 
+      FROM `incomes_category_default`",
+      [
+        'user_id' => $userId
+      ]
+    );
+
+    $this->db->query(
+      "INSERT INTO `expenses_category_assigned_to_users` (`user_id`, `name`) 
+      SELECT :user_id, `name` 
+      FROM `expenses_category_default`",
+      [
+        'user_id' => $userId
+      ]
+    );
+
+    $this->db->query(
+      "INSERT INTO `payment_methods_assigned_to_users` (`user_id`, `name`) 
+      SELECT :user_id, `name` 
+      FROM `payment_methods_default`",
+      [
+        'user_id' => $userId
+      ]
+    );
+  }
 }

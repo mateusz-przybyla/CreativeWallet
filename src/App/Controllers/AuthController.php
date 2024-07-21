@@ -32,6 +32,8 @@ class AuthController
 
     $this->userService->createNewUser($_POST);
 
+    $this->userService->copyDefaultTables();
+
     redirectTo('/');
   }
 }
