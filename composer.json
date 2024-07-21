@@ -18,5 +18,8 @@
       "src/App/Config/Routes.php",
       "src/App/Config/Middleware.php"
     ]
+  },
+  "scripts": {
+    "creativewallet": "php cli.php"
   }
 }
