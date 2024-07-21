@@ -8,7 +8,10 @@ use Framework\Validator;
 use Framework\Rules\{
   RequiredRule,
   EmailRule,
-  MatchRule
+  MatchRule,
+  AlphanumericRule,
+  LengthMinRule,
+  LengthMaxRule
 };
 
 class ValidatorService
@@ -20,15 +23,17 @@ class ValidatorService
     $this->validator = new Validator();
 
     $this->validator->addRule('required', new RequiredRule());
-    //$this->validator->addRule('lengthMax', new LengthMaxRule());
     $this->validator->addRule('email', new EmailRule());
     $this->validator->addRule('match', new MatchRule());
+    $this->validator->addRule('alphanumeric', new AlphanumericRule());
+    $this->validator->addRule('lengthMin', new LengthMinRule());
+    $this->validator->addRule('lengthMax', new LengthMaxRule());
   }
 
   public function validateRegister(array $formData)
   {
     $this->validator->validate($formData, [
-      'username' => ['required'],
+      'username' => ['required', 'alphanumeric', 'lengthMin:3', 'lengthMax:20'],
       'email' => ['required', 'email'],
       'password' => ['required'],
       'passwordConfirmed' => ['required', 'match:password']
