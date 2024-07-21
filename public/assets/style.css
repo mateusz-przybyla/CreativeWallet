@@ -19,7 +19,7 @@
 }
 
 .bg-home {
-  background-image: url("./assets/images/stacked-stones-2.jpg");
+  background-image: url("/assets/images/stacked-stones-2.jpg");
   background-repeat: no-repeat;
   background-size: cover;
 }

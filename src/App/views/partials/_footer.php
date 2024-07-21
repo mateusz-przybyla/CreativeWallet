@@ -7,7 +7,7 @@
         </div>
         <div class="col-md-4 d-flex justify-content-center justify-content-md-end align-items-center">
           <p class="my-2">Author: Mateusz Przybyła</p>
-          <a class="text-body-secondary" href="https://github.com/mateusz-przybyla" target="_blank"><img src="./assets/svg/github.svg" alt="graph-up-arrow" height="20" class="ms-3 my-1" /></a>
+          <a class="text-body-secondary" href="https://github.com/mateusz-przybyla" target="_blank"><img src="/assets/svg/github.svg" alt="graph-up-arrow" height="20" class="ms-3 my-1" /></a>
         </div>
       </div>
     </div>

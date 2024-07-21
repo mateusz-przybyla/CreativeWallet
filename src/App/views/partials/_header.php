@@ -15,7 +15,7 @@
     <header>
       <nav class="navbar navbar-expand-md navbar-dark bg-dark mx-2 rounded-3" aria-label="toggle navigation">
         <div class="container">
-          <a class="navbar-brand" href="#">
+          <a class="navbar-brand" href="/">
             <svg xmlns="http://www.w3.org/2000/svg" height="30" fill="currentColor" class="bi bi-wallet-fill me-1 mb-1" viewBox="0 0 16 16">
               <path d="M1.5 2A1.5 1.5 0 0 0 0 3.5v2h6a.5.5 0 0 1 .5.5c0 .253.08.644.306.958.207.288.557.542 1.194.542s.987-.254 1.194-.542C9.42 6.644 9.5 6.253 9.5 6a.5.5 0 0 1 .5-.5h6v-2A1.5 1.5 0 0 0 14.5 2z" />
               <path d="M16 6.5h-5.551a2.7 2.7 0 0 1-.443 1.042C9.613 8.088 8.963 8.5 8 8.5s-1.613-.412-2.006-.958A2.7 2.7 0 0 1 5.551 6.5H0v6A1.5 1.5 0 0 0 1.5 14h13a1.5 1.5 0 0 0 1.5-1.5z" />
@@ -28,10 +28,10 @@
             <hr class="line mt-3" />
             <ul class="navbar-nav mb-2 mb-md-0">
               <li class="nav-item mb-2 mb-md-0">
-                <a class="nav-link" href="./public/login.php">Sign in</a>
+                <a class="nav-link" href="/login">Sign in</a>
               </li>
               <li class="nav-item">
-                <a class="btn btn-primary px-2 ms-lg-3" href="./public/register.php">Create an account</a>
+                <a class="btn btn-primary px-2 ms-lg-3" href="/register">Create an account</a>
               </li>
             </ul>
           </div>
