@@ -19,7 +19,7 @@
                                                                                                         if (isset($_SESSION['e_username'])) {
                                                                                                           echo "is-invalid";
                                                                                                         }
-                                                                                                        ?>" id="register-username" placeholder="Username" required="" />
+                                                                                                        ?>" id="register-username" placeholder="Username" />
             <label for="register-username">Username</label>
           </div>
         </div>
@@ -42,7 +42,7 @@
                                                                                                       if (isset($_SESSION['e_email'])) {
                                                                                                         echo "is-invalid";
                                                                                                       }
-                                                                                                      ?>" id="register-email" placeholder="name@example.com" required="" />
+                                                                                                      ?>" id="register-email" placeholder="name@example.com" />
             <label for="register-email">Email</label>
           </div>
         </div>
@@ -65,7 +65,7 @@
                                                                                                             if (isset($_SESSION['e_password1'])) {
                                                                                                               echo "is-invalid";
                                                                                                             }
-                                                                                                            ?>" id="register-password1" placeholder="Password" required="" />
+                                                                                                            ?>" id="register-password1" placeholder="Password" />
             <label for="register-password1">Password</label>
           </div>
         </div>
@@ -85,10 +85,10 @@
                                                                     echo $_SESSION['m_password2'];
                                                                     unset($_SESSION['m_password2']);
                                                                   } ?>" class="form-control rounded-0 rounded-end-2 <?php
-                                                                                                                      if (isset($_SESSION['e_password2'])) {
-                                                                                                                        echo "is-invalid";
-                                                                                                                      }
-                                                                                                                      ?>" id="register-password2" placeholder="Repeat password" required="" />
+                                                                                                                    if (isset($_SESSION['e_password2'])) {
+                                                                                                                      echo "is-invalid";
+                                                                                                                    }
+                                                                                                                    ?>" id="register-password2" placeholder="Repeat password" />
             <label for="register-password2">Repeat password</label>
           </div>
         </div>

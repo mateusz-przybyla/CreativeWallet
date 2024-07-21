@@ -19,19 +19,19 @@ class ValidatorService
   {
     $this->validator = new Validator();
 
-    //$this->validator->add('required', new RequiredRule());
-    //$this->validator->add('lengthMax', new LengthMaxRule());
-    //$this->validator->add('email', new EmailRule());
-    //$this->validator->add('match', new MatchRule());
+    $this->validator->addRule('required', new RequiredRule());
+    //$this->validator->addRule('lengthMax', new LengthMaxRule());
+    //$this->validator->addRule('email', new EmailRule());
+    //$this->validator->addRule('match', new MatchRule());
   }
 
   public function validateRegister(array $formData)
-  {/*
+  {
     $this->validator->validate($formData, [
       'username' => ['required'],
-      'email' => ['required', 'email'],
+      'email' => ['required'/*, 'email'*/],
       'password' => ['required'],
-      'passwordConfirmed' => ['required', 'match:password']
-    ]);*/
+      'passwordConfirmed' => ['required'/*, 'match:password'*/]
+    ]);
   }
 }
