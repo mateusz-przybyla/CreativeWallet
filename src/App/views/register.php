@@ -15,7 +15,7 @@
                                                                                                             if (isset($errors['username'])) {
                                                                                                               echo "is-invalid";
                                                                                                             }
-                                                                                                            ?>" placeholder="Username" />
+                                                                                                            ?>" placeholder />
             <label for="register-username">Username</label>
           </div>
         </div>
@@ -37,7 +37,7 @@
                                                                                                       if (isset($errors['email'])) {
                                                                                                         echo "is-invalid";
                                                                                                       }
-                                                                                                      ?>" placeholder="name@example.com" />
+                                                                                                      ?>" placeholder />
             <label for="register-email">Email</label>
           </div>
         </div>
@@ -56,10 +56,10 @@
                                                             echo $_SESSION['m_password1'];
                                                             unset($_SESSION['m_password1']);
                                                           } ?>" class="form-control rounded-0 rounded-end-2 <?php
-                                                                                                            if (isset($errors['password'])) {
+                                                                                                            if (isset($errors['passwordConfirmed'])) {
                                                                                                               echo "is-invalid";
                                                                                                             }
-                                                                                                            ?>" placeholder="Password" />
+                                                                                                            ?>" placeholder />
             <label for="register-password1">Password</label>
           </div>
         </div>
@@ -81,7 +81,7 @@
                                                                                                                       if (isset($errors['passwordConfirmed'])) {
                                                                                                                         echo "is-invalid";
                                                                                                                       }
-                                                                                                                      ?>" placeholder="Repeat password" />
+                                                                                                                      ?>" placeholder />
             <label for="register-password2">Repeat password</label>
           </div>
         </div>
