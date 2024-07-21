@@ -28,10 +28,10 @@ class AuthController
   {
     $this->validatorService->validateRegister($_POST);
 
-    //$this->userService->isEmailTaken($_POST['email']);
+    $this->userService->isEmailTaken($_POST['email']);
 
-    //$this->userService->createNewUser($_POST);
+    $this->userService->createNewUser($_POST);
 
-    //redirectTo('/');
+    redirectTo('/');
   }
 }

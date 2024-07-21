@@ -38,4 +38,9 @@ class Database
 
     return $this;
   }
+
+  public function count()
+  {
+    return $this->stmt->fetchColumn();
+  }
 }
