@@ -15,8 +15,9 @@ $db = new Database(
   ''
 );
 
-echo "connected to database";
+$sqlfile = file_get_contents("./database.sql");
 
+$db->query($sqlfile);
 
 
 /*
