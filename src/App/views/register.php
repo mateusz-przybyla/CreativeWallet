@@ -11,11 +11,13 @@
             <img src="/assets/svg/person-check.svg" alt="person-chec" height="25" />
           </figure>
           <div class="form-floating mb-1 w-100">
-            <input type="text" name="username" value="<?php ?>" class="form-control rounded-0 rounded-end-2 <?php
-                                                                                                            if (isset($errors['username'])) {
-                                                                                                              echo "is-invalid";
-                                                                                                            }
-                                                                                                            ?>" placeholder />
+            <input type="text" name="username" value="<?php
+                                                      echo e($oldFormData['username'] ?? '');
+                                                      ?>" class="form-control rounded-0 rounded-end-2 <?php
+                                                                                                      if (isset($errors['username'])) {
+                                                                                                        echo "is-invalid";
+                                                                                                      }
+                                                                                                      ?>" placeholder />
             <label for="register-username">Username</label>
           </div>
         </div>
@@ -30,14 +32,12 @@
           </figure>
           <div class="form-floating mb-1 mt-2 w-100">
             <input type="email" name="email" value="<?php
-                                                    if (isset($_SESSION['m_email'])) {
-                                                      echo $_SESSION['m_email'];
-                                                      unset($_SESSION['m_email']);
-                                                    } ?>" class="form-control rounded-0 rounded-end-2 <?php
-                                                                                                      if (isset($errors['email'])) {
-                                                                                                        echo "is-invalid";
-                                                                                                      }
-                                                                                                      ?>" placeholder />
+                                                    echo e($oldFormData['email'] ?? '');
+                                                    ?>" class="form-control rounded-0 rounded-end-2 <?php
+                                                                                                    if (isset($errors['email'])) {
+                                                                                                      echo "is-invalid";
+                                                                                                    }
+                                                                                                    ?>" placeholder />
             <label for="register-email">Email</label>
           </div>
         </div>
@@ -51,15 +51,11 @@
             <img src="/assets/svg/lock.svg" alt="lock-fill" height="25" />
           </figure>
           <div class="form-floating mb-1 mt-2 w-100">
-            <input type="password" name="password" value="<?php
-                                                          if (isset($_SESSION['m_password1'])) {
-                                                            echo $_SESSION['m_password1'];
-                                                            unset($_SESSION['m_password1']);
-                                                          } ?>" class="form-control rounded-0 rounded-end-2 <?php
-                                                                                                            if (isset($errors['passwordConfirmed'])) {
-                                                                                                              echo "is-invalid";
-                                                                                                            }
-                                                                                                            ?>" placeholder />
+            <input type="password" name="password" class="form-control rounded-0 rounded-end-2 <?php
+                                                                                                if (isset($errors['passwordConfirmed'])) {
+                                                                                                  echo "is-invalid";
+                                                                                                }
+                                                                                                ?>" placeholder />
             <label for="register-password1">Password</label>
           </div>
         </div>
@@ -73,15 +69,11 @@
             <img src="/assets/svg/lock-fill.svg" alt="lock" height="25" />
           </figure>
           <div class="form-floating mb-1 mt-2 w-100">
-            <input type="password" name="passwordConfirmed" value="<?php
-                                                                    if (isset($_SESSION['m_password2'])) {
-                                                                      echo $_SESSION['m_password2'];
-                                                                      unset($_SESSION['m_password2']);
-                                                                    } ?>" class="form-control rounded-0 rounded-end-2 <?php
-                                                                                                                      if (isset($errors['passwordConfirmed'])) {
-                                                                                                                        echo "is-invalid";
-                                                                                                                      }
-                                                                                                                      ?>" placeholder />
+            <input type="password" name="passwordConfirmed" class="form-control rounded-0 rounded-end-2 <?php
+                                                                                                        if (isset($errors['passwordConfirmed'])) {
+                                                                                                          echo "is-invalid";
+                                                                                                        }
+                                                                                                        ?>" placeholder />
             <label for="register-password2">Repeat password</label>
           </div>
         </div>
