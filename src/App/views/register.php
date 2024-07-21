@@ -11,24 +11,19 @@
             <img src="/assets/svg/person-check.svg" alt="person-chec" height="25" />
           </figure>
           <div class="form-floating mb-1 w-100">
-            <input type="text" name="username" value="<?php
-                                                      if (isset($_SESSION['m_username'])) {
-                                                        echo $_SESSION['m_username'];
-                                                        unset($_SESSION['m_username']);
-                                                      } ?>" class="form-control rounded-0 rounded-end-2 <?php
-                                                                                                        if (isset($_SESSION['e_username'])) {
-                                                                                                          echo "is-invalid";
-                                                                                                        }
-                                                                                                        ?>" id="register-username" placeholder="Username" />
+            <input type="text" name="username" value="<?php ?>" class="form-control rounded-0 rounded-end-2 <?php
+                                                                                                            if (isset($errors['username'])) {
+                                                                                                              echo "is-invalid";
+                                                                                                            }
+                                                                                                            ?>" placeholder="Username" />
             <label for="register-username">Username</label>
           </div>
         </div>
-        <?php
-        if (isset($_SESSION['e_username'])) {
-          echo '<div class="text-danger text-start small">' . $_SESSION['e_username'] . '</div>';
-          unset($_SESSION['e_username']);
-        }
-        ?>
+        <?php if (array_key_exists('username', $errors)) : ?>
+          <div class="text-danger text-start small">
+            <?php echo e($errors['username'][0]); ?>
+          </div>
+        <?php endif; ?>
         <div class="d-flex">
           <figure class="d-flex align-items-center rounded-left-3 px-2 mb-1 mt-2 rounded-start-2 bg-grey-blue border">
             <img src="/assets/svg/envelope.svg" alt="person-fill" height="25" />
@@ -39,19 +34,18 @@
                                                       echo $_SESSION['m_email'];
                                                       unset($_SESSION['m_email']);
                                                     } ?>" class="form-control rounded-0 rounded-end-2 <?php
-                                                                                                      if (isset($_SESSION['e_email'])) {
+                                                                                                      if (isset($errors['email'])) {
                                                                                                         echo "is-invalid";
                                                                                                       }
-                                                                                                      ?>" id="register-email" placeholder="name@example.com" />
+                                                                                                      ?>" placeholder="name@example.com" />
             <label for="register-email">Email</label>
           </div>
         </div>
-        <?php
-        if (isset($_SESSION['e_email'])) {
-          echo '<div class="text-danger text-start small">' . $_SESSION['e_email'] . '</div>';
-          unset($_SESSION['e_email']);
-        }
-        ?>
+        <?php if (array_key_exists('email', $errors)) : ?>
+          <div class="text-danger text-start small">
+            <?php echo e($errors['email'][0]); ?>
+          </div>
+        <?php endif; ?>
         <div class="d-flex">
           <figure class="d-flex align-items-center rounded-left-3 px-2 mb-1 mt-2 rounded-start-2 bg-grey-blue border">
             <img src="/assets/svg/lock.svg" alt="lock-fill" height="25" />
@@ -62,42 +56,40 @@
                                                             echo $_SESSION['m_password1'];
                                                             unset($_SESSION['m_password1']);
                                                           } ?>" class="form-control rounded-0 rounded-end-2 <?php
-                                                                                                            if (isset($_SESSION['e_password1'])) {
+                                                                                                            if (isset($errors['password'])) {
                                                                                                               echo "is-invalid";
                                                                                                             }
-                                                                                                            ?>" id="register-password1" placeholder="Password" />
+                                                                                                            ?>" placeholder="Password" />
             <label for="register-password1">Password</label>
           </div>
         </div>
-        <?php
-        if (isset($_SESSION['e_password1'])) {
-          echo '<div class="text-danger text-start small">' . $_SESSION['e_password1'] . '</div>';
-          unset($_SESSION['e_password1']);
-        }
-        ?>
+        <?php if (array_key_exists('password', $errors)) : ?>
+          <div class="text-danger text-start small">
+            <?php echo e($errors['password'][0]); ?>
+          </div>
+        <?php endif; ?>
         <div class="d-flex">
           <figure class="d-flex align-items-center rounded-left-3 px-2 mb-1 mt-2 rounded-start-2 bg-grey-blue border">
             <img src="/assets/svg/lock-fill.svg" alt="lock" height="25" />
           </figure>
           <div class="form-floating mb-1 mt-2 w-100">
-            <input type="password" name="confirmPassword" value="<?php
-                                                                  if (isset($_SESSION['m_password2'])) {
-                                                                    echo $_SESSION['m_password2'];
-                                                                    unset($_SESSION['m_password2']);
-                                                                  } ?>" class="form-control rounded-0 rounded-end-2 <?php
-                                                                                                                    if (isset($_SESSION['e_password2'])) {
-                                                                                                                      echo "is-invalid";
-                                                                                                                    }
-                                                                                                                    ?>" id="register-password2" placeholder="Repeat password" />
+            <input type="password" name="passwordConfirmed" value="<?php
+                                                                    if (isset($_SESSION['m_password2'])) {
+                                                                      echo $_SESSION['m_password2'];
+                                                                      unset($_SESSION['m_password2']);
+                                                                    } ?>" class="form-control rounded-0 rounded-end-2 <?php
+                                                                                                                      if (isset($errors['passwordConfirmed'])) {
+                                                                                                                        echo "is-invalid";
+                                                                                                                      }
+                                                                                                                      ?>" placeholder="Repeat password" />
             <label for="register-password2">Repeat password</label>
           </div>
         </div>
-        <?php
-        if (isset($_SESSION['e_password2'])) {
-          echo '<div class="text-danger text-start small">' . $_SESSION['e_password2'] . '</div>';
-          unset($_SESSION['e_password2']);
-        }
-        ?>
+        <?php if (array_key_exists('passwordConfirmed', $errors)) : ?>
+          <div class="text-danger text-start small">
+            <?php echo e($errors['passwordConfirmed'][0]); ?>
+          </div>
+        <?php endif; ?>
         <button class="w-100 btn btn-lg btn-success mt-3" type="submit">
           Sign up
         </button>
