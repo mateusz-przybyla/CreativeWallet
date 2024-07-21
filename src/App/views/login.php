@@ -11,33 +11,39 @@
             <img src="/assets/svg/envelope.svg" alt="envelope" height="25" />
           </figure>
           <div class="form-floating mb-2 w-100">
-            <input type="email" name="email" class="form-control rounded-0 rounded-end-2 <?php
-                                                                                          if (isset($_SESSION['bad_attempt'])) {
-                                                                                            echo "is-invalid";
-                                                                                          }
-                                                                                          ?>" placeholder />
+            <input type="email" name="email" value="<?php
+                                                    echo e($oldFormData['email'] ?? '');
+                                                    ?>" class="form-control rounded-0 rounded-end-2 <?php
+                                                                                                    if (isset($errors['email'])) {
+                                                                                                      echo "is-invalid";
+                                                                                                    }
+                                                                                                    ?>" placeholder />
             <label for="login-email">Email</label>
           </div>
         </div>
+        <?php if (array_key_exists('email', $errors)) : ?>
+          <div class="text-danger text-start small">
+            <?php echo e($errors['email'][0]); ?>
+          </div>
+        <?php endif; ?>
         <div class="d-flex">
           <figure class="d-flex align-items-center rounded-left-3 px-2 mb-0 rounded-start-2 bg-grey-blue border">
             <img src="/assets/svg/lock-fill.svg" alt="lock-fill" height="25" />
           </figure>
           <div class="form-floating w-100">
             <input type="password" name="password" class="form-control rounded-0 rounded-end-2 <?php
-                                                                                                if (isset($_SESSION['bad_attempt'])) {
+                                                                                                if (isset($errors['password'])) {
                                                                                                   echo "is-invalid";
                                                                                                 }
                                                                                                 ?>" placeholder />
             <label for="login-password">Password</label>
           </div>
         </div>
-        <?php
-        if (isset($_SESSION['bad_attempt'])) {
-          echo '<div class="text-danger text-start small">' . $_SESSION['bad_attempt'] . '</div>';
-          unset($_SESSION['bad_attempt']);
-        }
-        ?>
+        <?php if (array_key_exists('password', $errors)) : ?>
+          <div class="text-danger text-start small">
+            <?php echo e($errors['password'][0]); ?>
+          </div>
+        <?php endif; ?>
         <div class="checkbox my-3">
           <label>
             <input type="checkbox" id="remember-me" /> Remember me
