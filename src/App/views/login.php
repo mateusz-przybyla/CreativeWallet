@@ -14,7 +14,7 @@
             <input type="email" name="email" value="<?php
                                                     echo e($oldFormData['email'] ?? '');
                                                     ?>" class="form-control rounded-0 rounded-end-2 <?php
-                                                                                                    if (isset($errors['email'])) {
+                                                                                                    if (isset($errors['email']) || in_array(['Invalid credentials.'], $errors)) {
                                                                                                       echo "is-invalid";
                                                                                                     }
                                                                                                     ?>" placeholder />

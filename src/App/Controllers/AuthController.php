@@ -34,7 +34,7 @@ class AuthController
 
     $this->userService->copyDefaultTables();
 
-    redirectTo('/');
+    redirectTo('/welcome');
   }
 
   public function loginView()
@@ -46,8 +46,8 @@ class AuthController
   {
     $this->validatorService->validateLogin($_POST);
 
-    $this->userService->login($_POST);
+    $this->userService->verifyLoginData($_POST);
 
-    redirectTo('/welcome');
+    redirectTo('/user-page');
   }
 }
