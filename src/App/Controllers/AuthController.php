@@ -5,13 +5,17 @@ declare(strict_types=1);
 namespace App\Controllers;
 
 use Framework\TemplateEngine;
-use App\Services\ValidatorService;
+use App\Services\{
+  ValidatorService,
+  UserService
+};
 
 class AuthController
 {
   public function __construct(
     private TemplateEngine $view,
-    private ValidatorService $validatorService
+    private ValidatorService $validatorService,
+    private UserService $userService
   ) {
   }
 
@@ -24,10 +28,26 @@ class AuthController
   {
     $this->validatorService->validateRegister($_POST);
 
-    //$this->userService->isEmailTaken($_POST['email']);
+    $this->userService->isEmailTaken($_POST['email']);
 
-    //$this->userService->createNewUser($_POST);
+    $this->userService->createNewUser($_POST);
 
-    //redirectTo('/');
+    $this->userService->copyDefaultTables();
+
+    redirectTo('/welcome');
+  }
+
+  public function loginView()
+  {
+    echo $this->view->render("login.php");
+  }
+
+  public function login()
+  {
+    $this->validatorService->validateLogin($_POST);
+
+    $this->userService->verifyLoginData($_POST);
+
+    redirectTo('/user-page');
   }
 }

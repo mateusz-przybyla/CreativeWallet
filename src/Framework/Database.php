@@ -38,4 +38,19 @@ class Database
 
     return $this;
   }
+
+  public function count()
+  {
+    return $this->stmt->fetchColumn();
+  }
+
+  public function id()
+  {
+    return $this->connection->lastInsertId();
+  }
+
+  public function retrieve()
+  {
+    return $this->stmt->fetch();
+  }
 }
