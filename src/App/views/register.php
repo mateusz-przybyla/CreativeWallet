@@ -80,11 +80,11 @@
             <img src="/assets/svg/lock-fill.svg" alt="lock" height="25" />
           </figure>
           <div class="form-floating mb-1 mt-2 w-100">
-            <input type="password" name="confirmed_password" value="<?php
-                                                                    if (isset($_SESSION['m_password2'])) {
-                                                                      echo $_SESSION['m_password2'];
-                                                                      unset($_SESSION['m_password2']);
-                                                                    } ?>" class="form-control rounded-0 rounded-end-2 <?php
+            <input type="password" name="confirmPassword" value="<?php
+                                                                  if (isset($_SESSION['m_password2'])) {
+                                                                    echo $_SESSION['m_password2'];
+                                                                    unset($_SESSION['m_password2']);
+                                                                  } ?>" class="form-control rounded-0 rounded-end-2 <?php
                                                                                                                       if (isset($_SESSION['e_password2'])) {
                                                                                                                         echo "is-invalid";
                                                                                                                       }
