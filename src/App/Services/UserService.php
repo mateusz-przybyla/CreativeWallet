@@ -38,6 +38,8 @@ class UserService
         'password' => $password
       ]
     );
+
+    $_SESSION['welcome'] = true;
   }
 
   public function copyDefaultTables()
@@ -93,5 +95,6 @@ class UserService
     session_regenerate_id();
 
     $_SESSION['user'] = $user['id'];
+    unset($_SESSION['welcome']);
   }
 }
