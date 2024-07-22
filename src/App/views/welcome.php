@@ -1,17 +1,22 @@
-<?php include $this->resolve("partials/_header.php") ?>
+<?php include $this->resolve("partials/_header-user.php") ?>
 
 <main class="pb-75">
   <div class="container my-5">
-    <div class="bg-main-home shadow p-5 text-center rounded-3">
-      <img src="/assets/svg/check2-square.svg" alt="graph-up-arrow" height="70" class="mb-3" />
+    <div class="bg-light-red shadow p-5 rounded-3 text-center">
+      <img src="/assets/svg/person-circle.svg" alt="person-circle" height="70" class="mb-3" />
       <h1 class="text-body-emphasis py-3 display-5">
-        Success!
+        Welcome <?php echo $_SESSION['user'] . "!" ?>
       </h1>
       <hr />
       <p class="col-lg-8 mx-auto fs-3 py-2">
-        <strong>Congratulations, your account has been successfully created.</strong>
+        <strong>What do you want to change about your finances today?</strong>
       </p>
-      <a class="btn btn-success btn-lg px-5" href="/login">Sign in</a>
+      <p class="col-lg-4 mx-auto fs-5">
+        <i>A budget is telling your money where to go instead of wondering where it went.</i>
+      </p>
+      <p class="col-lg-4 mx-auto fs-5">
+        <i>John C. Maxwell</i>
+      </p>
     </div>
   </div>
 </main>

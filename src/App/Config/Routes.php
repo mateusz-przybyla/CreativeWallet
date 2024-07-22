@@ -9,7 +9,7 @@ use App\Controllers\{
   HomeController,
   AuthController,
   SuccessController,
-  UserpageController
+  WelcomeController
 };
 use App\Middlewares\{
   AuthRequiredMiddleware,
@@ -25,6 +25,6 @@ function registerRoutes(App $app)
   $app->get('/login', [AuthController::class, 'loginView'])->add(GuestOnlyMiddleware::class);
   $app->post('/login', [AuthController::class, 'login'])->add(GuestOnlyMiddleware::class);
   $app->get('/success', [SuccessController::class, 'success'])->add(SuccessMiddleware::class);
-  $app->get('/user-page', [UserpageController::class, 'userpage'])->add(AuthRequiredMiddleware::class);
+  $app->get('/welcome', [WelcomeController::class, 'welcome'])->add(AuthRequiredMiddleware::class);
   $app->get('/logout', [AuthController::class, 'logout'])->add(AuthRequiredMiddleware::class);
 }
