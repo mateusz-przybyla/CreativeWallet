@@ -12,7 +12,7 @@ class SuccessMiddleware implements MiddlewareInterface
   {
     if (empty($_SESSION['success'])) {
       if (!empty($_SESSION['user'])) {
-        redirectTo('/user-page');
+        redirectTo('/welcome');
       } else {
         redirectTo('/register');
       }
