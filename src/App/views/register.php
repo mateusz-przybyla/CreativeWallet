@@ -3,7 +3,10 @@
 <main class="pb-75">
   <div class="container my-5">
     <div class="bg-main-home shadow p-5 text-center rounded-3">
-      <form class="w-lg-50 mx-auto" method="post">
+      <form class="w-lg-50 mx-auto" method="POST">
+        <?php
+        include $this->resolve("partials/_csrf.php");
+        ?>
         <img class="mb-2" src="/assets/svg/person-plus-fill.svg" alt="person-plus-fill" height="70" />
         <h1 class="h3 mb-4">Sign up</h1>
         <div class="d-flex">
