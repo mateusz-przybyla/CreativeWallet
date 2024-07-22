@@ -53,4 +53,9 @@ class Database
   {
     return $this->stmt->fetch();
   }
+
+  public function retrieveAll()
+  {
+    return $this->stmt->fetchAll();
+  }
 }

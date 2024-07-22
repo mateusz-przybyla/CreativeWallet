@@ -46,11 +46,9 @@
               <span class="input-group-text bg-grey-blue rounded-end-0"><img src="/assets/svg/tags-fill.svg" alt="tags-fill" width="25" /></span>
               <select class="form-select" name="category" id="incomeCategory" required="">
                 <option value="">Choose...</option>
-                <?php
-                foreach ($userCategories as $userCategory) {
-                  echo "<option>{$userCategory['name']}</option>";
-                }
-                ?>
+                <?php foreach ($incomeCategories as $incomeCategory) : ?>
+                  <option><?php echo e($incomeCategory['name']); ?></option>;
+                <?php endforeach; ?>
               </select>
             </div>
             <?php

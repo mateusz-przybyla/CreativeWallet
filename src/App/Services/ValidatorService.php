@@ -47,4 +47,8 @@ class ValidatorService
       'password' => ['required']
     ]);
   }
+
+  public function validateTransaction(array $formData)
+  {
+  }
 }
