@@ -39,7 +39,9 @@ class UserService
       ]
     );
 
-    $_SESSION['welcome'] = true;
+    $_SESSION['success'] = 'good';
+
+    session_regenerate_id();
   }
 
   public function copyDefaultTables()
@@ -95,7 +97,7 @@ class UserService
     session_regenerate_id();
 
     $_SESSION['user'] = $user['id'];
-    unset($_SESSION['welcome']);
+    unset($_SESSION['success']);
   }
 
   public function logout()
