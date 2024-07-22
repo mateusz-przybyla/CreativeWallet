@@ -97,4 +97,22 @@ class UserService
     $_SESSION['user'] = $user['id'];
     unset($_SESSION['welcome']);
   }
+
+  public function logout()
+  {
+    //unset($_SESSION['user']);
+    session_destroy();
+
+    //session_regenerate_id();
+    $params = session_get_cookie_params();
+    setcookie(
+      'PHPSESSID',
+      '',
+      time() - 3600,
+      $params['path'],
+      $params['domain'],
+      $params['secure'],
+      $params['httponly']
+    );
+  }
 }
