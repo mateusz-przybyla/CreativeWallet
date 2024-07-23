@@ -3,12 +3,9 @@
 <main class="pb-60">
   <div class="container my-5">
     <div class="bg-light-red shadow p-5 rounded-3">
-      <?php
-      if (isset($_SESSION['addedIncome'])) {
-        echo '<div class="text-success text-center mb-3">' . $_SESSION['addedIncome'] . '</div>';
-        unset($_SESSION['addedIncome']);
-      }
-      ?>
+      <?php if (isset($newTrans)) : ?>
+        <div class="text-success text-center mb-3"> <?php echo e($newTrans) ?> </div>;
+      <?php endif; ?>
       <div class="text-center">
         <h1 class="h3 mb-4">Please enter data for new Income:</h1>
       </div>

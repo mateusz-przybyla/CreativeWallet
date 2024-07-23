@@ -5,7 +5,7 @@
     <div class="bg-light-red shadow p-5 rounded-3 text-center">
       <img src="/assets/svg/person-circle.svg" alt="person-circle" height="70" class="mb-3" />
       <h1 class="text-body-emphasis py-3 display-5">
-        Welcome <?php echo $_SESSION['user'] . "!" ?>
+        Welcome <?php echo $_SESSION['username'] . "!" ?>
       </h1>
       <hr />
       <p class="col-lg-8 mx-auto fs-3 py-2">

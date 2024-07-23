@@ -37,8 +37,10 @@ class AddIncomeController
   {
     $this->validatorService->validateTransaction($_POST);
 
-    //$this->transactionService->createIncome($_POST);
+    // $this->transactionService->getIncomeCategoryId($_POST['category']);
 
-    //redirectTo('/');
+    $this->transactionService->createIncome($_POST);
+
+    redirectTo('/add-income');
   }
 }
