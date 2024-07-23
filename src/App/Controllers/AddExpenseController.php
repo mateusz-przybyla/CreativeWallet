@@ -11,7 +11,7 @@ use App\Services\{
 };
 use App\Exceptions\FormOptionsException;
 
-class AddIncomeController
+class AddExpenseController
 {
   public function __construct(
     private TemplateEngine $view,
@@ -22,17 +22,17 @@ class AddIncomeController
 
   public function addIncomeView()
   {
-    $incomeCategories = $this->transactionService->loadCategories();
+    $expenseCategories = $this->transactionService->loadCategories();
 
-    if (!$incomeCategories) {
+    if (!$expenseCategories) {
       throw new FormOptionsException("No categories loaded.");
     }
 
-    echo $this->view->render("add-income.php", [
-      'incomeCategories' => $incomeCategories
+    echo $this->view->render("add-expense.php", [
+      'expenseCategories' => $expenseCategories
     ]);
   }
-
+  /*
   public function addIncome()
   {
     $this->validatorService->validateTransaction($_POST);
@@ -41,4 +41,5 @@ class AddIncomeController
 
     redirectTo('/add-income');
   }
+*/
 }

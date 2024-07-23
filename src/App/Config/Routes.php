@@ -10,7 +10,8 @@ use App\Controllers\{
   AuthController,
   SuccessController,
   WelcomeController,
-  AddIncomeController
+  AddIncomeController,
+  AddExpenseController
 };
 use App\Middlewares\{
   AuthRequiredMiddleware,
@@ -30,4 +31,6 @@ function registerRoutes(App $app)
   $app->get('/logout', [AuthController::class, 'logout'])->add(AuthRequiredMiddleware::class);
   $app->get('/add-income', [AddIncomeController::class, 'addIncomeView'])->add(AuthRequiredMiddleware::class);
   $app->post('/add-income', [AddIncomeController::class, 'addIncome'])->add(AuthRequiredMiddleware::class);
+  $app->get('/add-expense', [AddExpenseController::class, 'addExpenseView'])->add(AuthRequiredMiddleware::class);
+  $app->post('/add-expense', [AddExpenseController::class, 'addExpense'])->add(AuthRequiredMiddleware::class);
 }
