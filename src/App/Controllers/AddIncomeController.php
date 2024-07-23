@@ -37,7 +37,7 @@ class AddIncomeController
   {
     $this->validatorService->validateTransaction($_POST);
 
-    //$this->transactionService->create($_POST);
+    //$this->transactionService->createIncome($_POST);
 
     //redirectTo('/');
   }
