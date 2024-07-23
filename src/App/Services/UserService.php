@@ -39,7 +39,7 @@ class UserService
       ]
     );
 
-    $_SESSION['success'] = 'good';
+    $_SESSION['success'] = 'done';
 
     session_regenerate_id();
   }
@@ -97,6 +97,7 @@ class UserService
     session_regenerate_id();
 
     $_SESSION['user'] = $user['id'];
+    $_SESSION['username'] = $user['username'];
     unset($_SESSION['success']);
   }
 

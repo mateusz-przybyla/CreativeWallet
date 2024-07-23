@@ -11,7 +11,9 @@ use Framework\Rules\{
   MatchRule,
   AlphanumericRule,
   LengthMinRule,
-  LengthMaxRule
+  LengthMaxRule,
+  NumericRule,
+  DateFormatRule
 };
 
 class ValidatorService
@@ -28,6 +30,8 @@ class ValidatorService
     $this->validator->addRule('alphanumeric', new AlphanumericRule());
     $this->validator->addRule('lengthMin', new LengthMinRule());
     $this->validator->addRule('lengthMax', new LengthMaxRule());
+    $this->validator->addRule('numeric', new NumericRule());
+    $this->validator->addRule('dateFormat', new DateFormatRule());
   }
 
   public function validateRegister(array $formData)
@@ -45,6 +49,16 @@ class ValidatorService
     $this->validator->validate($formData, [
       'email' => ['required', 'email'],
       'password' => ['required']
+    ]);
+  }
+
+  public function validateTransaction(array $formData)
+  {
+    $this->validator->validate($formData, [
+      'amount' => ['required', 'numeric'],
+      'date' => ['required', 'dateFormat:Y-m-d'],
+      'category' => ['required'],
+      'comment' => ['lengthMax:255']
     ]);
   }
 }
