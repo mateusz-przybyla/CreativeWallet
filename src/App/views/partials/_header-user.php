@@ -28,16 +28,16 @@
             <hr class="line mt-3" />
             <ul class="navbar-nav mb-2 mb-md-0">
               <li class="nav-item mb-2 mb-md-0">
-                <a class="nav-link active" aria-current="page" href="/welcome">User page</a>
+                <a class="nav-link <?php if ($currentPath === "/welcome") echo $activeStatus; ?>" aria-current="page" href="/welcome">User page</a>
               </li>
               <li class="nav-item mb-2 mb-md-0">
-                <a class="nav-link" href="/add-income">Add income</a>
+                <a class="nav-link <?php if ($currentPath === "/add-income") echo $activeStatus; ?>" href="/add-income">Add income</a>
               </li>
               <li class="nav-item mb-2 mb-md-0">
-                <a class="nav-link" href="/add-expense">Add expense</a>
+                <a class="nav-link <?php if ($currentPath === "/add-expense") echo $activeStatus; ?>" href=" /add-expense">Add expense</a>
               </li>
               <li class="nav-item mb-2 mb-md-0">
-                <a class="nav-link" href="/show-balance">Show balance</a>
+                <a class="nav-link <?php if ($currentPath === "/show-balance") echo $activeStatus; ?>" href=" /show-balance">Show balance</a>
               </li>
               <li class="nav-item mb-2 mb-md-0">
                 <a class="nav-link disabled" href="#">Settings</a>

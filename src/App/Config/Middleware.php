@@ -12,11 +12,13 @@ use App\Middlewares\{
   FlashMiddleware,
   CsrfTokenMiddleware,
   CsrfGuardMiddleware,
-  TransactionMiddleware
+  TransactionMiddleware,
+  CurrentPageMiddleware
 };
 
 function registerMiddleware(App $app)
 {
+  $app->addMiddleware(CurrentPageMiddleware::class);
   $app->addMiddleware(TransactionMiddleware::class);
   $app->addMiddleware(CsrfGuardMiddleware::class);
   $app->addMiddleware(CsrfTokenMiddleware::class);
