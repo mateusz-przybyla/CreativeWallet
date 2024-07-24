@@ -28,7 +28,7 @@ class AddIncomeController
       throw new FormOptionsException("No categories loaded.");
     }
 
-    echo $this->view->render("add-income.php", [
+    echo $this->view->render("transactions/add-income.php", [
       'incomeCategories' => $incomeCategories
     ]);
   }
