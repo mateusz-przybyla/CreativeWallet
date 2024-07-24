@@ -129,4 +129,46 @@ class TransactionService
 
     $_SESSION['newTrans'] = "Transaction added successfully!";
   }
+
+  public function getUserIncomes()
+  {
+    $startDate = "2024-07-01";
+    $endDate = "2024-07-23";
+
+    return $this->db->query(
+      "SELECT `name`, SUM(`amount`) AS incomeTotal
+      FROM  `incomes`, `incomes_category_assigned_to_users`
+      WHERE `incomes`.`income_category_assigned_to_user_id` = `incomes_category_assigned_to_users`.`id`
+      AND `incomes`.`user_id` = :user_id
+      AND `incomes`.`date_of_income` BETWEEN :start_date AND :end_date
+      GROUP BY `income_category_assigned_to_user_id` 
+      ORDER BY incomeTotal DESC",
+      [
+        'user_id' => $_SESSION['user'],
+        'start_date' => $startDate,
+        'end_date' => $endDate
+      ]
+    )->retrieveAll();
+  }
+
+  public function getUserExpenses()
+  {
+    $startDate = "2024-07-01";
+    $endDate = "2024-07-23";
+
+    return $this->db->query(
+      "SELECT `name`, SUM(`amount`) AS expenseTotal
+      FROM  `expenses`, `expenses_category_assigned_to_users`
+      WHERE `expenses`.`expense_category_assigned_to_user_id` = `expenses_category_assigned_to_users`.`id`
+      AND `expenses`.`user_id` = :user_id
+      AND `expenses`.`date_of_expense` BETWEEN :start_date AND :end_date
+      GROUP BY `expense_category_assigned_to_user_id` 
+      ORDER BY expenseTotal DESC",
+      [
+        'user_id' => $_SESSION['user'],
+        'start_date' => $startDate,
+        'end_date' => $endDate
+      ]
+    )->retrieveAll();
+  }
 }

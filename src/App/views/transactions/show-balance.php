@@ -139,7 +139,7 @@
               <?php
               $incomeIndex = 1;
               foreach ($incomes as $income) {
-                echo "<tr><th scope='row'>{$incomeIndex}</th><td>{$income['name']}</td><td>{$income['incomeSum']}</td></tr>";
+                echo "<tr><th scope='row'>{$incomeIndex}</th><td>{$income['name']}</td><td>{$income['incomeTotal']}</td></tr>";
                 $incomeIndex++;
               }
               ?>
@@ -169,7 +169,7 @@
               <?php
               $expenseIndex = 1;
               foreach ($expenses as $expense) {
-                echo "<tr><th scope='row'>{$expenseIndex}</th><td>{$expense['name']}</td><td>{$expense['expenseSum']}</td></tr>";
+                echo "<tr><th scope='row'>{$expenseIndex}</th><td>{$expense['name']}</td><td>{$expense['expenseTotal']}</td></tr>";
                 $expenseIndex++;
               }
               ?>
