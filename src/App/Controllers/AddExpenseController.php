@@ -42,8 +42,8 @@ class AddExpenseController
   {
     $this->validatorService->validateTransaction($_POST);
 
-    //$this->transactionService->createIncome($_POST);
+    $this->transactionService->createExpense($_POST);
 
-    //redirectTo('/add-income');
+    redirectTo('/add-expense');
   }
 }
