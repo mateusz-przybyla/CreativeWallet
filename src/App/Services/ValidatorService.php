@@ -53,18 +53,24 @@ class ValidatorService
     ]);
   }
 
-  public function validateTransaction(array $formData)
+  public function validateIncomeTransaction(array $formData)
   {
-    try {
-      $this->validator->validate($formData, [
-        'amount' => ['required', 'numeric'],
-        'date' => ['required', 'dateFormat:Y-m-d'],
-        'category' => ['required'],
-        'paymentMethod' => ['required'],
-        'comment' => ['lengthMax:255']
-      ]);
-    } catch (Exception $e) {
-      $e->getMessage("check");
-    }
+    $this->validator->validate($formData, [
+      'amount' => ['required', 'numeric'],
+      'date' => ['required', 'dateFormat:Y-m-d'],
+      'category' => ['required'],
+      'comment' => ['lengthMax:255']
+    ]);
+  }
+
+  public function validateExpenseTransaction(array $formData)
+  {
+    $this->validator->validate($formData, [
+      'amount' => ['required', 'numeric'],
+      'date' => ['required', 'dateFormat:Y-m-d'],
+      'category' => ['required'],
+      'paymentMethod' => ['required'],
+      'comment' => ['lengthMax:255']
+    ]);
   }
 }
