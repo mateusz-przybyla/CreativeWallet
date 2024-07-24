@@ -35,7 +35,7 @@ class AddIncomeController
 
   public function addIncome()
   {
-    $this->validatorService->validateTransaction($_POST);
+    $this->validatorService->validateIncomeTransaction($_POST);
 
     $this->transactionService->createIncome($_POST);
 

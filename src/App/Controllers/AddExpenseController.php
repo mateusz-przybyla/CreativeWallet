@@ -40,7 +40,7 @@ class AddExpenseController
 
   public function addExpense()
   {
-    $this->validatorService->validateTransaction($_POST);
+    $this->validatorService->validateExpenseTransaction($_POST);
 
     $this->transactionService->createExpense($_POST);
 
