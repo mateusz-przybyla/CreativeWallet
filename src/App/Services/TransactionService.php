@@ -130,19 +130,19 @@ class TransactionService
     $_SESSION['newTrans'] = "Transaction added successfully!";
   }
 
-  public function getUserIncomes()
+  public function getUserIncomes(): array
   {
     $startDate = "2024-07-01";
     $endDate = "2024-07-23";
 
     return $this->db->query(
-      "SELECT `name`, SUM(`amount`) AS incomeTotal
+      "SELECT `name`, SUM(`amount`) AS total
       FROM  `incomes`, `incomes_category_assigned_to_users`
       WHERE `incomes`.`income_category_assigned_to_user_id` = `incomes_category_assigned_to_users`.`id`
       AND `incomes`.`user_id` = :user_id
       AND `incomes`.`date_of_income` BETWEEN :start_date AND :end_date
       GROUP BY `income_category_assigned_to_user_id` 
-      ORDER BY incomeTotal DESC",
+      ORDER BY total DESC",
       [
         'user_id' => $_SESSION['user'],
         'start_date' => $startDate,
@@ -151,24 +151,40 @@ class TransactionService
     )->retrieveAll();
   }
 
-  public function getUserExpenses()
+  public function getUserExpenses(): array
   {
     $startDate = "2024-07-01";
     $endDate = "2024-07-23";
 
     return $this->db->query(
-      "SELECT `name`, SUM(`amount`) AS expenseTotal
+      "SELECT `name`, SUM(`amount`) AS total
       FROM  `expenses`, `expenses_category_assigned_to_users`
       WHERE `expenses`.`expense_category_assigned_to_user_id` = `expenses_category_assigned_to_users`.`id`
       AND `expenses`.`user_id` = :user_id
       AND `expenses`.`date_of_expense` BETWEEN :start_date AND :end_date
       GROUP BY `expense_category_assigned_to_user_id` 
-      ORDER BY expenseTotal DESC",
+      ORDER BY total DESC",
       [
         'user_id' => $_SESSION['user'],
         'start_date' => $startDate,
         'end_date' => $endDate
       ]
     )->retrieveAll();
+  }
+
+  public function calculateTotal(array $transactions): float
+  {
+    $total = 0;
+
+    foreach ($transactions as $transaction) {
+      $total += $transaction['total'];
+    }
+
+    return $total;
+  }
+
+  public function calculateBalance(float $transaction1, float $transaction2): float
+  {
+    return $transaction1 - $transaction2;
   }
 }

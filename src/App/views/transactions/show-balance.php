@@ -103,16 +103,14 @@
         <hr class="" />
       </div>
       <div class="text-center">
-        <?php
-        echo $_SESSION['balance'] >= 0 ? '<p class="fs-5 text-success">
+        <?php echo e($balance) >= 0 ? '<p class="fs-5 text-success">
               Congratulations! You manage your finances very well :)
             </p>' : '<p class="fs-5 text-danger">
               Be carefull! You are getting into debt :(
             </p>'
         ?>
-        <p class="lead fs-2"><?php if (isset($_SESSION['balance'])) {
-                                echo "Balance: " . number_format($_SESSION['balance'], 2, ",", " ") . " zł";
-                                unset($_SESSION['balance']);
+        <p class="lead fs-2"><?php if (isset($balance)) {
+                                echo "Balance: " . e($balance) . " zł";
                               }
                               ?>
         </p>
@@ -139,15 +137,13 @@
               <?php
               $incomeIndex = 1;
               foreach ($incomes as $income) {
-                echo "<tr><th scope='row'>{$incomeIndex}</th><td>{$income['name']}</td><td>{$income['incomeTotal']}</td></tr>";
+                echo "<tr><th scope='row'>{$incomeIndex}</th><td>{$income['name']}</td><td>{$income['total']}</td></tr>";
                 $incomeIndex++;
               }
               ?>
               <tr>
                 <td colspan="2" class="text-center">Total incomes</td>
-                <?php
-                echo "<th>{$_SESSION['total_incomes']}</th>";
-                ?>
+                <?php echo "<th>{$incomeTotal}</th>" ?>
               </tr>
             </tbody>
           </table>
@@ -169,15 +165,13 @@
               <?php
               $expenseIndex = 1;
               foreach ($expenses as $expense) {
-                echo "<tr><th scope='row'>{$expenseIndex}</th><td>{$expense['name']}</td><td>{$expense['expenseTotal']}</td></tr>";
+                echo "<tr><th scope='row'>{$expenseIndex}</th><td>{$expense['name']}</td><td>{$expense['total']}</td></tr>";
                 $expenseIndex++;
               }
               ?>
               <tr>
                 <td colspan="2" class="text-center">Total expenses</td>
-                <?php
-                echo "<th>{$_SESSION['total_expenses']}</th>";
-                ?>
+                <?php echo "<th>{$expenseTotal}</th>"; ?>
               </tr>
             </tbody>
           </table>

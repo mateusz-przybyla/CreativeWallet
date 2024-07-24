@@ -20,11 +20,23 @@ class ShowBalanceController
     $incomes = $this->transactionService->getUserIncomes();
     $expenses = $this->transactionService->getUserExpenses();
 
+    $incomeTotal = $this->transactionService->calculateTotal($incomes);
+    $incomeTotal = number_format($incomeTotal, 2, ".", "");
+
+    $expenseTotal = $this->transactionService->calculateTotal($expenses);
+    $expenseTotal = number_format($expenseTotal, 2, ".", "");
+
+    $balance = $this->transactionService->calculateBalance((float)$incomeTotal, (float)$expenseTotal);
+    $balance = number_format($balance, 2, ".", "");
+
     echo $this->view->render(
       "transactions/show-balance.php",
       [
         'incomes' => $incomes,
-        'expenses' => $expenses
+        'expenses' => $expenses,
+        'incomeTotal' => $incomeTotal,
+        'expenseTotal' => $expenseTotal,
+        'balance' => $balance
       ]
     );
   }
