@@ -22,7 +22,7 @@ class AddIncomeController
 
   public function addIncomeView()
   {
-    $incomeCategories = $this->transactionService->loadCategories();
+    $incomeCategories = $this->transactionService->loadIncomeCategories();
 
     if (!$incomeCategories) {
       throw new FormOptionsException("No categories loaded.");
@@ -36,8 +36,6 @@ class AddIncomeController
   public function addIncome()
   {
     $this->validatorService->validateTransaction($_POST);
-
-    // $this->transactionService->getIncomeCategoryId($_POST['category']);
 
     $this->transactionService->createIncome($_POST);
 

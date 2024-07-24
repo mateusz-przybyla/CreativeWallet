@@ -15,6 +15,7 @@ use Framework\Rules\{
   NumericRule,
   DateFormatRule
 };
+use Exception;
 
 class ValidatorService
 {
@@ -54,11 +55,16 @@ class ValidatorService
 
   public function validateTransaction(array $formData)
   {
-    $this->validator->validate($formData, [
-      'amount' => ['required', 'numeric'],
-      'date' => ['required', 'dateFormat:Y-m-d'],
-      'category' => ['required'],
-      'comment' => ['lengthMax:255']
-    ]);
+    try {
+      $this->validator->validate($formData, [
+        'amount' => ['required', 'numeric'],
+        'date' => ['required', 'dateFormat:Y-m-d'],
+        'category' => ['required'],
+        'paymentMethod' => ['required'],
+        'comment' => ['lengthMax:255']
+      ]);
+    } catch (Exception $e) {
+      $e->getMessage("check");
+    }
   }
 }
