@@ -45,7 +45,9 @@
               <select class="form-select" name="category" id="incomeCategory">
                 <option value="">Choose...</option>
                 <?php foreach ($incomeCategories as $incomeCategory) : ?>
-                  <option><?php echo e($incomeCategory['name']); ?></option>
+                  <option <?php if (array_key_exists('category', $oldFormData)) {
+                            echo e($oldFormData['category'] === $incomeCategory['name'] ? 'selected' : '');
+                          } ?>><?php echo e($incomeCategory['name']); ?></option>;
                 <?php endforeach; ?>
               </select>
             </div>
