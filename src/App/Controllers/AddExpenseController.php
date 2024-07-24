@@ -20,26 +20,30 @@ class AddExpenseController
   ) {
   }
 
-  public function addIncomeView()
+  public function addExpenseView()
   {
-    $expenseCategories = $this->transactionService->loadCategories();
+    $expenseCategories = $this->transactionService->loadExpenseCategories();
+    $paymentMethods = $this->transactionService->loadPaymentMethods();
 
-    if (!$expenseCategories) {
+    if ((!$expenseCategories) || (!$paymentMethods)) {
       throw new FormOptionsException("No categories loaded.");
     }
 
-    echo $this->view->render("add-expense.php", [
-      'expenseCategories' => $expenseCategories
-    ]);
+    echo $this->view->render(
+      "transactions/add-expense.php",
+      [
+        'expenseCategories' => $expenseCategories,
+        'paymentMethods' => $paymentMethods
+      ]
+    );
   }
-  /*
-  public function addIncome()
+
+  public function addExpense()
   {
     $this->validatorService->validateTransaction($_POST);
 
-    $this->transactionService->createIncome($_POST);
+    //$this->transactionService->createIncome($_POST);
 
-    redirectTo('/add-income');
+    //redirectTo('/add-income');
   }
-*/
 }

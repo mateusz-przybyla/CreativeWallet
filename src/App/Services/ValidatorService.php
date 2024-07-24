@@ -58,6 +58,7 @@ class ValidatorService
       'amount' => ['required', 'numeric'],
       'date' => ['required', 'dateFormat:Y-m-d'],
       'category' => ['required'],
+      'paymentMethod' => ['required'],
       'comment' => ['lengthMax:255']
     ]);
   }

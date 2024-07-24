@@ -12,9 +12,9 @@ class TransactionService
   {
   }
 
-  public function loadCategories()
+  public function loadIncomeCategories(): array
   {
-    $categories = $this->db->query(
+    return $this->db->query(
       "SELECT `name` 
       FROM `incomes_category_assigned_to_users` 
       WHERE `user_id` = :user_id",
@@ -22,8 +22,30 @@ class TransactionService
         'user_id' => $_SESSION['user']
       ]
     )->retrieveAll();
+  }
 
-    return $categories;
+  public function loadExpenseCategories(): array
+  {
+    return $this->db->query(
+      "SELECT `name` 
+      FROM `expenses_category_assigned_to_users` 
+      WHERE `user_id` = :user_id",
+      [
+        'user_id' => $_SESSION['user']
+      ]
+    )->retrieveAll();
+  }
+
+  public function loadPaymentMethods(): array
+  {
+    return $this->db->query(
+      "SELECT `name` 
+      FROM `payment_methods_assigned_to_users` 
+      WHERE `user_id` = :user_id",
+      [
+        'user_id' => $_SESSION['user']
+      ]
+    )->retrieveAll();
   }
 
   public function getIncomeCategoryId(string $category): array
