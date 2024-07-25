@@ -15,7 +15,6 @@ use Framework\Rules\{
   NumericRule,
   DateFormatRule
 };
-use Exception;
 
 class ValidatorService
 {

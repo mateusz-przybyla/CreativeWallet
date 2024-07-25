@@ -60,7 +60,7 @@ caption {
   }
 
   #scrollToTop {
-    background: #9cafaa url(./assets/svg/arrow-up.svg) no-repeat 50%;
+    background: #9cafaa url(/assets/svg/arrow-up.svg) no-repeat 50%;
     height: 44px;
     width: 44px;
     border-radius: 8px;
@@ -68,6 +68,7 @@ caption {
     right: 10px;
     bottom: 50px;
     cursor: pointer;
+    display: none;
   }
 }
 
