@@ -109,10 +109,7 @@
               Be carefull! You are getting into debt :(
             </p>'
         ?>
-        <p class="lead fs-2"><?php if (isset($balance)) {
-                                echo "Balance: " . e($balance) . " zł";
-                              }
-                              ?>
+        <p class="lead fs-2"><?php echo "Balance: " . e($balance) . " zł" ?>
         </p>
       </div>
     </div>
