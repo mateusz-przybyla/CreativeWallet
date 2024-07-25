@@ -187,4 +187,15 @@ class TransactionService
   {
     return $transaction1 - $transaction2;
   }
+
+  public function createDataPoints(array $data): array
+  {
+    $dataPoints = [];
+
+    foreach ($data as $point) {
+      $dataPoints[] = ['y' => $point['total'], 'label' => $point['name']];
+    }
+
+    return $dataPoints;
+  }
 }

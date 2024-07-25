@@ -29,6 +29,10 @@ class ShowBalanceController
     $balance = $this->transactionService->calculateBalance((float)$incomeTotal, (float)$expenseTotal);
     $balance = number_format($balance, 2, ".", "");
 
+    $dataPoints = $this->transactionService->createDataPoints($expenses);
+
+    //dd($dataPoints);
+
     echo $this->view->render(
       "transactions/show-balance.php",
       [
@@ -36,7 +40,8 @@ class ShowBalanceController
         'expenses' => $expenses,
         'incomeTotal' => $incomeTotal,
         'expenseTotal' => $expenseTotal,
-        'balance' => $balance
+        'balance' => $balance,
+        'dataPoints' => $dataPoints
       ]
     );
   }
