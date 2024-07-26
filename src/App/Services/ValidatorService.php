@@ -13,7 +13,8 @@ use Framework\Rules\{
   LengthMinRule,
   LengthMaxRule,
   NumericRule,
-  DateFormatRule
+  DateFormatRule,
+  DateLimitRule
 };
 
 class ValidatorService
@@ -32,6 +33,7 @@ class ValidatorService
     $this->validator->addRule('lengthMax', new LengthMaxRule());
     $this->validator->addRule('numeric', new NumericRule());
     $this->validator->addRule('dateFormat', new DateFormatRule());
+    $this->validator->addRule('dateLimit', new DateLimitRule());
   }
 
   public function validateRegister(array $formData)
@@ -56,7 +58,7 @@ class ValidatorService
   {
     $this->validator->validate($formData, [
       'amount' => ['required', 'numeric'],
-      'date' => ['required', 'dateFormat:Y-m-d'],
+      'date' => ['required', 'dateFormat:Y-m-d', 'dateLimit'],
       'category' => ['required'],
       'comment' => ['lengthMax:255']
     ]);
@@ -66,7 +68,7 @@ class ValidatorService
   {
     $this->validator->validate($formData, [
       'amount' => ['required', 'numeric'],
-      'date' => ['required', 'dateFormat:Y-m-d'],
+      'date' => ['required', 'dateFormat:Y-m-d', 'dateLimit'],
       'category' => ['required'],
       'paymentMethod' => ['required'],
       'comment' => ['lengthMax:255']
