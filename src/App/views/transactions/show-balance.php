@@ -12,34 +12,34 @@
           <button class="btn btn-secondary bg-grey-blue dropdown-toggle" type="button" data-bs-toggle="dropdown" aria-expanded="false">
             Choose time period
           </button>
-          <form method="POST">
+          <form method="GET">
             <ul class="dropdown-menu">
               <li>
                 <button class="dropdown-item <?php
-                                              if (isset($_SESSION['m_active1'])) {
-                                                echo $_SESSION['m_active1'];
-                                                unset($_SESSION['m_active1']);
+                                              if (isset($_SESSION['btn1'])) {
+                                                echo e($_SESSION['btn1']);
+                                                unset($_SESSION['btn1']);
                                               } ?>" id="currentMonth" name="period" value="currentMonth">Current month </button>
               </li>
               <li>
                 <button class="dropdown-item <?php
-                                              if (isset($_SESSION['m_active2'])) {
-                                                echo $_SESSION['m_active2'];
-                                                unset($_SESSION['m_active2']);
+                                              if (isset($_SESSION['btn2'])) {
+                                                echo e($_SESSION['btn2']);
+                                                unset($_SESSION['btn2']);
                                               } ?>" id="previousMonth" name="period" value="previousMonth">Previous month</button>
               </li>
               <li>
                 <button class="dropdown-item <?php
-                                              if (isset($_SESSION['m_active3'])) {
-                                                echo $_SESSION['m_active3'];
-                                                unset($_SESSION['m_active3']);
+                                              if (isset($_SESSION['btn3'])) {
+                                                echo e($_SESSION['btn3']);
+                                                unset($_SESSION['btn3']);
                                               } ?>" id="currentYear" name="period" value="currentYear">Current year</button>
               </li>
               <li>
                 <button type="button" class="dropdown-item <?php
-                                                            if (isset($_SESSION['m_active4'])) {
-                                                              echo $_SESSION['m_active4'];
-                                                              unset($_SESSION['m_active4']);
+                                                            if (isset($_SESSION['btn4'])) {
+                                                              echo e($_SESSION['btn4']);
+                                                              unset($_SESSION['btn4']);
                                                             } ?>" data-bs-toggle="modal" data-bs-target="#balanceModal" id="customPeriod">Custom period</button>
               </li>
             </ul>
@@ -49,7 +49,7 @@
       <!-- Modal -->
       <div class="modal fade" id="balanceModal" tabindex="-1" aria-labelledby="balanceModalLabel" aria-hidden="true">
         <div class="modal-dialog">
-          <form method="post" class="modal-content">
+          <form method="GET" class="modal-content">
             <div class="modal-header">
               <h5 class="modal-title fs-5" id="balanceModalLabel">
                 Choose a date range:
@@ -84,12 +84,10 @@
           <p class="fs-5 mb-3 pe-2">Balance sheet for the period:</p>
           <p class="fs-5 lead" id="changePeriod"></p>
         </div>
-        <?php
-        if (isset($_SESSION['m_period'])) {
-          echo '<p class="fs-5 lead" id="showDateRange">' . $_SESSION['m_period'] . '</p>';
-          unset($_SESSION['m_period']);
-        }
-        ?>
+        <?php if (isset($_SESSION['dateRange'])) : ?>
+          <p class="fs-5 lead" id="showDateRange"> <?php echo e($_SESSION['dateRange']); ?> </p>
+          <?php unset($_SESSION['dateRange']); ?>
+        <?php endif; ?>
       </div>
     </div>
   </section>
@@ -131,16 +129,18 @@
               </tr>
             </thead>
             <tbody>
-              <?php
-              $incomeIndex = 1;
-              foreach ($incomes as $income) {
-                echo "<tr><th scope='row'>{$incomeIndex}</th><td>{$income['name']}</td><td>{$income['total']}</td></tr>";
-                $incomeIndex++;
-              }
-              ?>
+              <?php $incomeIndex = 1;
+              foreach ($incomes as $income) : ?>
+                <tr>
+                  <th scope='row'><?php echo e($incomeIndex); ?></th>
+                  <td><?php echo e($income['name']) ?></td>
+                  <td><?php echo e($income['total']) ?></td>
+                </tr>
+                <?php $incomeIndex++; ?>
+              <?php endforeach; ?>
               <tr>
                 <td colspan="2" class="text-center">Total incomes</td>
-                <?php echo "<th>{$incomeTotal}</th>" ?>
+                <th> <?php echo e($incomeTotal) ?></th>
               </tr>
             </tbody>
           </table>
@@ -159,16 +159,18 @@
               </tr>
             </thead>
             <tbody>
-              <?php
-              $expenseIndex = 1;
-              foreach ($expenses as $expense) {
-                echo "<tr><th scope='row'>{$expenseIndex}</th><td>{$expense['name']}</td><td>{$expense['total']}</td></tr>";
-                $expenseIndex++;
-              }
-              ?>
+              <?php $expenseIndex = 1;
+              foreach ($expenses as $expense) : ?>
+                <tr>
+                  <th scope='row'><?php echo e($expenseIndex); ?></th>
+                  <td><?php echo e($expense['name']) ?></td>
+                  <td><?php echo e($expense['total']) ?></td>
+                </tr>
+                <?php $expenseIndex++; ?>
+              <?php endforeach; ?>
               <tr>
                 <td colspan="2" class="text-center">Total expenses</td>
-                <?php echo "<th>{$expenseTotal}</th>"; ?>
+                <th> <?php echo e($expenseTotal) ?></th>
               </tr>
             </tbody>
           </table>

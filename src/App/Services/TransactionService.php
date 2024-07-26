@@ -130,11 +130,8 @@ class TransactionService
     $_SESSION['newTrans'] = "Transaction added successfully!";
   }
 
-  public function getUserIncomes(): array
+  public function getUserIncomes(array $dateRange): array
   {
-    $startDate = "2024-07-01";
-    $endDate = "2024-07-23";
-
     return $this->db->query(
       "SELECT `name`, SUM(`amount`) AS total
       FROM  `incomes`, `incomes_category_assigned_to_users`
@@ -145,17 +142,14 @@ class TransactionService
       ORDER BY total DESC",
       [
         'user_id' => $_SESSION['user'],
-        'start_date' => $startDate,
-        'end_date' => $endDate
+        'start_date' => $dateRange['startDate'],
+        'end_date' => $dateRange['endDate']
       ]
     )->retrieveAll();
   }
 
-  public function getUserExpenses(): array
+  public function getUserExpenses(array $dateRange): array
   {
-    $startDate = "2024-07-01";
-    $endDate = "2024-07-23";
-
     return $this->db->query(
       "SELECT `name`, SUM(`amount`) AS total
       FROM  `expenses`, `expenses_category_assigned_to_users`
@@ -166,8 +160,8 @@ class TransactionService
       ORDER BY total DESC",
       [
         'user_id' => $_SESSION['user'],
-        'start_date' => $startDate,
-        'end_date' => $endDate
+        'start_date' => $dateRange['startDate'],
+        'end_date' => $dateRange['endDate']
       ]
     )->retrieveAll();
   }
