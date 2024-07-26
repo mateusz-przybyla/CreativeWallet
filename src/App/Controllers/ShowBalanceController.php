@@ -23,7 +23,9 @@ class ShowBalanceController
   {
     $selectedPeriod = $this->selectTimePeriod($_GET);
 
-    $_SESSION['m_period'] = "(from {$selectedPeriod['startDate']} to {$selectedPeriod['endDate']})";
+    $this->validatorService->validateTimePeriod($selectedPeriod);
+
+    $_SESSION['dateRange'] = "(from {$selectedPeriod['startDate']} to {$selectedPeriod['endDate']})";
 
     $incomes = $this->transactionService->getUserIncomes($selectedPeriod);
     $expenses = $this->transactionService->getUserExpenses($selectedPeriod);

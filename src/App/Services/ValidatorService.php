@@ -72,4 +72,12 @@ class ValidatorService
       'comment' => ['lengthMax:255']
     ]);
   }
+
+  public function validateTimePeriod(array $formData)
+  {
+    $this->validator->validate($formData, [
+      'startDate' => ['dateFormat:Y-m-d'],
+      'endDate' => ['dateFormat:Y-m-d']
+    ]);
+  }
 }
