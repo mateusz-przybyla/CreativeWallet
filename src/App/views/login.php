@@ -20,7 +20,7 @@
                                                                                                     if (isset($errors['email']) || in_array(['Invalid credentials.'], $errors)) {
                                                                                                       echo "is-invalid";
                                                                                                     }
-                                                                                                    ?>" placeholder />
+                                                                                                    ?>" id="login-email" placeholder />
             <label for="login-email">Email</label>
           </div>
         </div>
@@ -38,7 +38,7 @@
                                                                                                 if (isset($errors['password'])) {
                                                                                                   echo "is-invalid";
                                                                                                 }
-                                                                                                ?>" placeholder />
+                                                                                                ?>" id="login-password" placeholder />
             <label for="login-password">Password</label>
           </div>
         </div>

@@ -19,6 +19,7 @@
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.7.1/jquery.min.js"></script>
 <script src="/assets/scroll-to-top.js" type="text/javascript"></script>
 <script src="/assets/chart.js" type="text/javascript"></script>
+<script src="/assets/remember-me.js" type="text/javascript"></script>
 <script>
   const dps = <?php echo json_encode($dataPoints); ?>;
 
