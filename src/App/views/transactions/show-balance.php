@@ -12,34 +12,34 @@
           <button class="btn btn-secondary bg-grey-blue dropdown-toggle" type="button" data-bs-toggle="dropdown" aria-expanded="false">
             Choose time period
           </button>
-          <form method="POST">
+          <form method="GET">
             <ul class="dropdown-menu">
               <li>
                 <button class="dropdown-item <?php
-                                              if (isset($_SESSION['m_active1'])) {
-                                                echo $_SESSION['m_active1'];
-                                                unset($_SESSION['m_active1']);
+                                              if (isset($_SESSION['btn1'])) {
+                                                echo $_SESSION['btn1'];
+                                                unset($_SESSION['btn1']);
                                               } ?>" id="currentMonth" name="period" value="currentMonth">Current month </button>
               </li>
               <li>
                 <button class="dropdown-item <?php
-                                              if (isset($_SESSION['m_active2'])) {
-                                                echo $_SESSION['m_active2'];
-                                                unset($_SESSION['m_active2']);
+                                              if (isset($_SESSION['btn2'])) {
+                                                echo $_SESSION['btn2'];
+                                                unset($_SESSION['btn2']);
                                               } ?>" id="previousMonth" name="period" value="previousMonth">Previous month</button>
               </li>
               <li>
                 <button class="dropdown-item <?php
-                                              if (isset($_SESSION['m_active3'])) {
-                                                echo $_SESSION['m_active3'];
-                                                unset($_SESSION['m_active3']);
+                                              if (isset($_SESSION['btn3'])) {
+                                                echo $_SESSION['btn3'];
+                                                unset($_SESSION['btn3']);
                                               } ?>" id="currentYear" name="period" value="currentYear">Current year</button>
               </li>
               <li>
                 <button type="button" class="dropdown-item <?php
-                                                            if (isset($_SESSION['m_active4'])) {
-                                                              echo $_SESSION['m_active4'];
-                                                              unset($_SESSION['m_active4']);
+                                                            if (isset($_SESSION['btn4'])) {
+                                                              echo $_SESSION['btn4'];
+                                                              unset($_SESSION['btn4']);
                                                             } ?>" data-bs-toggle="modal" data-bs-target="#balanceModal" id="customPeriod">Custom period</button>
               </li>
             </ul>
@@ -49,7 +49,7 @@
       <!-- Modal -->
       <div class="modal fade" id="balanceModal" tabindex="-1" aria-labelledby="balanceModalLabel" aria-hidden="true">
         <div class="modal-dialog">
-          <form method="post" class="modal-content">
+          <form method="GET" class="modal-content">
             <div class="modal-header">
               <h5 class="modal-title fs-5" id="balanceModalLabel">
                 Choose a date range:
