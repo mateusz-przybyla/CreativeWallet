@@ -50,6 +50,11 @@ caption {
   text-align: center;
 }
 
+.number-404 {
+  font-weight: 400;
+  font-size: 7rem;
+}
+
 @media (min-width: 992px) {
   .w-lg-50 {
     width: 50% !important;

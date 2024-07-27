@@ -62,6 +62,8 @@ class Router
 
       return;
     }
+
+    $this->dispatchNotFound($container);
   }
 
   public function addMiddleware(string $middleware)
