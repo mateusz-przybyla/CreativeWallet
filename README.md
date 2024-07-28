@@ -20,13 +20,15 @@ Final stage of a Web Application using professional PHP (OOP), SQL and custom MV
 
 Stages of building a budget application:
 
-1. PersonalBudget - console budget app written in C++:
-   1.1. Structured paradigm [link](https://github.com/mateusz-przybyla/PersonalBudget_Structured)
+1. PersonalBudget - console budget app written in C++:/n
+   1.1. Structured paradigm [link](https://github.com/mateusz-przybyla/PersonalBudget_Structured)/n
    1.2. OOP paradigm [link](https://github.com/mateusz-przybyla/PersonalBudget_ObjectOriented)
+
 2. CreativeWallet - web budget app written in PHP:
-   2.1. Frontend [link](https://github.com/mateusz-przybyla/CreativeWallet_FE) - using HTML, CSS, JavaScript and Bootstrap library
-   2.2. Backend [link](https://github.com/mateusz-przybyla/CreativeWallet_FE_BE) - using PHP (structured paradigm)
-   2.3. Backend + custom MVC Framework - using PHP (OOP paradigm) with MVC Framework
+
+- 2.1. Frontend [link](https://github.com/mateusz-przybyla/CreativeWallet_FE) - using HTML, CSS, JavaScript and Bootstrap library
+- 2.2. Backend [link](https://github.com/mateusz-przybyla/CreativeWallet_FE_BE) - using PHP (structured paradigm)
+- 2.3. Backend + custom MVC Framework - using PHP (OOP paradigm) with MVC Framework
 
 ### About
 
