@@ -27,10 +27,10 @@
             <?php endif; ?>
           </div>
           <div class="mb-2">
-            <label for="expenseDate" class="form-label">Date</label>
+            <label for="date" class="form-label">Date</label>
             <div class="input-group">
               <span class="input-group-text bg-grey-blue rounded-end-0"><img src="/assets/svg/calendar-date.svg" alt="calendar-date" width="25" /></span>
-              <input type="date" name="date" value="<?php echo e($oldFormData['date'] ?? ''); ?>" class="form-control" id="expenseDate" />
+              <input type="date" name="date" value="<?php echo e($oldFormData['date'] ?? ''); ?>" class="form-control" id="date" />
             </div>
             <?php if (array_key_exists('date', $errors)) : ?>
               <div class="text-danger text-start small">
