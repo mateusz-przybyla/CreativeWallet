@@ -191,5 +191,8 @@
   </section>
   <div id="scrollToTop"></div>
 </main>
+<script>
+  const dps = <?php echo json_encode($dataPoints); ?>;
+</script>
 
 <?php include $this->resolve("partials/_footer.php") ?>
