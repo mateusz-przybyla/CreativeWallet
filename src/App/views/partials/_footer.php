@@ -21,24 +21,6 @@
 <script src="/assets/chart.js" type="text/javascript"></script>
 <script src="/assets/remember-me.js" type="text/javascript"></script>
 <script src="/assets/set-current-date.js" type="text/javascript"></script>
-<script>
-  const dps = <?php echo json_encode($dataPoints); ?>;
-
-  var chart = new CanvasJS.Chart("chartContainer", {
-    animationEnabled: true,
-    title: {
-      text: "",
-    },
-    data: [{
-      type: "pie",
-      startAngle: 240,
-      yValueFormatString: '##0.00" PLN"',
-      indexLabel: "{label} {y}",
-      dataPoints: dps,
-    }, ],
-  });
-  chart.render();
-</script>
 </body>
 
 </html>
