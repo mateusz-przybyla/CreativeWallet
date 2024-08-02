@@ -38,11 +38,11 @@
                   <td><?php echo e($category['name']); ?></td>
                   <td class="d-flex gap-1">
                     <?php if (e($incomeCategoriesAmount) <= 1) : ?>
-                      <button type="button" class="btn btn-primary custom-btn d-flex" data-bs-toggle="modal" data-bs-target="#edit">
+                      <button type="button" class="btn btn-primary custom-btn d-flex" data-bs-toggle="modal" data-bs-target="#edit-cat-<?php echo e($category['id']); ?>">
                         <img class="align-items-center justify-content-center" src="/assets/svg/pen.svg" alt="pen" height="15" />
                       </button>
                     <?php else : ?>
-                      <button type="button" class="btn btn-primary custom-btn d-flex" data-bs-toggle="modal" data-bs-target="#edit">
+                      <button type="button" class="btn btn-primary custom-btn d-flex" data-bs-toggle="modal" data-bs-target="#edit-cat-<?php echo e($category['id']); ?>">
                         <img class="align-items-center justify-content-center" src="/assets/svg/pen.svg" alt="pen" height="15" />
                       </button>
                       <button type="button" class="btn btn-danger custom-btn d-flex" data-bs-toggle="modal" data-bs-target="#delete-cat-<?php echo e($category['id']); ?>">
@@ -53,35 +53,13 @@
                     <!-- Modal delete-->
                     <?php include $this->resolve("modals/_delete-category.php"); ?>
                     <!-- end Modal delete-->
+
+                    <!-- Modal edit-->
+                    <?php include $this->resolve("modals/_edit-category.php"); ?>
+                    <!-- end Modal edit-->
                   </td>
                 </tr>
                 <?php $incomeIndex++; ?>
-
-                <!-- Modal edit
-                <div class="modal fade" id="edit" tabindex="-1" aria-labelledby="editLabel" aria-hidden="true">
-                  <div class="modal-dialog">
-                    <div class="modal-content">
-                      <div class="modal-header">
-                        <h1 class="modal-title fs-5" id="editLabel">Editing category name</h1>
-                        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
-                      </div>
-                      <div class="modal-body">
-                        <form method="POST">
-                          <div class="mb-3">
-                            <label for="newIncomeCategoryName" class="col-form-label">New name:</label>
-                            <input type="text" class="form-control" id="newIncomeCategoryName">
-                          </div>
-                        </form>
-                      </div>
-                      <div class="modal-footer">
-                        <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
-                        <button type="submit" class="btn btn-primary">Save changes</button>
-                      </div>
-                    </div>
-                  </div>
-                </div>
-                end Modal edit-->
-
               <?php endforeach; ?>
               <tr>
                 <th>...</th>
@@ -113,11 +91,11 @@
                   <td><?php echo e($category['name']) ?></td>
                   <td class="d-flex gap-1">
                     <?php if (e($expenseCategoriesAmount) <= 1) : ?>
-                      <button type="button" class="btn btn-primary custom-btn d-flex" data-bs-toggle="modal" data-bs-target="#edit">
+                      <button type="button" class="btn btn-primary custom-btn d-flex" data-bs-toggle="modal" data-bs-target="#edit-cat-<?php echo e($category['id']); ?>">
                         <img class="align-items-center justify-content-center" src="/assets/svg/pen.svg" alt="pen" height="15" />
                       </button>
                     <?php else : ?>
-                      <button type="button" class="btn btn-primary custom-btn d-flex" data-bs-toggle="modal" data-bs-target="#edit">
+                      <button type="button" class="btn btn-primary custom-btn d-flex" data-bs-toggle="modal" data-bs-target="#edit-cat-<?php echo e($category['id']); ?>">
                         <img class="align-items-center justify-content-center" src="/assets/svg/pen.svg" alt="pen" height="15" />
                       </button>
                       <button type="button" class="btn btn-danger custom-btn d-flex" data-bs-toggle="modal" data-bs-target="#delete-cat-<?php echo e($category['id']); ?>">
@@ -128,6 +106,10 @@
                     <!-- Modal delete-->
                     <?php include $this->resolve("modals/_delete-category.php"); ?>
                     <!-- end Modal delete-->
+
+                    <!-- Modal edit-->
+                    <?php include $this->resolve("modals/_edit-category.php"); ?>
+                    <!-- end Modal edit-->
                   </td>
                 </tr>
                 <?php $expenseIndex++; ?>
@@ -162,11 +144,11 @@
                   <td><?php echo e($category['name']) ?></td>
                   <td class="d-flex gap-1">
                     <?php if (e($paymentMethodsAmount) <= 1) : ?>
-                      <button type="button" class="btn btn-primary custom-btn d-flex" data-bs-toggle="modal" data-bs-target="#edit">
+                      <button type="button" class="btn btn-primary custom-btn d-flex" data-bs-toggle="modal" data-bs-target="#edit-cat-<?php echo e($category['id']); ?>">
                         <img class="align-items-center justify-content-center" src="/assets/svg/pen.svg" alt="pen" height="15" />
                       </button>
                     <?php else : ?>
-                      <button type="button" class="btn btn-primary custom-btn d-flex" data-bs-toggle="modal" data-bs-target="#edit">
+                      <button type="button" class="btn btn-primary custom-btn d-flex" data-bs-toggle="modal" data-bs-target="#edit-cat-<?php echo e($category['id']); ?>">
                         <img class="align-items-center justify-content-center" src="/assets/svg/pen.svg" alt="pen" height="15" />
                       </button>
                       <button type="button" class="btn btn-danger custom-btn d-flex" data-bs-toggle="modal" data-bs-target="#delete-cat-<?php echo e($category['id']); ?>">
@@ -177,6 +159,10 @@
                     <!-- Modal delete-->
                     <?php include $this->resolve("modals/_delete-category.php"); ?>
                     <!-- end Modal delete-->
+
+                    <!-- Modal edit-->
+                    <?php include $this->resolve("modals/_edit-category.php"); ?>
+                    <!-- end Modal edit-->
                   </td>
                 </tr>
                 <?php $methodIndex++; ?>

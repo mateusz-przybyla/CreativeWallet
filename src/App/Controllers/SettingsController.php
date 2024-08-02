@@ -65,4 +65,31 @@ class SettingsController
 
     redirectTo('/settings');
   }
+
+  public function editIncomeCategory(array $params)
+  {
+    $this->validatorService->validateNewCategory($_POST);
+
+    $this->transactionService->updateIncomeCategory((int) $params['category'], $_POST);
+
+    redirectTo('/settings');
+  }
+
+  public function editExpenseCategory(array $params)
+  {
+    $this->validatorService->validateNewCategory($_POST);
+
+    $this->transactionService->updateExpenseCategory((int) $params['category'], $_POST);
+
+    redirectTo('/settings');
+  }
+
+  public function editPaymentMethod(array $params)
+  {
+    $this->validatorService->validateNewCategory($_POST);
+
+    $this->transactionService->updatePaymentMethod((int) $params['category'], $_POST);
+
+    redirectTo('/settings');
+  }
 }
