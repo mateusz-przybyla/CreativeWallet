@@ -8,11 +8,20 @@
           <img class="me-2" src="/assets/svg/gear.svg" alt="gear" height="30" />
           Transaction settings
         </h1>
-        <hr class="" />
+        <hr class="mb-4" />
       </div>
+      <?php if ((e($incomeCategoriesAmount) <= 1) || (e($expenseCategoriesAmount) <= 1) || (e($paymentMethodsAmount) <= 1)) : ?>
+        <div class="alert alert-warning d-flex align-items-center" role="alert">
+          <img class="align-items-center justify-content-center" src="/assets/svg/exclamation-triangle.svg" alt="pen" height="17" />
+          <div class="mx-2">
+            There must be at least one category in each case.
+          </div>
+        </div>
+      <?php endif; ?>
       <div class="row">
         <div class="col-lg-4">
           <table class="table table-striped table-bordered table-hover">
+            <caption class="text-start">Income category settings: </caption>
             <thead>
               <tr class="bg-grey-blue">
                 <th scope="col">#</th>
@@ -22,67 +31,72 @@
             </thead>
             <tbody>
               <?php $incomeIndex = 1;
+              $_SESSION['item'] = "income-category";
               foreach ($incomeCategories as $category) : ?>
                 <tr>
                   <th scope='row'><?php echo e($incomeIndex); ?></th>
-                  <td><?php echo e($category['name']) ?></td>
-                  <td class="text-center">
-                    <button type="button" class="btn btn-warning btn-sm" data-bs-toggle="modal" data-bs-target="#edit">edit</button>
-                    <button type="button" class="btn btn-danger btn-sm" data-bs-toggle="modal" data-bs-target="#delete">delete</button>
+                  <td><?php echo e($category['name']); ?></td>
+                  <td class="d-flex gap-1">
+                    <?php if (e($incomeCategoriesAmount) <= 1) : ?>
+                      <button type="button" class="btn btn-primary custom-btn d-flex" data-bs-toggle="modal" data-bs-target="#edit">
+                        <img class="align-items-center justify-content-center" src="/assets/svg/pen.svg" alt="pen" height="15" />
+                      </button>
+                    <?php else : ?>
+                      <button type="button" class="btn btn-primary custom-btn d-flex" data-bs-toggle="modal" data-bs-target="#edit">
+                        <img class="align-items-center justify-content-center" src="/assets/svg/pen.svg" alt="pen" height="15" />
+                      </button>
+                      <button type="button" class="btn btn-danger custom-btn d-flex" data-bs-toggle="modal" data-bs-target="#delete-cat-<?php echo e($category['id']); ?>">
+                        <img class="align-items-center justify-content-center" src="/assets/svg/trash3.svg" alt="trash3" height="15" />
+                      </button>
+                    <?php endif; ?>
+
+                    <!-- Modal delete-->
+                    <?php include $this->resolve("modals/_delete-category.php"); ?>
+                    <!-- end Modal delete-->
                   </td>
                 </tr>
                 <?php $incomeIndex++; ?>
+
+                <!-- Modal edit
+                <div class="modal fade" id="edit" tabindex="-1" aria-labelledby="editLabel" aria-hidden="true">
+                  <div class="modal-dialog">
+                    <div class="modal-content">
+                      <div class="modal-header">
+                        <h1 class="modal-title fs-5" id="editLabel">Editing category name</h1>
+                        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                      </div>
+                      <div class="modal-body">
+                        <form method="POST">
+                          <div class="mb-3">
+                            <label for="newIncomeCategoryName" class="col-form-label">New name:</label>
+                            <input type="text" class="form-control" id="newIncomeCategoryName">
+                          </div>
+                        </form>
+                      </div>
+                      <div class="modal-footer">
+                        <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+                        <button type="submit" class="btn btn-primary">Save changes</button>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+                end Modal edit-->
+
               <?php endforeach; ?>
               <tr>
-                <td colspan="2" class="text-center">Total incomes</td>
-                <th> <?php echo "" ?></th>
+                <th>...</th>
+                <td colspan="2" class="text-start">
+                  <button type="button" class="btn btn-success custom-btn d-flex" data-bs-toggle="modal" data-bs-target="#edit">
+                    <img class="align-items-center justify-content-center" src="/assets/svg/plus-lg.svg" alt="plus" height="15" />
+                  </button>
+                </td>
               </tr>
             </tbody>
           </table>
-          <!-- Modal edit-->
-          <div class="modal fade" id="edit" tabindex="-1" aria-labelledby="editLabel" aria-hidden="true">
-            <div class="modal-dialog">
-              <div class="modal-content">
-                <div class="modal-header">
-                  <h1 class="modal-title fs-5" id="editLabel">Editing category name</h1>
-                  <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
-                </div>
-                <div class="modal-body">
-                  <form method="POST">
-                    <div class="mb-3">
-                      <label for="newIncomeCategoryName" class="col-form-label">New name:</label>
-                      <input type="text" class="form-control" id="newIncomeCategoryName">
-                    </div>
-                  </form>
-                </div>
-                <div class="modal-footer">
-                  <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
-                  <button type="submit" class="btn btn-primary">Save changes</button>
-                </div>
-              </div>
-            </div>
-          </div>
-          <!-- Modal delete-->
-          <div class="modal fade" id="delete" tabindex="-1" aria-labelledby="deleteLabel" aria-hidden="true">
-            <div class="modal-dialog">
-              <div class="modal-content">
-                <div class="modal-header">
-                  <h1 class="modal-title fs-5" id="deleteLabel">Modal title</h1>
-                  <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
-                </div>
-                <div class="modal-body">
-                  ...
-                </div>
-                <div class="modal-footer">
-                  <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
-                  <button type="button" class="btn btn-primary">Save changes</button>
-                </div>
-              </div>
-            </div>
-          </div>
         </div>
         <div class="col-lg-4">
           <table class="table table-striped table-bordered table-hover">
+            <caption class="text-start">Expense category settings: </caption>
             <thead>
               <tr class="bg-grey-blue">
                 <th scope="col">#</th>
@@ -91,24 +105,47 @@
               </tr>
             </thead>
             <tbody>
-              <?php $incomeIndex = 1;
+              <?php $expenseIndex = 1;
+              $_SESSION['item'] = "expense-category";
               foreach ($expenseCategories as $category) : ?>
                 <tr>
-                  <th scope='row'><?php echo e($incomeIndex); ?></th>
+                  <th scope='row'><?php echo e($expenseIndex); ?></th>
                   <td><?php echo e($category['name']) ?></td>
-                  <td>edit, delete</td>
+                  <td class="d-flex gap-1">
+                    <?php if (e($expenseCategoriesAmount) <= 1) : ?>
+                      <button type="button" class="btn btn-primary custom-btn d-flex" data-bs-toggle="modal" data-bs-target="#edit">
+                        <img class="align-items-center justify-content-center" src="/assets/svg/pen.svg" alt="pen" height="15" />
+                      </button>
+                    <?php else : ?>
+                      <button type="button" class="btn btn-primary custom-btn d-flex" data-bs-toggle="modal" data-bs-target="#edit">
+                        <img class="align-items-center justify-content-center" src="/assets/svg/pen.svg" alt="pen" height="15" />
+                      </button>
+                      <button type="button" class="btn btn-danger custom-btn d-flex" data-bs-toggle="modal" data-bs-target="#delete-cat-<?php echo e($category['id']); ?>">
+                        <img class="align-items-center justify-content-center" src="/assets/svg/trash3.svg" alt="trash3" height="15" />
+                      </button>
+                    <?php endif; ?>
+
+                    <!-- Modal delete-->
+                    <?php include $this->resolve("modals/_delete-category.php"); ?>
+                    <!-- end Modal delete-->
+                  </td>
                 </tr>
-                <?php $incomeIndex++; ?>
+                <?php $expenseIndex++; ?>
               <?php endforeach; ?>
               <tr>
-                <td colspan="2" class="text-center">Total incomes</td>
-                <th> <?php echo "" ?></th>
+                <th>...</th>
+                <td colspan="2" class="text-start">
+                  <button type="button" class="btn btn-success custom-btn d-flex" data-bs-toggle="modal" data-bs-target="#edit">
+                    <img class="align-items-center justify-content-center" src="/assets/svg/plus-lg.svg" alt="plus" height="15" />
+                  </button>
+                </td>
               </tr>
             </tbody>
           </table>
         </div>
         <div class="col-lg-4">
           <table class="table table-striped table-bordered table-hover">
+            <caption class="text-start">Payment method settings: </caption>
             <thead>
               <tr class="bg-grey-blue">
                 <th scope="col">#</th>
@@ -117,18 +154,40 @@
               </tr>
             </thead>
             <tbody>
-              <?php $incomeIndex = 1;
-              foreach ($paymentMethods as $method) : ?>
+              <?php $methodIndex = 1;
+              $_SESSION['item'] = "payment-method";
+              foreach ($paymentMethods as $category) : ?>
                 <tr>
-                  <th scope='row'><?php echo e($incomeIndex); ?></th>
-                  <td><?php echo e($method['name']) ?></td>
-                  <td>edit, delete</td>
+                  <th scope='row'><?php echo e($methodIndex); ?></th>
+                  <td><?php echo e($category['name']) ?></td>
+                  <td class="d-flex gap-1">
+                    <?php if (e($paymentMethodsAmount) <= 1) : ?>
+                      <button type="button" class="btn btn-primary custom-btn d-flex" data-bs-toggle="modal" data-bs-target="#edit">
+                        <img class="align-items-center justify-content-center" src="/assets/svg/pen.svg" alt="pen" height="15" />
+                      </button>
+                    <?php else : ?>
+                      <button type="button" class="btn btn-primary custom-btn d-flex" data-bs-toggle="modal" data-bs-target="#edit">
+                        <img class="align-items-center justify-content-center" src="/assets/svg/pen.svg" alt="pen" height="15" />
+                      </button>
+                      <button type="button" class="btn btn-danger custom-btn d-flex" data-bs-toggle="modal" data-bs-target="#delete-cat-<?php echo e($category['id']); ?>">
+                        <img class="align-items-center justify-content-center" src="/assets/svg/trash3.svg" alt="trash3" height="15" />
+                      </button>
+                    <?php endif; ?>
+
+                    <!-- Modal delete-->
+                    <?php include $this->resolve("modals/_delete-category.php"); ?>
+                    <!-- end Modal delete-->
+                  </td>
                 </tr>
-                <?php $incomeIndex++; ?>
+                <?php $methodIndex++; ?>
               <?php endforeach; ?>
               <tr>
-                <td colspan="2" class="text-center">Total incomes</td>
-                <th> <?php echo "" ?></th>
+                <th>...</th>
+                <td colspan="2" class="text-start">
+                  <button type="button" class="btn btn-success custom-btn d-flex" data-bs-toggle="modal" data-bs-target="#edit">
+                    <img class="align-items-center justify-content-center" src="/assets/svg/plus-lg.svg" alt="plus" height="15" />
+                  </button>
+                </td>
               </tr>
             </tbody>
           </table>

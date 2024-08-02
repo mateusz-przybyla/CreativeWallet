@@ -37,8 +37,32 @@ class SettingsController
       [
         'incomeCategories' => $incomeCategories,
         'expenseCategories' => $expenseCategories,
-        'paymentMethods' => $paymentMethods
+        'paymentMethods' => $paymentMethods,
+        'incomeCategoriesAmount' => count($incomeCategories),
+        'expenseCategoriesAmount' => count($expenseCategories),
+        'paymentMethodsAmount' => count($paymentMethods)
       ]
     );
+  }
+
+  public function deleteIncomeCategory(array $params)
+  {
+    $this->transactionService->deleteIncomeCategory((int) $params['category']);
+
+    redirectTo('/settings');
+  }
+
+  public function deleteExpenseCategory(array $params)
+  {
+    $this->transactionService->deleteExpenseCategory((int) $params['category']);
+
+    redirectTo('/settings');
+  }
+
+  public function deletePaymentMethod(array $params)
+  {
+    $this->transactionService->deletePaymentMethod((int) $params['category']);
+
+    redirectTo('/settings');
   }
 }
