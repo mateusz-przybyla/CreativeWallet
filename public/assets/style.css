@@ -55,6 +55,11 @@ caption {
   font-size: 7rem;
 }
 
+.custom-btn {
+  --bs-btn-padding-y: 0.3rem;
+  --bs-btn-padding-x: 0.3rem;
+}
+
 @media (min-width: 992px) {
   .w-lg-50 {
     width: 50% !important;

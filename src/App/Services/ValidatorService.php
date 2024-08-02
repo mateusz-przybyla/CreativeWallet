@@ -82,4 +82,11 @@ class ValidatorService
       'endDate' => ['dateFormat:Y-m-d']
     ]);
   }
+
+  public function validateNewCategory(array $formData)
+  {
+    $this->validator->validate($formData, [
+      'newName' => ['required']
+    ]);
+  }
 }

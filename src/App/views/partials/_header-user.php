@@ -34,13 +34,13 @@
                 <a class="nav-link <?php if ($currentPath === "/add-income") echo $activeStatus; ?>" href="/add-income">Add income</a>
               </li>
               <li class="nav-item mb-2 mb-md-0">
-                <a class="nav-link <?php if ($currentPath === "/add-expense") echo $activeStatus; ?>" href=" /add-expense">Add expense</a>
+                <a class="nav-link <?php if ($currentPath === "/add-expense") echo $activeStatus; ?>" href="/add-expense">Add expense</a>
               </li>
               <li class="nav-item mb-2 mb-md-0">
-                <a class="nav-link <?php if ($currentPath === "/show-balance") echo $activeStatus; ?>" href=" /show-balance">Show balance</a>
+                <a class="nav-link <?php if ($currentPath === "/show-balance") echo $activeStatus; ?>" href="/show-balance">Show balance</a>
               </li>
               <li class="nav-item mb-2 mb-md-0">
-                <a class="nav-link disabled" href="#">Settings</a>
+                <a class="nav-link <?php if ($currentPath === "/settings") echo $activeStatus; ?>" href="/settings">Settings</a>
               </li>
               <li class="nav-item mb-2 mb-md-0">
                 <a class="nav-link" href="/logout">Logout</a>

@@ -15,7 +15,7 @@ class TransactionService
   public function loadIncomeCategories(): array
   {
     return $this->db->query(
-      "SELECT `name` 
+      "SELECT `name`, `id` 
       FROM `incomes_category_assigned_to_users` 
       WHERE `user_id` = :user_id",
       [
@@ -27,7 +27,7 @@ class TransactionService
   public function loadExpenseCategories(): array
   {
     return $this->db->query(
-      "SELECT `name` 
+      "SELECT `name`, `id`
       FROM `expenses_category_assigned_to_users` 
       WHERE `user_id` = :user_id",
       [
@@ -39,7 +39,7 @@ class TransactionService
   public function loadPaymentMethods(): array
   {
     return $this->db->query(
-      "SELECT `name` 
+      "SELECT `name`, `id`
       FROM `payment_methods_assigned_to_users` 
       WHERE `user_id` = :user_id",
       [
@@ -116,7 +116,7 @@ class TransactionService
 
     $this->db->query(
       "INSERT INTO `expenses` 
-      VALUES (NULL, :user_id, :expense_category_assigned_to_user_id, :payment_method_assigned_to_user_id	, :amount, :date_of_expense, :expense_comment)",
+      VALUES (NULL, :user_id, :expense_category_assigned_to_user_id, :payment_method_assigned_to_user_id, :amount, :date_of_expense, :expense_comment)",
       [
         'user_id' => $_SESSION['user'],
         'expense_category_assigned_to_user_id' => $categoryId['id'],
@@ -191,5 +191,95 @@ class TransactionService
     }
 
     return $dataPoints;
+  }
+
+  public function deleteIncomeCategory(int $id)
+  {
+    $this->db->query(
+      "DELETE FROM `incomes_category_assigned_to_users` WHERE `id` = :id",
+      [
+        'id' => $id
+      ]
+    );
+
+    $this->db->query(
+      "DELETE FROM `incomes` WHERE `income_category_assigned_to_user_id` = :id",
+      [
+        'id' => $id
+      ]
+    );
+  }
+
+  public function deleteExpenseCategory(int $id)
+  {
+    $this->db->query(
+      "DELETE FROM `expenses_category_assigned_to_users` WHERE `id` = :id",
+      [
+        'id' => $id
+      ]
+    );
+
+    $this->db->query(
+      "DELETE FROM `expenses` WHERE `expense_category_assigned_to_user_id` = :id",
+      [
+        'id' => $id
+      ]
+    );
+  }
+
+  public function deletePaymentMethod(int $id)
+  {
+    $this->db->query(
+      "DELETE FROM `payment_methods_assigned_to_users` WHERE `id` = :id",
+      [
+        'id' => $id
+      ]
+    );
+
+    $this->db->query(
+      "DELETE FROM `expenses` WHERE `payment_method_assigned_to_user_id` = :id",
+      [
+        'id' => $id
+      ]
+    );
+  }
+
+  public function updateIncomeCategory(int $id, array $formData)
+  {
+    $this->db->query(
+      "UPDATE `incomes_category_assigned_to_users`
+      SET `name` = :name
+      WHERE `id` = :id",
+      [
+        'id' => $id,
+        'name' => $formData['newName']
+      ]
+    );
+  }
+
+  public function updateExpenseCategory(int $id, array $formData)
+  {
+    $this->db->query(
+      "UPDATE `expenses_category_assigned_to_users`
+      SET `name` = :name
+      WHERE `id` = :id",
+      [
+        'id' => $id,
+        'name' => $formData['newName']
+      ]
+    );
+  }
+
+  public function updatePaymentMethod(int $id, array $formData)
+  {
+    $this->db->query(
+      "UPDATE `payment_methods_assigned_to_users`
+      SET `name` = :name
+      WHERE `id` = :id",
+      [
+        'id' => $id,
+        'name' => $formData['newName']
+      ]
+    );
   }
 }
