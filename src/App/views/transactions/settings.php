@@ -1,5 +1,24 @@
 <?php include $this->resolve("partials/_header-user.php") ?>
 
+<script>
+  var errorList = <?php echo json_encode($errors); ?>
+
+  $(document).ready(function() {
+    if (errorList['oldPassword']) {
+      $("#oldPasswordModal").text(errorList['oldPassword']);
+      $("#change-password").modal("show");
+    }
+    if (errorList['newPassword']) {
+      $("#newPasswordModal").text(errorList['newPassword']);
+      $("#change-password").modal("show");
+    }
+    if (errorList['newPasswordConfirmed']) {
+      $("#newPasswordConfirmedModal").text(errorList['newPasswordConfirmed']);
+      $("#change-password").modal("show");
+    }
+  });
+</script>
+
 <main class="pb-75">
   <section class="container my-5">
     <div class="shadow py-4 px-2 px-md-5 bg-light-red rounded-3">
@@ -212,16 +231,20 @@
             <p>Protect your account with a strong and unique password. We recommend changing your password regularly.</p>
           </div>
           <div class="d-flex flex-column justify-content-center align-items-center my-2">
-            <button type="button" class="btn btn-primary custom-btn w-100" data-bs-toggle="modal" data-bs-target="#change-pass-<?php echo e($category['id']); ?>">
+            <button type="button" class="btn btn-primary custom-btn w-100" data-bs-toggle="modal" data-bs-target="#change-password">
               Change password
             </button>
+
+            <!-- Modal change password-->
+            <?php include $this->resolve("modals/_change-password.php"); ?>
+            <!-- end Modal change password-->
           </div>
           <div class="d-flex flex-column justify-content-center align-items-start mt-4 mb-2">
             <h4>2. Delete account</h4>
             <p>Once you delete your account, there is no going back. Please be certain.</p>
           </div>
           <div class="d-flex flex-column justify-content-center align-items-center my-2">
-            <button type="button" class="btn btn-danger custom-btn w-100" data-bs-toggle="modal" data-bs-target="#change-pass-<?php echo e($category['id']); ?>">
+            <button type="button" class="btn btn-danger custom-btn w-100" data-bs-toggle="modal" data-bs-target="#change-pass-<?php echo e($_SESSION['unique']); ?>">
               Delete your account
             </button>
           </div>

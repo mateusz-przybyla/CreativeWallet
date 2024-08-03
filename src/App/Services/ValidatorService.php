@@ -14,7 +14,8 @@ use Framework\Rules\{
   LengthMaxRule,
   NumericRule,
   DateFormatRule,
-  DateLimitRule
+  DateLimitRule,
+  UniqueRule
 };
 
 class ValidatorService
@@ -34,6 +35,7 @@ class ValidatorService
     $this->validator->addRule('numeric', new NumericRule());
     $this->validator->addRule('dateFormat', new DateFormatRule());
     $this->validator->addRule('dateLimit', new DateLimitRule());
+    $this->validator->addRule('unique', new UniqueRule());
   }
 
   public function validateRegister(array $formData)
@@ -94,6 +96,15 @@ class ValidatorService
   {
     $this->validator->validate($formData, [
       'newCategory' => ['required']
+    ]);
+  }
+
+  public function validateNewPassword(array $formData)
+  {
+    $this->validator->validate($formData, [
+      'oldPassword' => ['required'],
+      'newPassword' => ['required'],
+      'newPasswordConfirmed' => ['required', 'match:newPassword', 'unique:oldPassword']
     ]);
   }
 }
