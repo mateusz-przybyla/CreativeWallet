@@ -51,5 +51,7 @@ function registerRoutes(App $app)
   $app->post('/settings/add/expense-category', [SettingsController::class, 'addExpenseCategory'])->add(AuthRequiredMiddleware::class);
   $app->post('/settings/add/payment-method', [SettingsController::class, 'addPaymentMethod'])->add(AuthRequiredMiddleware::class);
 
+  $app->post('/settings/change/password', [SettingsController::class, 'changePassword'])->add(AuthRequiredMiddleware::class);
+
   $app->setErrorHandler([ErrorController::class, 'notFound']);
 }

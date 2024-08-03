@@ -125,4 +125,15 @@ class SettingsController
 
     redirectTo('/settings');
   }
+
+  public function changePassword()
+  {
+    $this->validatorService->validateNewPassword($_POST);
+
+    $this->userService->verifyOldPassword($_POST);
+
+    $this->userService->updatePassword($_POST);
+
+    redirectTo('/settings');
+  }
 }

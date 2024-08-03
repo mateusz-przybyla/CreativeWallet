@@ -118,4 +118,38 @@ class UserService
       $params['httponly']
     );
   }
+
+  public function verifyOldPassword(array $formData)
+  {
+    $query = $this->db->query(
+      "SELECT * FROM `users` WHERE `id` = :user_id",
+      ['user_id' => $_SESSION['user']]
+    );
+
+    $user = $query->retrieve();
+
+    $passwordMatch = password_verify(
+      $formData['oldPassword'],
+      $user['password'] ?? ''
+    );
+
+    if (!$user || !$passwordMatch) {
+      throw new ValidationException(['oldPassword' => ['Invalid old password.']]);
+    }
+  }
+
+  public function updatePassword(array $formData)
+  {
+    $newPassword = password_hash($formData['newPassword'], PASSWORD_BCRYPT, ['cost' => 12]);
+
+    $this->db->query(
+      "UPDATE `users`
+      SET `password` = :password
+      WHERE `id` = :user_id",
+      [
+        'user_id' => $_SESSION['user'],
+        'password' => $newPassword
+      ]
+    );
+  }
 }
