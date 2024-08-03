@@ -83,10 +83,17 @@ class ValidatorService
     ]);
   }
 
-  public function validateNewCategory(array $formData)
+  public function validateNewCategoryName(array $formData)
   {
     $this->validator->validate($formData, [
       'newName' => ['required']
+    ]);
+  }
+
+  public function validateNewCategory(array $formData)
+  {
+    $this->validator->validate($formData, [
+      'newCategory' => ['required']
     ]);
   }
 }

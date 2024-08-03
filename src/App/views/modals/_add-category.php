@@ -9,8 +9,8 @@
         </div>
         <div class="modal-body">
           <div class="mb-3">
-            <label for="newCategoryName" class="col-form-label">Category name:</label>
-            <input type="text" name="newName" class="form-control" id="newCategoryName">
+            <label for="newCategory" class="col-form-label">Category name:</label>
+            <input type="text" name="newCategory" class="form-control" id="newCategory" required>
           </div>
         </div>
         <div class="modal-footer">

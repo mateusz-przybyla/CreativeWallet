@@ -5,6 +5,7 @@ declare(strict_types=1);
 namespace App\Services;
 
 use Framework\Database;
+use Framework\Exceptions\ValidationException;
 
 class TransactionService
 {
@@ -290,7 +291,7 @@ class TransactionService
       VALUES (NULL, :user_id, :name)",
       [
         'user_id' => $_SESSION['user'],
-        'name' => $formData['newName']
+        'name' => $formData['newCategory']
       ]
     );
   }
@@ -302,7 +303,7 @@ class TransactionService
       VALUES (NULL, :user_id, :name)",
       [
         'user_id' => $_SESSION['user'],
-        'name' => $formData['newName']
+        'name' => $formData['newCategory']
       ]
     );
   }
@@ -314,8 +315,59 @@ class TransactionService
       VALUES (NULL, :user_id, :name)",
       [
         'user_id' => $_SESSION['user'],
-        'name' => $formData['newName']
+        'name' => $formData['newCategory']
       ]
     );
+  }
+
+  public function isIncomeCategoryTaken(string $category)
+  {
+    $nameCount = $this->db->query(
+      "SELECT COUNT(*) FROM `incomes_category_assigned_to_users` 
+      WHERE `name` = :name AND `user_id` = :user_id",
+      [
+        'name' => $category,
+        'user_id' => $_SESSION['user']
+      ]
+    )->count();
+
+    if ($nameCount > 0) {
+      throw new ValidationException(['newCategory' => ['Category taken.']]);
+    }
+  }
+
+  public function isExpenseCategoryTaken(string $category)
+  {
+    $nameCount = $this->db->query(
+      "SELECT COUNT(*) FROM `expenses_category_assigned_to_users` 
+      WHERE `name` = :name AND `user_id` = :user_id",
+      [
+        'name' => $category,
+        'user_id' => $_SESSION['user']
+      ]
+    )->count();
+
+    echo "Name count" . "<br>";
+    dd($nameCount);
+
+    if ($nameCount > 0) {
+      throw new ValidationException(['newCategory' => ['Category taken.']]);
+    }
+  }
+
+  public function isPaymentMethodTaken(string $category)
+  {
+    $nameCount = $this->db->query(
+      "SELECT COUNT(*) FROM `payment_methods_assigned_to_users` 
+      WHERE `name` = :name AND `user_id` = :user_id",
+      [
+        'name' => $category,
+        'user_id' => $_SESSION['user']
+      ]
+    )->count();
+
+    if ($nameCount > 0) {
+      throw new ValidationException(['newCategory' => ['Method taken.']]);
+    }
   }
 }
