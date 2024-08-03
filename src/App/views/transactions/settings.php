@@ -64,9 +64,14 @@
               <tr>
                 <th>...</th>
                 <td colspan="2" class="text-start">
-                  <button type="button" class="btn btn-success custom-btn d-flex" data-bs-toggle="modal" data-bs-target="#edit">
+                  <?php $_SESSION['unique'] = 111; ?>
+                  <button type="button" class="btn btn-success custom-btn d-flex" data-bs-toggle="modal" data-bs-target="#add-cat-<?php echo e($_SESSION['unique']); ?>">
                     <img class="align-items-center justify-content-center" src="/assets/svg/plus-lg.svg" alt="plus" height="15" />
                   </button>
+
+                  <!-- Modal add-->
+                  <?php include $this->resolve("modals/_add-category.php"); ?>
+                  <!-- end Modal add-->
                 </td>
               </tr>
             </tbody>
@@ -117,9 +122,14 @@
               <tr>
                 <th>...</th>
                 <td colspan="2" class="text-start">
-                  <button type="button" class="btn btn-success custom-btn d-flex" data-bs-toggle="modal" data-bs-target="#edit">
+                  <?php $_SESSION['unique'] = 112; ?>
+                  <button type="button" class="btn btn-success custom-btn d-flex" data-bs-toggle="modal" data-bs-target="#add-cat-<?php echo e($_SESSION['unique']); ?>">
                     <img class="align-items-center justify-content-center" src="/assets/svg/plus-lg.svg" alt="plus" height="15" />
                   </button>
+
+                  <!-- Modal add-->
+                  <?php include $this->resolve("modals/_add-category.php"); ?>
+                  <!-- end Modal add-->
                 </td>
               </tr>
             </tbody>
@@ -170,9 +180,14 @@
               <tr>
                 <th>...</th>
                 <td colspan="2" class="text-start">
-                  <button type="button" class="btn btn-success custom-btn d-flex" data-bs-toggle="modal" data-bs-target="#edit">
+                  <?php $_SESSION['unique'] = 113; ?>
+                  <button type="button" class="btn btn-success custom-btn d-flex" data-bs-toggle="modal" data-bs-target="#add-cat-<?php echo e($_SESSION['unique']); ?>">
                     <img class="align-items-center justify-content-center" src="/assets/svg/plus-lg.svg" alt="plus" height="15" />
                   </button>
+
+                  <!-- Modal add-->
+                  <?php include $this->resolve("modals/_add-category.php"); ?>
+                  <!-- end Modal add-->
                 </td>
               </tr>
             </tbody>
