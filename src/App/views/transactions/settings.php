@@ -196,6 +196,39 @@
       </div>
     </div>
   </section>
+  <section class="container my-5">
+    <div class="shadow py-4 px-2 px-md-5 bg-light-red rounded-3">
+      <div class="text-center">
+        <h1 class="h3 mb-3 d-flex justify-content-center align-items-center">
+          <img class="me-2" src="/assets/svg/gear-fill.svg" alt="gear" height="30" />
+          User account settings
+        </h1>
+        <hr class="" />
+      </div>
+      <div class="d-flex justify-content-center">
+        <div class="col-10 col-sm-8 col-lg-5">
+          <div class="d-flex flex-column justify-content-center align-items-start mt-4 mb-2">
+            <h4>1. Reset account password</h4>
+            <p>Protect your account with a strong and unique password. We recommend changing your password regularly.</p>
+          </div>
+          <div class="d-flex flex-column justify-content-center align-items-center my-2">
+            <button type="button" class="btn btn-primary custom-btn w-100" data-bs-toggle="modal" data-bs-target="#change-pass-<?php echo e($category['id']); ?>">
+              Change password
+            </button>
+          </div>
+          <div class="d-flex flex-column justify-content-center align-items-start mt-4 mb-2">
+            <h4>2. Delete account</h4>
+            <p>Once you delete your account, there is no going back. Please be certain.</p>
+          </div>
+          <div class="d-flex flex-column justify-content-center align-items-center my-2">
+            <button type="button" class="btn btn-danger custom-btn w-100" data-bs-toggle="modal" data-bs-target="#change-pass-<?php echo e($category['id']); ?>">
+              Delete your account
+            </button>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
   <div id="scrollToTop"></div>
 </main>
 
