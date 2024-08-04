@@ -4,13 +4,13 @@
       <?php include $this->resolve("partials/_csrf.php"); ?>
       <div class="modal-content">
         <div class="modal-header">
-          <h1 class="modal-title fs-5" id="editLabel">Editing category name</h1>
+          <h1 class="modal-title fs-5" id="editLabel">Edit category name</h1>
           <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
         </div>
         <div class="modal-body">
           <div class="mb-3">
-            <label for="newCategoryName" class="col-form-label">New name:</label>
-            <input type="text" name="newName" class="form-control" id="newCategoryName">
+            <label for="newCategoryName-<?php echo e($category['id']); ?>" class="col-form-label">New name:</label>
+            <input type="text" name="newName" class="form-control" id="newCategoryName-<?php echo e($category['id']); ?>">
           </div>
         </div>
         <div class="modal-footer">

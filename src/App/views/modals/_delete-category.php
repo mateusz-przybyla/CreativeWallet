@@ -3,7 +3,7 @@
     <form action="/settings/delete/<?php echo e($_SESSION['item']); ?>/<?php echo e($category['id']); ?>" method="POST">
       <div class="modal-content">
         <div class="modal-header">
-          <h1 class="modal-title fs-5" id="deleteLabel">Deleting method</h1>
+          <h1 class="modal-title fs-5" id="deleteLabel">Delete category</h1>
           <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
         </div>
         <div class="modal-body">
