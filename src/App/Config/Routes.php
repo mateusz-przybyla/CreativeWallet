@@ -53,5 +53,7 @@ function registerRoutes(App $app)
 
   $app->post('/settings/change/password', [SettingsController::class, 'changePassword'])->add(AuthRequiredMiddleware::class);
 
+  $app->delete('/settings/delete/account', [SettingsController::class, 'deleteAccount'])->add(AuthRequiredMiddleware::class);
+
   $app->setErrorHandler([ErrorController::class, 'notFound']);
 }

@@ -136,4 +136,13 @@ class SettingsController
 
     redirectTo('/settings');
   }
+
+  public function deleteAccount()
+  {
+    $this->userService->deleteAccount();
+
+    $this->userService->logout();
+
+    redirectTo('/');
+  }
 }
