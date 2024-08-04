@@ -101,11 +101,18 @@
         <hr class="" />
       </div>
       <div class="text-center">
-        <?php echo e($balance) >= 0 ? '<p class="fs-5 text-success">
-              Congratulations! You manage your finances very well :)
-            </p>' : '<p class="fs-5 text-danger">
+        <?php echo e($balance) >= 0 ?
+          '<div class="alert alert-success pt-3 pb-0" role="alert">
+              <p class="fs-5 text-success">
+                Congratulations! You manage your finances very well :)
+              </p>
+           </div>'
+          :
+          '<div class="alert alert-danger pt-3 pb-0" role="alert">
+              <p class="fs-5 text-danger">
               Be carefull! You are getting into debt :(
-            </p>'
+            </p>
+           </div>'
         ?>
         <p class="lead fs-2"><?php echo "Balance: " . e($balance) . " zł" ?>
         </p>
