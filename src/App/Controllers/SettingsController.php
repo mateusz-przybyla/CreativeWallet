@@ -70,6 +70,8 @@ class SettingsController
   {
     $this->validatorService->validateNewCategoryName($_POST);
 
+    $this->transactionService->isIncomeCategoryTaken($_POST['newName']);
+
     $this->transactionService->updateIncomeCategory((int) $params['category'], $_POST);
 
     redirectTo('/settings');
@@ -79,6 +81,8 @@ class SettingsController
   {
     $this->validatorService->validateNewCategoryName($_POST);
 
+    $this->transactionService->isExpenseCategoryTaken($_POST['newName']);
+
     $this->transactionService->updateExpenseCategory((int) $params['category'], $_POST);
 
     redirectTo('/settings');
@@ -87,6 +91,8 @@ class SettingsController
   public function editPaymentMethod(array $params)
   {
     $this->validatorService->validateNewCategoryName($_POST);
+
+    $this->transactionService->isPaymentMethodTaken($_POST['newName']);
 
     $this->transactionService->updatePaymentMethod((int) $params['category'], $_POST);
 

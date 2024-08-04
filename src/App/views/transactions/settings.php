@@ -29,14 +29,35 @@
         </h1>
         <hr class="mb-4" />
       </div>
+
       <?php if ((e($incomeCategoriesAmount) <= 1) || (e($expenseCategoriesAmount) <= 1) || (e($paymentMethodsAmount) <= 1)) : ?>
-        <div class="alert alert-warning d-flex align-items-center" role="alert">
+        <div class="alert alert-warning alert-dismissible fade show d-flex align-items-center" role="alert">
           <img class="align-items-center justify-content-center" src="/assets/svg/exclamation-triangle.svg" alt="pen" height="17" />
           <div class="mx-2">
             There must be at least one category in each case.
           </div>
+          <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
         </div>
       <?php endif; ?>
+      <?php if (array_key_exists('newName', $errors)) : ?>
+        <div class="alert alert-warning alert-dismissible fade show d-flex align-items-center" role="alert">
+          <img class="align-items-center justify-content-center" src="/assets/svg/exclamation-triangle.svg" alt="exclamation-triangle" height="17" />
+          <div class="mx-2">
+            <?php echo e($errors['newName'][0]); ?>
+          </div>
+          <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+        </div>
+      <?php endif; ?>
+      <?php if (array_key_exists('newCategory', $errors)) : ?>
+        <div class="alert alert-warning alert-dismissible fade show d-flex align-items-center" role="alert">
+          <img class="align-items-center justify-content-center" src="/assets/svg/exclamation-triangle.svg" alt="exclamation-triangle" height="17" />
+          <div class="mx-2">
+            <?php echo e($errors['newCategory'][0]); ?>
+          </div>
+          <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+        </div>
+      <?php endif; ?>
+
       <div class="row">
         <div class="col-lg-4">
           <table class="table table-striped table-bordered table-hover">
@@ -239,6 +260,15 @@
             <?php include $this->resolve("modals/_change-password.php"); ?>
             <!-- end Modal change password-->
           </div>
+
+          <script>
+            $("#change-password").on('hide.bs.modal', function() {
+              $("#oldPasswordModal").text("");
+              $("#newPasswordModal").text("");
+              $("#newPasswordConfirmedModal").text("");
+            });
+          </script>
+
           <div class="d-flex flex-column justify-content-center align-items-start mt-4 mb-2">
             <h4>2. Delete account</h4>
             <p>Once you delete your account, there is no going back. Please be certain.</p>
