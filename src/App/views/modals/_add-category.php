@@ -4,13 +4,13 @@
       <?php include $this->resolve("partials/_csrf.php"); ?>
       <div class="modal-content">
         <div class="modal-header">
-          <h1 class="modal-title fs-5" id="addLabel">Adding new category</h1>
+          <h1 class="modal-title fs-5" id="addLabel">Add new category</h1>
           <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
         </div>
         <div class="modal-body">
           <div class="mb-3">
-            <label for="newCategory" class="col-form-label">Category name:</label>
-            <input type="text" name="newCategory" class="form-control" id="newCategory" required>
+            <label for="newCategory-<?php echo e($_SESSION['unique']); ?>" class="col-form-label">Category name:</label>
+            <input type="text" name="newCategory" class="form-control" id="newCategory-<?php echo e($_SESSION['unique']); ?>">
           </div>
         </div>
         <div class="modal-footer">

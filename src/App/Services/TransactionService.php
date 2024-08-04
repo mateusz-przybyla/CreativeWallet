@@ -347,9 +347,6 @@ class TransactionService
       ]
     )->count();
 
-    echo "Name count" . "<br>";
-    dd($nameCount);
-
     if ($nameCount > 0) {
       throw new ValidationException(['newCategory' => ['Category taken.']]);
     }
