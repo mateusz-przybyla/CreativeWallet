@@ -260,6 +260,15 @@
             <?php include $this->resolve("modals/_change-password.php"); ?>
             <!-- end Modal change password-->
           </div>
+
+          <script>
+            $("#change-password").on('hide.bs.modal', function() {
+              $("#oldPasswordModal").text("");
+              $("#newPasswordModal").text("");
+              $("#newPasswordConfirmedModal").text("");
+            });
+          </script>
+
           <div class="d-flex flex-column justify-content-center align-items-start mt-4 mb-2">
             <h4>2. Delete account</h4>
             <p>Once you delete your account, there is no going back. Please be certain.</p>
