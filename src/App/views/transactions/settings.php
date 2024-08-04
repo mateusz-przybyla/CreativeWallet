@@ -244,9 +244,13 @@
             <p>Once you delete your account, there is no going back. Please be certain.</p>
           </div>
           <div class="d-flex flex-column justify-content-center align-items-center my-2">
-            <button type="button" class="btn btn-danger custom-btn w-100" data-bs-toggle="modal" data-bs-target="#change-pass-<?php echo e($_SESSION['unique']); ?>">
+            <button type="button" class="btn btn-danger custom-btn w-100" data-bs-toggle="modal" data-bs-target="#delete-account">
               Delete your account
             </button>
+
+            <!-- Modal delete account-->
+            <?php include $this->resolve("modals/_delete-account.php"); ?>
+            <!-- end Modal delete account-->
           </div>
         </div>
       </div>

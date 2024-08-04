@@ -152,4 +152,31 @@ class UserService
       ]
     );
   }
+
+  public function deleteAccount()
+  {
+    $this->db->query("DELETE FROM `incomes_category_assigned_to_users` WHERE `user_id` = :user_id", [
+      'user_id' => $_SESSION['user']
+    ]);
+
+    $this->db->query("DELETE FROM `expenses_category_assigned_to_users` WHERE `user_id` = :user_id", [
+      'user_id' => $_SESSION['user']
+    ]);
+
+    $this->db->query("DELETE FROM `payment_methods_assigned_to_users` WHERE `user_id` = :user_id", [
+      'user_id' => $_SESSION['user']
+    ]);
+
+    $this->db->query("DELETE FROM `incomes` WHERE `user_id` = :user_id", [
+      'user_id' => $_SESSION['user']
+    ]);
+
+    $this->db->query("DELETE FROM `expenses` WHERE `user_id` = :user_id", [
+      'user_id' => $_SESSION['user']
+    ]);
+
+    $this->db->query("DELETE FROM `users` WHERE `id` = :user_id", [
+      'user_id' => $_SESSION['user']
+    ]);
+  }
 }
