@@ -41,15 +41,15 @@ Data are saved to the database (MariaDB).
 How does it work?
 
 First create a user account, sign in and then you can add incomes and expenses with today's date or with a selected backdate.
-You can show current month's balance, previous month's balance and selected period balance. The application calculates the sum of incomes, expenses and the difference between them (incomes - expenses).
+You can show current month's balance, previous month's balance or selected period balance. The application calculates the sum of incomes, expenses and the difference between them (incomes - expenses).
 
 Other functionalities:
 
-- summary of expenses and incomes categories in the tables,
-- graphical representation of expenses on a pie chart,
-- adding new expense and incomes categories,
-- adding new payment method categories,
-- other CRUD transations - updating and deleting transactions (in progress).
+- a tabular summary of the incomes and expenses (by category),
+- a pie chart showing expenses from the selected period,
+- add/edit/delete categories and payment methods,
+- change password,
+- delete account with related transactions.
 
 ### Framework
 
@@ -83,13 +83,21 @@ App class inside the framework component is like a glue for the available tools 
 
   ![](/readme/sign_up.jpg)
 
-- Adding new income:
+- Add new income:
 
   ![](/readme/add_income.jpg)
 
-- Show balance - list of categories and expenses chart:
+- Show balance - list of income/expense categories and expenses pie chart:
 
   ![](/readme/show_balance.jpg)
+
+- Transaction settings - add/edit/delete categories or payment methods:
+
+  ![](/readme/transaction_settings.jpg)
+
+- User account settings:
+
+  ![](/readme/account_settings.jpg)
 
 ## My process
 
@@ -111,7 +119,7 @@ Backend:
 - custom Exceptions,
 - Composer and Packagist.
 - SQL queries,
-- development stage - using XAMPP (database MariaDB, Apache server and PHPMyAdmin graphics overlay)
+- development stage - XAMPP (database MariaDB, Apache server and PHPMyAdmin graphics overlay)
 
 ### Useful resources
 
