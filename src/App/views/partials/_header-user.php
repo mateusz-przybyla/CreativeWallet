@@ -7,7 +7,7 @@
   <title><?php echo e($title) ?> - Finances under control</title>
 
   <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-aFq/bzH65dt+w6FI2ooMVUpc+21e0SRygnTpmBvdBgSdnuTN7QbdgL+OapgHtvPp" crossorigin="anonymous" />
-  <link rel="stylesheet" href="/assets/style.css" />
+  <link rel="stylesheet" href="/assets/css/style.css" />
   <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.7.1/jquery.min.js"></script>
 </head>
 
