@@ -56,7 +56,7 @@
           Sign in
         </button>
         <p class="pt-3 my-0">
-          Already have an account?
+          New to CreativeWallet?
           <a href="/register" class="text-decoration-none fw-500">Sign up</a>
         </p>
       </form>

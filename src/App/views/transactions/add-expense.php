@@ -43,7 +43,7 @@
             <div class="input-group">
               <span class="input-group-text bg-grey-blue rounded-end-0"><img src="/assets/svg/credit-card.svg" alt="credit-card" width="25" /></span>
               <select class="form-select" name="paymentMethod" id="paymentMethod">
-                <option value="">Choose...</option>
+                <option value="">--- Choose payment method ---</option>
                 <?php foreach ($paymentMethods as $paymentMethod) : ?>
                   <option <?php if (array_key_exists('category', $oldFormData)) {
                             echo e($oldFormData['paymentMethod'] === $paymentMethod['name'] ? 'selected' : '');
@@ -62,7 +62,7 @@
             <div class="input-group">
               <span class="input-group-text bg-grey-blue rounded-end-0"><img src="/assets/svg/tags-fill.svg" alt="tags-fill" width="25" /></span>
               <select class="form-select" name="category" id="expenseCategory">
-                <option value="">Choose...</option>
+                <option value="">--- Choose category ---</option>
                 <?php foreach ($expenseCategories as $expenseCategory) : ?>
                   <option <?php if (array_key_exists('category', $oldFormData)) {
                             echo e($oldFormData['category'] === $expenseCategory['name'] ? 'selected' : '');
@@ -78,10 +78,10 @@
             <?php endif; ?>
           </div>
           <div class="mb-3">
-            <label for="expenseComment" class="form-label">Comment (Optional)</label>
+            <label for="expenseComment" class="form-label">Comment</label>
             <div class="input-group">
               <span class="input-group-text bg-grey-blue rounded-end-0"><img src="/assets/svg/chat-dots-fill.svg" alt="chat-dots-fill" width="25" /></span>
-              <textarea class="form-control" name="comment" id="expenseComment" rows="2"></textarea>
+              <textarea class="form-control" name="comment" id="expenseComment" rows="2" placeholder="Enter your comment here (optional)"></textarea>
             </div>
             <?php if (array_key_exists('comment', $errors)) : ?>
               <div class="text-danger text-start small">

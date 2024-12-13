@@ -43,7 +43,7 @@
             <div class="input-group">
               <span class="input-group-text bg-grey-blue rounded-end-0"><img src="/assets/svg/tags-fill.svg" alt="tags-fill" width="25" /></span>
               <select class="form-select" name="category" id="incomeCategory">
-                <option value="">Choose...</option>
+                <option value="">--- Choose category ---</option>
                 <?php foreach ($incomeCategories as $incomeCategory) : ?>
                   <option <?php if (array_key_exists('category', $oldFormData)) {
                             echo e($oldFormData['category'] === $incomeCategory['name'] ? 'selected' : '');
@@ -58,10 +58,10 @@
             <?php endif; ?>
           </div>
           <div class="mb-3">
-            <label for="incomeComment" class="form-label">Comment (Optional)</label>
+            <label for="incomeComment" class="form-label">Comment</label>
             <div class="input-group">
               <span class="input-group-text bg-grey-blue rounded-end-0"><img src="/assets/svg/chat-dots-fill.svg" alt="chat-dots-fill" width="25" /></span>
-              <textarea class="form-control" name="comment" id="incomeComment" rows="2"></textarea>
+              <textarea class="form-control" name="comment" id="incomeComment" rows="2" placeholder="Enter your comment here (optional)"></textarea>
             </div>
             <?php if (array_key_exists('comment', $errors)) : ?>
               <div class="text-danger text-start small">
