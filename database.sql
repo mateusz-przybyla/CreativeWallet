@@ -1,3 +1,5 @@
+DROP TABLE IF EXISTS `users`, `incomes_category_default`, `incomes_category_assigned_to_users`, `incomes`, `expenses_category_default`, `expenses_category_assigned_to_users`, `payment_methods_default`, `payment_methods_assigned_to_users`, `expenses`;
+
 CREATE TABLE IF NOT EXISTS `users` (
   `id` int(11) NOT NULL AUTO_INCREMENT,
   `username` varchar(50) CHARACTER SET utf8mb4 COLLATE utf8mb4_general_ci NOT NULL,
@@ -64,6 +66,7 @@ CREATE TABLE IF NOT EXISTS `expenses_category_assigned_to_users` (
   `id` int(11) NOT NULL AUTO_INCREMENT,
   `user_id` int(11) NOT NULL,
   `name` varchar(50) CHARACTER SET utf8mb4 COLLATE utf8mb4_general_ci NOT NULL,
+  `category_limit` decimal(8,2) DEFAULT NULL,
   PRIMARY KEY (`id`)
 );
 

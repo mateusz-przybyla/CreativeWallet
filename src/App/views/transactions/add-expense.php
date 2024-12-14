@@ -2,23 +2,44 @@
 
 <main class="pb-60">
   <div class="container my-5">
-    <div class="bg-light-red shadow p-5 rounded-3">
+    <div class="bg-light-red shadow pt-3 ps-4 pe-4 pb-4 ps-md-5 pe-md-5 pb-md-5 rounded-3">
       <?php if (isset($newTrans)) : ?>
-        <div class="text-success text-center mb-3"> <?php echo e($newTrans); ?> </div>
+        <div class="text-success text-center my-3"> <?php echo e($newTrans); ?> </div>
       <?php endif; ?>
       <div class="text-center">
-        <h1 class="h3 mb-4">Please enter data for new Expense:</h1>
+        <h1 class="h2">Add your Expense</h1>
+        <hr />
       </div>
-      <div class="row d-flex justify-content-center">
-        <form class="col-md-8 col-lg-7 col-xl-6" method="POST">
+      <div class="row d-flex flex-column align-items-center">
+        <div class="col-md-9 col-lg-7 col-xxl-5">
+          <div class="card my-2">
+            <h6 class="card-header bg-grey-blue">Limit info:</h6>
+            <div class="card-body py-2">
+              <p class="card-text">You set the limit xxx PLN monthly for that category.</p>
+            </div>
+          </div>
+          <div class="card mb-2">
+            <h6 class="card-header bg-grey-blue">Limit value:</h6>
+            <div class="card-body py-2">
+              <p class="card-text">You did not spent any money for this category this month!</p>
+            </div>
+          </div>
+          <div class="card">
+            <h6 class="card-header bg-grey-blue">Cash left:</h6>
+            <div class="card-body py-2">
+              <p class="card-text">Limit balance after operation xxx PLN.</p>
+            </div>
+          </div>
+        </div>
+        <form class="col-md-9 col-lg-7 col-xxl-5" method="POST">
           <?php
           include $this->resolve("partials/_csrf.php");
           ?>
-          <div class="mb-2">
-            <label for="expenseAmount" class="form-label">Amount</label>
+          <div class="mt-4 mb-2">
             <div class="input-group">
               <span class="input-group-text bg-grey-blue rounded-end-0"><img src="/assets/svg/123.svg" alt="amount" width="25" /></span>
-              <input type="number" name="amount" value="<?php echo e($oldFormData['amount'] ?? ''); ?>" step="0.01" class="form-control" id="expenseAmount" />
+              <input type="number" name="amount" value="<?php echo e($oldFormData['amount'] ?? ''); ?>" step="0.01" class="form-control" id="expenseAmount" placeholder="Amount" />
+              <span class="input-group-text bg-grey-blue">.00</span>
             </div>
             <?php if (array_key_exists('amount', $errors)) : ?>
               <div class="text-danger text-start small">
@@ -27,7 +48,6 @@
             <?php endif; ?>
           </div>
           <div class="mb-2">
-            <label for="date" class="form-label">Date</label>
             <div class="input-group">
               <span class="input-group-text bg-grey-blue rounded-end-0"><img src="/assets/svg/calendar-date.svg" alt="calendar-date" width="25" /></span>
               <input type="date" name="date" value="<?php echo e($oldFormData['date'] ?? ''); ?>" class="form-control" id="date" />
@@ -39,11 +59,10 @@
             <?php endif; ?>
           </div>
           <div class="mb-2">
-            <label for="expensePayment" class="form-label">Payment methods</label>
             <div class="input-group">
               <span class="input-group-text bg-grey-blue rounded-end-0"><img src="/assets/svg/credit-card.svg" alt="credit-card" width="25" /></span>
               <select class="form-select" name="paymentMethod" id="paymentMethod">
-                <option value="">--- Choose payment method ---</option>
+                <option value="">Choose payment method</option>
                 <?php foreach ($paymentMethods as $paymentMethod) : ?>
                   <option <?php if (array_key_exists('category', $oldFormData)) {
                             echo e($oldFormData['paymentMethod'] === $paymentMethod['name'] ? 'selected' : '');
@@ -58,11 +77,10 @@
             <?php endif; ?>
           </div>
           <div class="mb-2">
-            <label for="expenseCategory" class="form-label">Category</label>
             <div class="input-group">
               <span class="input-group-text bg-grey-blue rounded-end-0"><img src="/assets/svg/tags-fill.svg" alt="tags-fill" width="25" /></span>
               <select class="form-select" name="category" id="expenseCategory">
-                <option value="">--- Choose category ---</option>
+                <option value="">Choose category</option>
                 <?php foreach ($expenseCategories as $expenseCategory) : ?>
                   <option <?php if (array_key_exists('category', $oldFormData)) {
                             echo e($oldFormData['category'] === $expenseCategory['name'] ? 'selected' : '');
@@ -78,7 +96,6 @@
             <?php endif; ?>
           </div>
           <div class="mb-3">
-            <label for="expenseComment" class="form-label">Comment</label>
             <div class="input-group">
               <span class="input-group-text bg-grey-blue rounded-end-0"><img src="/assets/svg/chat-dots-fill.svg" alt="chat-dots-fill" width="25" /></span>
               <textarea class="form-control" name="comment" id="expenseComment" rows="2" placeholder="Enter your comment here (optional)"></textarea>
@@ -89,20 +106,16 @@
               </div>
             <?php endif; ?>
           </div>
-          <div class="container">
-            <div class="row d-flex justify-content-between gy-2">
-              <a href="/welcome" class="col-sm-3 btn btn-lg btn-danger">
-                Cancel
-              </a>
-              <button class="col-sm-3 btn btn-lg btn-success" type="submit">
-                Add
-              </button>
-            </div>
+          <div class="d-flex justify-content-center">
+            <button class="col-sm-3 btn btn-md btn-dark mw-3 w-100" type="submit">
+              Add expense
+            </button>
           </div>
         </form>
       </div>
     </div>
   </div>
 </main>
+<script src="/assets/js/set-current-date.js" type="text/javascript"></script>
 
 <?php include $this->resolve("partials/_footer.php") ?>

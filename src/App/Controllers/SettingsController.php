@@ -19,8 +19,7 @@ class SettingsController
     private ValidatorService $validatorService,
     private TransactionService $transactionService,
     private UserService $userService
-  ) {
-  }
+  ) {}
 
   public function settingsView()
   {
@@ -31,6 +30,8 @@ class SettingsController
     if ((!$expenseCategories) || (!$incomeCategories) || (!$paymentMethods)) {
       throw new FormOptionsException("No categories loaded.");
     }
+
+    //dd($expenseCategories);
 
     echo $this->view->render(
       "transactions/settings.php",

@@ -52,7 +52,7 @@
             <input type="checkbox" id="remember-me" /> Remember me
           </label>
         </div>
-        <button class="w-100 btn btn-lg btn-success" type="submit" id="login-submit">
+        <button class="w-100 btn btn-lg btn-dark" type="submit" id="login-submit">
           Sign in
         </button>
         <p class="pt-3 my-0">
@@ -63,5 +63,6 @@
     </div>
   </div>
 </main>
+<script src="/assets/js/remember-me.js" type="text/javascript"></script>
 
 <?php include $this->resolve("partials/_footer.php") ?>

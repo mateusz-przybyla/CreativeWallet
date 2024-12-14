@@ -9,9 +9,7 @@ use Framework\Exceptions\ValidationException;
 
 class TransactionService
 {
-  public function __construct(private Database $db)
-  {
-  }
+  public function __construct(private Database $db) {}
 
   public function loadIncomeCategories(): array
   {
@@ -28,7 +26,7 @@ class TransactionService
   public function loadExpenseCategories(): array
   {
     return $this->db->query(
-      "SELECT `name`, `id`
+      "SELECT `name`, `id`, `category_limit`
       FROM `expenses_category_assigned_to_users` 
       WHERE `user_id` = :user_id",
       [
@@ -300,7 +298,7 @@ class TransactionService
   {
     $this->db->query(
       "INSERT INTO `expenses_category_assigned_to_users`
-      VALUES (NULL, :user_id, :name)",
+      VALUES (NULL, :user_id, :name, NULL)",
       [
         'user_id' => $_SESSION['user'],
         'name' => $formData['newCategory']

@@ -59,7 +59,66 @@
       <?php endif; ?>
 
       <div class="row">
-        <div class="col-lg-4">
+        <div class="col-lg-6 col-xl-4">
+          <table class="table table-striped table-bordered table-hover">
+            <caption class="text-start">Expense category settings: </caption>
+            <thead>
+              <tr class="bg-grey-blue">
+                <th scope="col">#</th>
+                <th scope="col">Expense categories</th>
+                <th scope="col">Limit</th>
+                <th scope="col">Options</th>
+              </tr>
+            </thead>
+            <tbody>
+              <?php $expenseIndex = 1;
+              $_SESSION['item'] = "expense-category";
+              foreach ($expenseCategories as $category) : ?>
+                <tr>
+                  <th scope='row'><?php echo e($expenseIndex); ?></th>
+                  <td class="text-break"><?php echo e($category['name']) ?></td>
+                  <td class="text-break"><?php echo e($category['category_limit']) ?></td>
+                  <td class="d-flex flex-wrap gap-1">
+                    <?php if (e($expenseCategoriesAmount) <= 1) : ?>
+                      <button type="button" class="btn btn-primary custom-btn d-flex" data-bs-toggle="modal" data-bs-target="#edit-<?php echo e($_SESSION['item']); ?>-<?php echo e($category['id']); ?>">
+                        <img class="align-items-center justify-content-center" src="/assets/svg/pen.svg" alt="pen" height="15" />
+                      </button>
+                    <?php else : ?>
+                      <button type="button" class="btn btn-primary custom-btn d-flex" data-bs-toggle="modal" data-bs-target="#edit-<?php echo e($_SESSION['item']); ?>-<?php echo e($category['id']); ?>">
+                        <img class="align-items-center justify-content-center" src="/assets/svg/pen.svg" alt="pen" height="15" />
+                      </button>
+                      <button type="button" class="btn btn-danger custom-btn d-flex" data-bs-toggle="modal" data-bs-target="#delete-<?php echo e($_SESSION['item']); ?>-<?php echo e($category['id']); ?>">
+                        <img class="align-items-center justify-content-center" src="/assets/svg/trash3.svg" alt="trash3" height="15" />
+                      </button>
+                    <?php endif; ?>
+
+                    <!-- Modal delete-->
+                    <?php include $this->resolve("modals/_delete-category.php"); ?>
+                    <!-- end Modal delete-->
+
+                    <!-- Modal edit-->
+                    <?php include $this->resolve("modals/_edit-category-limit.php"); ?>
+                    <!-- end Modal edit-->
+                  </td>
+                </tr>
+                <?php $expenseIndex++; ?>
+              <?php endforeach; ?>
+              <tr>
+                <th>...</th>
+                <td colspan="3" class="text-start">
+                  <button type="button" class="btn btn-success custom-btn d-flex" data-bs-toggle="modal" data-bs-target="#add-<?php echo e($_SESSION['item']); ?>">
+                    <img class="align-items-center justify-content-center" src="/assets/svg/plus-lg.svg" alt="plus" height="15" />
+                  </button>
+
+                  <!-- Modal add-->
+                  <?php include $this->resolve("modals/_add-category.php"); ?>
+                  <!-- end Modal add-->
+                </td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
+        <div class="col-lg-6 col-xl-4">
           <table class="table table-striped table-bordered table-hover">
             <caption class="text-start">Income category settings: </caption>
             <thead>
@@ -75,17 +134,17 @@
               foreach ($incomeCategories as $category) : ?>
                 <tr>
                   <th scope='row'><?php echo e($incomeIndex); ?></th>
-                  <td><?php echo e($category['name']); ?></td>
-                  <td class="d-flex gap-1">
+                  <td class="text-break"><?php echo e($category['name']); ?></td>
+                  <td class=" d-flex flex-wrap gap-1">
                     <?php if (e($incomeCategoriesAmount) <= 1) : ?>
-                      <button type="button" class="btn btn-primary custom-btn d-flex" data-bs-toggle="modal" data-bs-target="#edit-cat-<?php echo e($category['id']); ?>">
+                      <button type="button" class="btn btn-primary custom-btn d-flex" data-bs-toggle="modal" data-bs-target="#edit-<?php echo e($_SESSION['item']); ?>-<?php echo e($category['id']); ?>">
                         <img class="align-items-center justify-content-center" src="/assets/svg/pen.svg" alt="pen" height="15" />
                       </button>
                     <?php else : ?>
-                      <button type="button" class="btn btn-primary custom-btn d-flex" data-bs-toggle="modal" data-bs-target="#edit-cat-<?php echo e($category['id']); ?>">
+                      <button type="button" class="btn btn-primary custom-btn d-flex" data-bs-toggle="modal" data-bs-target="#edit-<?php echo e($_SESSION['item']); ?>-<?php echo e($category['id']); ?>">
                         <img class="align-items-center justify-content-center" src="/assets/svg/pen.svg" alt="pen" height="15" />
                       </button>
-                      <button type="button" class="btn btn-danger custom-btn d-flex" data-bs-toggle="modal" data-bs-target="#delete-cat-<?php echo e($category['id']); ?>">
+                      <button type="button" class="btn btn-danger custom-btn d-flex" data-bs-toggle="modal" data-bs-target="#delete-<?php echo e($_SESSION['item']); ?>-<?php echo e($category['id']); ?>">
                         <img class="align-items-center justify-content-center" src="/assets/svg/trash3.svg" alt="trash3" height="15" />
                       </button>
                     <?php endif; ?>
@@ -104,8 +163,7 @@
               <tr>
                 <th>...</th>
                 <td colspan="2" class="text-start">
-                  <?php $_SESSION['unique'] = 111; ?>
-                  <button type="button" class="btn btn-success custom-btn d-flex" data-bs-toggle="modal" data-bs-target="#add-cat-<?php echo e($_SESSION['unique']); ?>">
+                  <button type="button" class="btn btn-success custom-btn d-flex" data-bs-toggle="modal" data-bs-target="#add-<?php echo e($_SESSION['item']); ?>">
                     <img class="align-items-center justify-content-center" src="/assets/svg/plus-lg.svg" alt="plus" height="15" />
                   </button>
 
@@ -117,65 +175,7 @@
             </tbody>
           </table>
         </div>
-        <div class="col-lg-4">
-          <table class="table table-striped table-bordered table-hover">
-            <caption class="text-start">Expense category settings: </caption>
-            <thead>
-              <tr class="bg-grey-blue">
-                <th scope="col">#</th>
-                <th scope="col">Expense categories</th>
-                <th scope="col">Options</th>
-              </tr>
-            </thead>
-            <tbody>
-              <?php $expenseIndex = 1;
-              $_SESSION['item'] = "expense-category";
-              foreach ($expenseCategories as $category) : ?>
-                <tr>
-                  <th scope='row'><?php echo e($expenseIndex); ?></th>
-                  <td><?php echo e($category['name']) ?></td>
-                  <td class="d-flex gap-1">
-                    <?php if (e($expenseCategoriesAmount) <= 1) : ?>
-                      <button type="button" class="btn btn-primary custom-btn d-flex" data-bs-toggle="modal" data-bs-target="#edit-cat-<?php echo e($category['id']); ?>">
-                        <img class="align-items-center justify-content-center" src="/assets/svg/pen.svg" alt="pen" height="15" />
-                      </button>
-                    <?php else : ?>
-                      <button type="button" class="btn btn-primary custom-btn d-flex" data-bs-toggle="modal" data-bs-target="#edit-cat-<?php echo e($category['id']); ?>">
-                        <img class="align-items-center justify-content-center" src="/assets/svg/pen.svg" alt="pen" height="15" />
-                      </button>
-                      <button type="button" class="btn btn-danger custom-btn d-flex" data-bs-toggle="modal" data-bs-target="#delete-cat-<?php echo e($category['id']); ?>">
-                        <img class="align-items-center justify-content-center" src="/assets/svg/trash3.svg" alt="trash3" height="15" />
-                      </button>
-                    <?php endif; ?>
-
-                    <!-- Modal delete-->
-                    <?php include $this->resolve("modals/_delete-category.php"); ?>
-                    <!-- end Modal delete-->
-
-                    <!-- Modal edit-->
-                    <?php include $this->resolve("modals/_edit-category.php"); ?>
-                    <!-- end Modal edit-->
-                  </td>
-                </tr>
-                <?php $expenseIndex++; ?>
-              <?php endforeach; ?>
-              <tr>
-                <th>...</th>
-                <td colspan="2" class="text-start">
-                  <?php $_SESSION['unique'] = 112; ?>
-                  <button type="button" class="btn btn-success custom-btn d-flex" data-bs-toggle="modal" data-bs-target="#add-cat-<?php echo e($_SESSION['unique']); ?>">
-                    <img class="align-items-center justify-content-center" src="/assets/svg/plus-lg.svg" alt="plus" height="15" />
-                  </button>
-
-                  <!-- Modal add-->
-                  <?php include $this->resolve("modals/_add-category.php"); ?>
-                  <!-- end Modal add-->
-                </td>
-              </tr>
-            </tbody>
-          </table>
-        </div>
-        <div class="col-lg-4">
+        <div class="col-lg-6 col-xl-4">
           <table class="table table-striped table-bordered table-hover">
             <caption class="text-start">Payment method settings: </caption>
             <thead>
@@ -191,17 +191,17 @@
               foreach ($paymentMethods as $category) : ?>
                 <tr>
                   <th scope='row'><?php echo e($methodIndex); ?></th>
-                  <td><?php echo e($category['name']) ?></td>
-                  <td class="d-flex gap-1">
+                  <td class="text-break"><?php echo e($category['name']) ?></td>
+                  <td class="d-flex flex-wrap gap-1">
                     <?php if (e($paymentMethodsAmount) <= 1) : ?>
-                      <button type="button" class="btn btn-primary custom-btn d-flex" data-bs-toggle="modal" data-bs-target="#edit-cat-<?php echo e($category['id']); ?>">
+                      <button type="button" class="btn btn-primary custom-btn d-flex" data-bs-toggle="modal" data-bs-target="#edit-<?php echo e($_SESSION['item']); ?>-<?php echo e($category['id']); ?>">
                         <img class="align-items-center justify-content-center" src="/assets/svg/pen.svg" alt="pen" height="15" />
                       </button>
                     <?php else : ?>
-                      <button type="button" class="btn btn-primary custom-btn d-flex" data-bs-toggle="modal" data-bs-target="#edit-cat-<?php echo e($category['id']); ?>">
+                      <button type="button" class="btn btn-primary custom-btn d-flex" data-bs-toggle="modal" data-bs-target="#edit-<?php echo e($_SESSION['item']); ?>-<?php echo e($category['id']); ?>">
                         <img class="align-items-center justify-content-center" src="/assets/svg/pen.svg" alt="pen" height="15" />
                       </button>
-                      <button type="button" class="btn btn-danger custom-btn d-flex" data-bs-toggle="modal" data-bs-target="#delete-cat-<?php echo e($category['id']); ?>">
+                      <button type="button" class="btn btn-danger custom-btn d-flex" data-bs-toggle="modal" data-bs-target="#delete-<?php echo e($_SESSION['item']); ?>-<?php echo e($category['id']); ?>">
                         <img class="align-items-center justify-content-center" src="/assets/svg/trash3.svg" alt="trash3" height="15" />
                       </button>
                     <?php endif; ?>
@@ -220,8 +220,7 @@
               <tr>
                 <th>...</th>
                 <td colspan="2" class="text-start">
-                  <?php $_SESSION['unique'] = 113; ?>
-                  <button type="button" class="btn btn-success custom-btn d-flex" data-bs-toggle="modal" data-bs-target="#add-cat-<?php echo e($_SESSION['unique']); ?>">
+                  <button type="button" class="btn btn-success custom-btn d-flex" data-bs-toggle="modal" data-bs-target="#add-<?php echo e($_SESSION['item']); ?>">
                     <img class="align-items-center justify-content-center" src="/assets/svg/plus-lg.svg" alt="plus" height="15" />
                   </button>
 
@@ -288,5 +287,6 @@
   </section>
   <div id="scrollToTop"></div>
 </main>
+<script src="/assets/js/scroll-to-top.js" type="text/javascript"></script>
 
 <?php include $this->resolve("partials/_footer.php") ?>

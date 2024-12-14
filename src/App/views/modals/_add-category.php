@@ -1,4 +1,4 @@
-<div class="modal fade" id="add-cat-<?php echo e($_SESSION['unique']); ?>" tabindex="-1" aria-labelledby="addLabel" aria-hidden="true">
+<div class="modal fade" id="add-<?php echo e($_SESSION['item']); ?>" tabindex="-1" aria-labelledby="addLabel" aria-hidden="true">
   <div class="modal-dialog">
     <form action="/settings/add/<?php echo e($_SESSION['item']); ?>" method="POST">
       <?php include $this->resolve("partials/_csrf.php"); ?>
@@ -9,8 +9,8 @@
         </div>
         <div class="modal-body">
           <div class="mb-3">
-            <label for="newCategory-<?php echo e($_SESSION['unique']); ?>" class="col-form-label">Category name:</label>
-            <input type="text" name="newCategory" class="form-control" id="newCategory-<?php echo e($_SESSION['unique']); ?>">
+            <label for="newCategory-<?php echo e($_SESSION['item']); ?>" class="col-form-label">Category name:</label>
+            <input type="text" name="newCategory" class="form-control" id="newCategory-<?php echo e($_SESSION['item']); ?>">
           </div>
         </div>
         <div class="modal-footer">

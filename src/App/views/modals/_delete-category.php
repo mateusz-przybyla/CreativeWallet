@@ -1,4 +1,4 @@
-<div class="modal fade" id="delete-cat-<?php echo e($category['id']); ?>" tabindex="-1" aria-labelledby="deleteLabel" aria-hidden="true">
+<div class="modal fade" id="delete-<?php echo e($_SESSION['item']); ?>-<?php echo e($category['id']); ?>" tabindex="-1" aria-labelledby="deleteLabel" aria-hidden="true">
   <div class="modal-dialog">
     <form action="/settings/delete/<?php echo e($_SESSION['item']); ?>/<?php echo e($category['id']); ?>" method="POST">
       <div class="modal-content">
