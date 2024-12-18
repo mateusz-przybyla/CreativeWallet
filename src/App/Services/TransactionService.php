@@ -251,7 +251,7 @@ class TransactionService
       WHERE `id` = :id",
       [
         'id' => $id,
-        'name' => $formData['newName']
+        'name' => $formData['editIncomeCategory']
       ]
     );
   }
@@ -264,7 +264,7 @@ class TransactionService
       WHERE `id` = :id",
       [
         'id' => $id,
-        'name' => $formData['newName']
+        'name' => $formData['editExpenseCategory']
       ]
     );
   }
@@ -277,7 +277,7 @@ class TransactionService
       WHERE `id` = :id",
       [
         'id' => $id,
-        'name' => $formData['newName']
+        'name' => $formData['editPaymentMethod']
       ]
     );
   }
@@ -289,7 +289,7 @@ class TransactionService
       VALUES (NULL, :user_id, :name)",
       [
         'user_id' => $_SESSION['user'],
-        'name' => $formData['newCategory']
+        'name' => $formData['newIncomeCategory']
       ]
     );
   }
@@ -301,7 +301,7 @@ class TransactionService
       VALUES (NULL, :user_id, :name, NULL)",
       [
         'user_id' => $_SESSION['user'],
-        'name' => $formData['newCategory']
+        'name' => $formData['newExpenseCategory']
       ]
     );
   }
@@ -313,12 +313,12 @@ class TransactionService
       VALUES (NULL, :user_id, :name)",
       [
         'user_id' => $_SESSION['user'],
-        'name' => $formData['newCategory']
+        'name' => $formData['newPaymentMethod']
       ]
     );
   }
 
-  public function isIncomeCategoryTaken(string $category)
+  public function isEditedIncomeCategoryTaken(int $id, string $category)
   {
     $nameCount = $this->db->query(
       "SELECT COUNT(*) FROM `incomes_category_assigned_to_users` 
@@ -330,11 +330,27 @@ class TransactionService
     )->count();
 
     if ($nameCount > 0) {
-      throw new ValidationException(['newCategory' => ['Category taken.']]);
+      throw new ValidationException(['editIncomeCategory' => ['Income category taken.'], 'editIncomeCategoryId' => $id]);
     }
   }
 
-  public function isExpenseCategoryTaken(string $category)
+  public function isNewIncomeCategoryTaken(string $category)
+  {
+    $nameCount = $this->db->query(
+      "SELECT COUNT(*) FROM `incomes_category_assigned_to_users`
+      WHERE `name` = :name AND `user_id` = :user_id",
+      [
+        'name' => $category,
+        'user_id' => $_SESSION['user']
+      ]
+    )->count();
+
+    if ($nameCount > 0) {
+      throw new ValidationException(['newIncomeCategory' => ['Income category taken.']]);
+    }
+  }
+
+  public function isEditedExpenseCategoryTaken(int $id, string $category)
   {
     $nameCount = $this->db->query(
       "SELECT COUNT(*) FROM `expenses_category_assigned_to_users` 
@@ -346,11 +362,27 @@ class TransactionService
     )->count();
 
     if ($nameCount > 0) {
-      throw new ValidationException(['newCategory' => ['Category taken.']]);
+      throw new ValidationException(['editExpenseCategory' => ['Expense category taken.'], 'editExpenseCategoryId' => $id]);
     }
   }
 
-  public function isPaymentMethodTaken(string $category)
+  public function isNewExpenseCategoryTaken(string $category)
+  {
+    $nameCount = $this->db->query(
+      "SELECT COUNT(*) FROM `expenses_category_assigned_to_users` 
+      WHERE `name` = :name AND `user_id` = :user_id",
+      [
+        'name' => $category,
+        'user_id' => $_SESSION['user']
+      ]
+    )->count();
+
+    if ($nameCount > 0) {
+      throw new ValidationException(['newExpenseCategory' => ['Expense category taken.']]);
+    }
+  }
+
+  public function isEditedPaymentMethodTaken(int $id, string $category)
   {
     $nameCount = $this->db->query(
       "SELECT COUNT(*) FROM `payment_methods_assigned_to_users` 
@@ -362,7 +394,23 @@ class TransactionService
     )->count();
 
     if ($nameCount > 0) {
-      throw new ValidationException(['newCategory' => ['Method taken.']]);
+      throw new ValidationException(['editPaymentMethod' => ['Payment method taken.'], 'editPaymentMethodId' => $id]);
+    }
+  }
+
+  public function isNewPaymentMethodTaken(string $category)
+  {
+    $nameCount = $this->db->query(
+      "SELECT COUNT(*) FROM `payment_methods_assigned_to_users` 
+      WHERE `name` = :name AND `user_id` = :user_id",
+      [
+        'name' => $category,
+        'user_id' => $_SESSION['user']
+      ]
+    )->count();
+
+    if ($nameCount > 0) {
+      throw new ValidationException(['newPaymentMethod' => ['Payment method taken.']]);
     }
   }
 }

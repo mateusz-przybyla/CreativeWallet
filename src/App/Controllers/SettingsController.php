@@ -48,63 +48,63 @@ class SettingsController
 
   public function deleteIncomeCategory(array $params)
   {
-    $this->transactionService->deleteIncomeCategory((int) $params['category']);
+    $this->transactionService->deleteIncomeCategory((int) $params['id']);
 
     redirectTo('/settings');
   }
 
   public function deleteExpenseCategory(array $params)
   {
-    $this->transactionService->deleteExpenseCategory((int) $params['category']);
+    $this->transactionService->deleteExpenseCategory((int) $params['id']);
 
     redirectTo('/settings');
   }
 
   public function deletePaymentMethod(array $params)
   {
-    $this->transactionService->deletePaymentMethod((int) $params['category']);
+    $this->transactionService->deletePaymentMethod((int) $params['id']);
 
     redirectTo('/settings');
   }
 
   public function editIncomeCategory(array $params)
   {
-    $this->validatorService->validateNewCategoryName($_POST);
+    $this->validatorService->validateEditIncomeCategory((int) $params['id'], $_POST);
 
-    $this->transactionService->isIncomeCategoryTaken($_POST['newName']);
+    $this->transactionService->isEditedIncomeCategoryTaken((int) $params['id'], $_POST['editIncomeCategory']);
 
-    $this->transactionService->updateIncomeCategory((int) $params['category'], $_POST);
+    $this->transactionService->updateIncomeCategory((int) $params['id'], $_POST);
 
     redirectTo('/settings');
   }
 
   public function editExpenseCategory(array $params)
   {
-    $this->validatorService->validateNewCategoryName($_POST);
+    $this->validatorService->validateEditExpenseCategory((int) $params['id'], $_POST);
 
-    $this->transactionService->isExpenseCategoryTaken($_POST['newName']);
+    $this->transactionService->isEditedExpenseCategoryTaken((int) $params['id'], $_POST['editExpenseCategory']);
 
-    $this->transactionService->updateExpenseCategory((int) $params['category'], $_POST);
+    $this->transactionService->updateExpenseCategory((int) $params['id'], $_POST);
 
     redirectTo('/settings');
   }
 
   public function editPaymentMethod(array $params)
   {
-    $this->validatorService->validateNewCategoryName($_POST);
+    $this->validatorService->validateEditPaymentMethod((int) $params['id'], $_POST);
 
-    $this->transactionService->isPaymentMethodTaken($_POST['newName']);
+    $this->transactionService->isEditedPaymentMethodTaken((int) $params['id'], $_POST['editPaymentMethod']);
 
-    $this->transactionService->updatePaymentMethod((int) $params['category'], $_POST);
+    $this->transactionService->updatePaymentMethod((int) $params['id'], $_POST);
 
     redirectTo('/settings');
   }
 
   public function addIncomeCategory()
   {
-    $this->validatorService->validateNewCategory($_POST);
+    $this->validatorService->validateNewIncomeCategory($_POST);
 
-    $this->transactionService->isIncomeCategoryTaken($_POST['newCategory']);
+    $this->transactionService->isNewIncomeCategoryTaken($_POST['newIncomeCategory']);
 
     $this->transactionService->addIncomeCategory($_POST);
 
@@ -113,9 +113,9 @@ class SettingsController
 
   public function addExpenseCategory()
   {
-    $this->validatorService->validateNewCategory($_POST);
+    $this->validatorService->validateNewExpenseCategory($_POST);
 
-    $this->transactionService->isExpenseCategoryTaken($_POST['newCategory']);
+    $this->transactionService->isNewExpenseCategoryTaken($_POST['newExpenseCategory']);
 
     $this->transactionService->addExpenseCategory($_POST);
 
@@ -124,9 +124,9 @@ class SettingsController
 
   public function addPaymentMethod()
   {
-    $this->validatorService->validateNewCategory($_POST);
+    $this->validatorService->validateNewPaymentMethod($_POST);
 
-    $this->transactionService->isPaymentMethodTaken($_POST['newCategory']);
+    $this->transactionService->isNewPaymentMethodTaken($_POST['newPaymentMethod']);
 
     $this->transactionService->addPaymentMethod($_POST);
 

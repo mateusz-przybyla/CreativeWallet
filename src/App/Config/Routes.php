@@ -39,13 +39,13 @@ function registerRoutes(App $app)
   $app->get('/show-balance', [ShowBalanceController::class, 'showBalanceView'])->add(AuthRequiredMiddleware::class);
   $app->get('/settings', [SettingsController::class, 'settingsView'])->add(AuthRequiredMiddleware::class);
 
-  $app->delete('/settings/delete/income-category/{category}', [SettingsController::class, 'deleteIncomeCategory'])->add(AuthRequiredMiddleware::class);
-  $app->delete('/settings/delete/expense-category/{category}', [SettingsController::class, 'deleteExpenseCategory'])->add(AuthRequiredMiddleware::class);
-  $app->delete('/settings/delete/payment-method/{category}', [SettingsController::class, 'deletePaymentMethod'])->add(AuthRequiredMiddleware::class);
+  $app->delete('/settings/delete/income-category/{id}', [SettingsController::class, 'deleteIncomeCategory'])->add(AuthRequiredMiddleware::class);
+  $app->delete('/settings/delete/expense-category/{id}', [SettingsController::class, 'deleteExpenseCategory'])->add(AuthRequiredMiddleware::class);
+  $app->delete('/settings/delete/payment-method/{id}', [SettingsController::class, 'deletePaymentMethod'])->add(AuthRequiredMiddleware::class);
 
-  $app->post('/settings/edit/income-category/{category}', [SettingsController::class, 'editIncomeCategory'])->add(AuthRequiredMiddleware::class);
-  $app->post('/settings/edit/expense-category/{category}', [SettingsController::class, 'editExpenseCategory'])->add(AuthRequiredMiddleware::class);
-  $app->post('/settings/edit/payment-method/{category}', [SettingsController::class, 'editPaymentMethod'])->add(AuthRequiredMiddleware::class);
+  $app->post('/settings/edit/income-category/{id}', [SettingsController::class, 'editIncomeCategory'])->add(AuthRequiredMiddleware::class);
+  $app->post('/settings/edit/expense-category/{id}', [SettingsController::class, 'editExpenseCategory'])->add(AuthRequiredMiddleware::class);
+  $app->post('/settings/edit/payment-method/{id}', [SettingsController::class, 'editPaymentMethod'])->add(AuthRequiredMiddleware::class);
 
   $app->post('/settings/add/income-category', [SettingsController::class, 'addIncomeCategory'])->add(AuthRequiredMiddleware::class);
   $app->post('/settings/add/expense-category', [SettingsController::class, 'addExpenseCategory'])->add(AuthRequiredMiddleware::class);
