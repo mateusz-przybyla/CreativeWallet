@@ -2,7 +2,7 @@
 
 <main class="pb-75">
   <section class="container my-5">
-    <div class="bg-light-red shadow py-4 px-2 px-md-5 rounded-3">
+    <div class="bg-light-red shadow p-4 px-md-5 rounded-3">
       <div class="text-center">
         <h2 class="mb-3">Balance sheet</h2>
         <hr class="" />
@@ -85,14 +85,14 @@
           <p class="fs-5 lead" id="changePeriod"></p>
         </div>
         <?php if (isset($_SESSION['dateRange'])) : ?>
-          <p class="fs-5 lead" id="showDateRange"> <?php echo e($_SESSION['dateRange']); ?> </p>
+          <p class="fs-5 lead mb-0" id="showDateRange"> <?php echo e($_SESSION['dateRange']); ?> </p>
           <?php unset($_SESSION['dateRange']); ?>
         <?php endif; ?>
       </div>
     </div>
   </section>
   <section class="container my-5">
-    <div class="shadow py-4 px-2 px-md-5 bg-light-red rounded-3">
+    <div class="shadow p-4 px-md-5 bg-light-red rounded-3">
       <div class="text-center">
         <h3 class="mb-3 d-flex justify-content-center align-items-center">
           <img class="me-2" src="/assets/svg/bookmark-check.svg" alt="bookmark-check" height="30" />
@@ -114,19 +114,19 @@
             </p>
            </div>'
         ?>
-        <p class="lead fs-2"><?php echo "Balance: " . e($balance) . " zł" ?>
+        <p class="lead fs-2 mb-0"><?php echo "Balance: " . e($balance) . " zł" ?>
         </p>
       </div>
     </div>
   </section>
   <section class="container my-5">
-    <div class="shadow py-4 px-2 px-md-5 bg-light-red rounded-3">
+    <div class="shadow p-4 px-md-5 bg-light-red rounded-3">
       <div class="row">
         <div class="col-lg-6">
           <table class="table table-striped table-bordered table-hover">
             <caption class="h3">
-              <img class="mb-3" src="/assets/svg/plus-circle-dotted.svg" alt="plus-circle-dotted" height="50" />
-              <p class="h3 mb-3">Incomes by category</p>
+              <img class="mb-2" src="/assets/svg/plus-circle-dotted.svg" alt="plus-circle-dotted" height="30" />
+              <p class="h3 mb-2">Incomes by category</p>
             </caption>
             <thead>
               <tr class="bg-grey-blue">
@@ -155,8 +155,8 @@
         <div class="col-lg-6">
           <table class="table table-striped table-bordered table-hover" id="expensesByCategoryTable">
             <caption class="h3">
-              <img class="mb-3" src="/assets/svg/dash-circle-dotted.svg" alt="dash-circle-dotted" height="50" />
-              <p class="h3 mb-3">Expenses by category</p>
+              <img class="mb-2" src="/assets/svg/dash-circle-dotted.svg" alt="dash-circle-dotted" height="30" />
+              <p class="h3 mb-2">Expenses by category</p>
             </caption>
             <thead>
               <tr class="bg-grey-blue">
@@ -186,7 +186,7 @@
     </div>
   </section>
   <section class="container my-5">
-    <div class="shadow py-4 px-2 px-md-5 bg-white rounded-3">
+    <div class="shadow p-4 px-md-5 bg-white rounded-3">
       <div class="text-center mb-4">
         <h1 class="h3">Your expenses from the selected period</h1>
         <hr class="" />

@@ -2,7 +2,7 @@
 
 <main class="pb-75">
   <div class="container my-5">
-    <div class="bg-main-home shadow p-5 text-center rounded-3">
+    <div class="bg-main-home shadow p-4 px-md-5 text-center rounded-3">
       <form class="w-lg-50 mx-auto" method="POST">
         <?php
         include $this->resolve("partials/_csrf.php");

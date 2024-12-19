@@ -2,7 +2,7 @@
 
 <main class="pb-75">
   <section class="container my-5">
-    <div class="shadow py-4 px-2 px-md-5 bg-light-red rounded-3">
+    <div class="shadow p-4 px-md-5 bg-light-red rounded-3">
       <div class="text-center">
         <h1 class="h3 mb-3 d-flex justify-content-center align-items-center">
           <img class="me-2" src="/assets/svg/gear.svg" alt="gear" height="30" />
@@ -196,7 +196,7 @@
     </div>
   </section>
   <section class="container my-5">
-    <div class="shadow py-4 px-2 px-md-5 bg-light-red rounded-3">
+    <div class="shadow p-4 px-md-5 bg-light-red rounded-3">
       <div class="text-center">
         <h1 class="h3 mb-3 d-flex justify-content-center align-items-center">
           <img class="me-2" src="/assets/svg/gear-fill.svg" alt="gear" height="30" />
