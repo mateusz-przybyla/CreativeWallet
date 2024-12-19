@@ -43,8 +43,8 @@ class ValidatorService
     $this->validator->validate($formData, [
       'username' => ['required', 'alphanumeric', 'lengthMin:3', 'lengthMax:20'],
       'email' => ['required', 'email'],
-      'password' => ['required'],
-      'passwordConfirmed' => ['required', 'match:password']
+      'password' => ['required', 'lengthMin:6'],
+      'passwordConfirmed' => ['required', 'lengthMin:6', 'match:password']
     ]);
   }
 
@@ -52,7 +52,7 @@ class ValidatorService
   {
     $this->validator->validate($formData, [
       'email' => ['required', 'email'],
-      'password' => ['required']
+      'password' => ['required', 'lengthMin:6']
     ]);
   }
 

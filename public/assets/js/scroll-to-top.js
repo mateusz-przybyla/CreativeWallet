@@ -1,6 +1,6 @@
 const btn = document.getElementById("scrollToTop");
 
-window.onscroll = function () {
+window.onscroll = () => {
   scrollFunction();
 };
 
@@ -12,9 +12,7 @@ const scrollFunction = () => {
   }
 };
 
-btn.addEventListener("click", backToTop);
-
-const backToTop = () => {
+btn.addEventListener("click", () => {
   document.body.scrollTop = 0;
   document.documentElement.scrollTop = 0;
-};
+});

@@ -1,6 +1,6 @@
 <div class="modal fade" id="editPaymentMethodModal-<?php echo e($category['id']); ?>" tabindex="-1" aria-labelledby="editPaymentMethodLabel" aria-hidden="true">
   <div class="modal-dialog">
-    <form action="/settings/edit/payment-method/<?php echo e($category['id']); ?>" method="POST">
+    <form action="/settings/edit/payment-method/<?php echo e($category['id']); ?>" method="POST" id="formEditPaymentMethod-<?php echo e($category['id']); ?>">
       <?php include $this->resolve("partials/_csrf.php"); ?>
       <div class="modal-content">
         <div class="modal-header">
@@ -8,11 +8,12 @@
           <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
         </div>
         <div class="modal-body">
-          <div class="">
+          <div class="mb-1">
             <label for="editPaymentMethod-<?php echo e($category['id']); ?>" class="col-form-label">Payment method name:</label>
-            <input type="text" name="editPaymentMethod" value="<?php echo e($category['name'] ?? ''); ?>" class="form-control" id="editPaymentMethod-<?php echo e($category['id']); ?>" required>
+            <input type="text" name="editPaymentMethod" value="<?php echo e($category['name'] ?? ''); ?>" class="form-control" id="editPaymentMethod-<?php echo e($category['id']); ?>">
           </div>
           <div class="text-danger text-start small" id="editPaymentMethodError-<?php echo e($category['id']); ?>"></div>
+
         </div>
         <div class="modal-footer mt-3">
           <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
@@ -22,3 +23,30 @@
     </form>
   </div>
 </div>
+<script>
+  $(document).ready(() => {
+    $("#formEditPaymentMethod-<?php echo e($category['id']); ?>").validate({
+      rules: {
+        editPaymentMethod: {
+          required: true,
+        },
+      },
+      errorPlacement: (error, element) => {
+        if (element.attr("name") == "editPaymentMethod") {
+          $("#editPaymentMethodError-<?php echo e($category['id']); ?>").text($(error).text());
+          $("#editPaymentMethod-<?php echo e($category['id']); ?>").addClass("is-invalid");
+        }
+      },
+    });
+
+    $("#editPaymentMethodModal-<?php echo e($category['id']); ?>").on(
+      "hide.bs.modal",
+      () => {
+        $("#editPaymentMethodError-<?php echo e($category['id']); ?>").text(
+          ""
+        );
+        $("#editPaymentMethod-<?php echo e($category['id']); ?>").removeClass("is-invalid");
+      }
+    );
+  });
+</script>

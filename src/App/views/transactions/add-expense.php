@@ -31,11 +31,11 @@
             </div>
           </div>
         </div>
-        <form class="col-md-9 col-lg-7 col-xxl-5" method="POST">
+        <form class="col-md-9 col-lg-7 col-xxl-5" method="POST" id="formAddExpense">
           <?php
           include $this->resolve("partials/_csrf.php");
           ?>
-          <div class="mt-4 mb-2">
+          <div class="mt-4 mb-1">
             <div class="input-group">
               <span class="input-group-text bg-grey-blue rounded-end-0"><img src="/assets/svg/tags-fill.svg" alt="tags-fill" width="25" /></span>
               <select class="form-select" name="category" id="category">
@@ -48,36 +48,42 @@
               </select>
               </select>
             </div>
-            <?php if (array_key_exists('category', $errors)) : ?>
-              <div class="text-danger text-start small">
-                <?php echo e($errors['category'][0]); ?>
-              </div>
-            <?php endif; ?>
           </div>
-          <div class="mb-2">
+          <?php if (array_key_exists('category', $errors)) : ?>
+            <div class="text-danger text-start small">
+              <?php echo e($errors['category'][0]); ?>
+            </div>
+          <?php endif; ?>
+          <div class="text-danger text-start small" id="categoryError"></div>
+
+          <div class="mb-1 mt-2">
             <div class="input-group">
               <span class="input-group-text bg-grey-blue rounded-end-0"><img src="/assets/svg/calendar-date.svg" alt="calendar-date" width="25" /></span>
               <input type="date" name="date" value="<?php echo e($oldFormData['date'] ?? ''); ?>" class="form-control" id="date" />
             </div>
-            <?php if (array_key_exists('date', $errors)) : ?>
-              <div class="text-danger text-start small">
-                <?php echo e($errors['date'][0]); ?>
-              </div>
-            <?php endif; ?>
           </div>
-          <div class="mb-2">
+          <?php if (array_key_exists('date', $errors)) : ?>
+            <div class="text-danger text-start small">
+              <?php echo e($errors['date'][0]); ?>
+            </div>
+          <?php endif; ?>
+          <div class="text-danger text-start small" id="dateError"></div>
+
+          <div class="mb-1 mt-2">
             <div class="input-group">
               <span class="input-group-text bg-grey-blue rounded-end-0"><img src="/assets/svg/123.svg" alt="amount" width="25" /></span>
               <input type="number" name="amount" value="<?php echo e($oldFormData['amount'] ?? ''); ?>" step="0.01" class="form-control" id="amount" placeholder="Amount" />
               <span class="input-group-text bg-grey-blue">.00</span>
             </div>
-            <?php if (array_key_exists('amount', $errors)) : ?>
-              <div class="text-danger text-start small">
-                <?php echo e($errors['amount'][0]); ?>
-              </div>
-            <?php endif; ?>
           </div>
-          <div class="mb-2">
+          <?php if (array_key_exists('amount', $errors)) : ?>
+            <div class="text-danger text-start small">
+              <?php echo e($errors['amount'][0]); ?>
+            </div>
+          <?php endif; ?>
+          <div class="text-danger text-start small" id="amountError"></div>
+
+          <div class="mb-1 mt-2">
             <div class="input-group">
               <span class="input-group-text bg-grey-blue rounded-end-0"><img src="/assets/svg/credit-card.svg" alt="credit-card" width="25" /></span>
               <select class="form-select" name="paymentMethod" id="paymentMethod">
@@ -89,24 +95,27 @@
                 <?php endforeach; ?>
               </select>
             </div>
-            <?php if (array_key_exists('paymentMethod', $errors)) : ?>
-              <div class="text-danger text-start small">
-                <?php echo e($errors['paymentMethod'][0]); ?>
-              </div>
-            <?php endif; ?>
           </div>
-          <div class="mb-3">
+          <?php if (array_key_exists('paymentMethod', $errors)) : ?>
+            <div class="text-danger text-start small">
+              <?php echo e($errors['paymentMethod'][0]); ?>
+            </div>
+          <?php endif; ?>
+          <div class="text-danger text-start small" id="paymentMethodError"></div>
+
+          <div class="mb-1 mt-2">
             <div class="input-group">
               <span class="input-group-text bg-grey-blue rounded-end-0"><img src="/assets/svg/chat-dots-fill.svg" alt="chat-dots-fill" width="25" /></span>
               <textarea class="form-control" name="comment" id="expenseComment" rows="2" placeholder="Enter your comment here (optional)"></textarea>
             </div>
-            <?php if (array_key_exists('comment', $errors)) : ?>
-              <div class="text-danger text-start small">
-                <?php echo e($errors['comment'][0]); ?>
-              </div>
-            <?php endif; ?>
           </div>
-          <div class="d-flex justify-content-center">
+          <?php if (array_key_exists('comment', $errors)) : ?>
+            <div class="text-danger text-start small">
+              <?php echo e($errors['comment'][0]); ?>
+            </div>
+          <?php endif; ?>
+
+          <div class="d-flex justify-content-center mt-3">
             <button class="col-sm-3 btn btn-md btn-dark mw-3 w-100" type="submit">
               Add expense
             </button>
@@ -118,5 +127,6 @@
 </main>
 <script src="/assets/js/set-current-date.js" type="text/javascript"></script>
 <script src="/assets/js/use-limit.js" type="text/javascript"></script>
+<script src="/assets/js/expense-form.js" type="text/javascript"></script>
 
 <?php include $this->resolve("partials/_footer.php") ?>
