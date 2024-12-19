@@ -1,4 +1,4 @@
-window.onload = function () {
+window.onload = () => {
   const date = new Date();
 
   var day = date.getDate();
