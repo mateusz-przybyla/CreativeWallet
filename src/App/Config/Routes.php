@@ -55,5 +55,8 @@ function registerRoutes(App $app)
 
   $app->delete('/settings/delete/account', [SettingsController::class, 'deleteAccount'])->add(AuthRequiredMiddleware::class);
 
+  $app->get('/api/limit/{id}', [AddExpenseController::class, 'getCategoryLimit'])->add(AuthRequiredMiddleware::class);
+  $app->get('/api/amount/{id}/{date}', [AddExpenseController::class, 'getMoneySpent'])->add(AuthRequiredMiddleware::class);
+
   $app->setErrorHandler([ErrorController::class, 'notFound']);
 }

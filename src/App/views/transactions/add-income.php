@@ -17,13 +17,19 @@
           ?>
           <div class="my-2">
             <div class="input-group">
-              <span class="input-group-text bg-grey-blue rounded-end-0"><img src="/assets/svg/123.svg" alt="amount" width="25" /></span>
-              <input type="number" name="amount" value="<?php echo e($oldFormData['amount'] ?? ''); ?>" step="0.01" class="form-control" id="incomeAmount" placeholder="Amount" />
-              <span class="input-group-text bg-grey-blue">.00</span>
+              <span class="input-group-text bg-grey-blue rounded-end-0"><img src="/assets/svg/tags-fill.svg" alt="tags-fill" width="25" /></span>
+              <select class="form-select" name="category" id="incomeCategory">
+                <option value="">Choose category</option>
+                <?php foreach ($incomeCategories as $incomeCategory) : ?>
+                  <option <?php if (array_key_exists('category', $oldFormData)) {
+                            echo e($oldFormData['category'] === $incomeCategory['name'] ? 'selected' : '');
+                          } ?>><?php echo e($incomeCategory['name']); ?></option>;
+                <?php endforeach; ?>
+              </select>
             </div>
-            <?php if (array_key_exists('amount', $errors)) : ?>
+            <?php if (array_key_exists('category', $errors)) : ?>
               <div class="text-danger text-start small">
-                <?php echo e($errors['amount'][0]); ?>
+                <?php echo e($errors['category'][0]); ?>
               </div>
             <?php endif; ?>
           </div>
@@ -40,19 +46,13 @@
           </div>
           <div class="mb-2">
             <div class="input-group">
-              <span class="input-group-text bg-grey-blue rounded-end-0"><img src="/assets/svg/tags-fill.svg" alt="tags-fill" width="25" /></span>
-              <select class="form-select" name="category" id="incomeCategory">
-                <option value="">Choose category</option>
-                <?php foreach ($incomeCategories as $incomeCategory) : ?>
-                  <option <?php if (array_key_exists('category', $oldFormData)) {
-                            echo e($oldFormData['category'] === $incomeCategory['name'] ? 'selected' : '');
-                          } ?>><?php echo e($incomeCategory['name']); ?></option>;
-                <?php endforeach; ?>
-              </select>
+              <span class="input-group-text bg-grey-blue rounded-end-0"><img src="/assets/svg/123.svg" alt="amount" width="25" /></span>
+              <input type="number" name="amount" value="<?php echo e($oldFormData['amount'] ?? ''); ?>" step="0.01" class="form-control" id="incomeAmount" placeholder="Amount" />
+              <span class="input-group-text bg-grey-blue">.00</span>
             </div>
-            <?php if (array_key_exists('category', $errors)) : ?>
+            <?php if (array_key_exists('amount', $errors)) : ?>
               <div class="text-danger text-start small">
-                <?php echo e($errors['category'][0]); ?>
+                <?php echo e($errors['amount'][0]); ?>
               </div>
             <?php endif; ?>
           </div>

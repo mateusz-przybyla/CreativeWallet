@@ -4,6 +4,7 @@ declare(strict_types=1);
 
 namespace App\Services;
 
+use DateTime;
 use Framework\Database;
 use Framework\Exceptions\ValidationException;
 
@@ -260,11 +261,12 @@ class TransactionService
   {
     $this->db->query(
       "UPDATE `expenses_category_assigned_to_users`
-      SET `name` = :name
+      SET `name` = :name, `category_limit` = :category_limit
       WHERE `id` = :id",
       [
         'id' => $id,
-        'name' => $formData['editExpenseCategory']
+        'name' => $formData['editExpenseCategory'],
+        'category_limit' => $formData['expenseLimit']
       ]
     );
   }
@@ -320,6 +322,15 @@ class TransactionService
 
   public function isEditedIncomeCategoryTaken(int $id, string $category)
   {
+    $currentCategory = $this->db->query(
+      "SELECT `name`
+      FROM  `incomes_category_assigned_to_users`
+      WHERE `id` = :id",
+      [
+        'id' => $id
+      ]
+    )->retrieve();
+
     $nameCount = $this->db->query(
       "SELECT COUNT(*) FROM `incomes_category_assigned_to_users` 
       WHERE `name` = :name AND `user_id` = :user_id",
@@ -329,7 +340,7 @@ class TransactionService
       ]
     )->count();
 
-    if ($nameCount > 0) {
+    if ($nameCount > 0 && $category != $currentCategory['name']) {
       throw new ValidationException(['editIncomeCategory' => ['Income category taken.'], 'editIncomeCategoryId' => $id]);
     }
   }
@@ -352,6 +363,15 @@ class TransactionService
 
   public function isEditedExpenseCategoryTaken(int $id, string $category)
   {
+    $currentCategory = $this->db->query(
+      "SELECT `name`
+      FROM  `expenses_category_assigned_to_users`
+      WHERE `id` = :id",
+      [
+        'id' => $id
+      ]
+    )->retrieve();
+
     $nameCount = $this->db->query(
       "SELECT COUNT(*) FROM `expenses_category_assigned_to_users` 
       WHERE `name` = :name AND `user_id` = :user_id",
@@ -361,7 +381,7 @@ class TransactionService
       ]
     )->count();
 
-    if ($nameCount > 0) {
+    if ($nameCount > 0 && $category != $currentCategory['name']) {
       throw new ValidationException(['editExpenseCategory' => ['Expense category taken.'], 'editExpenseCategoryId' => $id]);
     }
   }
@@ -384,6 +404,15 @@ class TransactionService
 
   public function isEditedPaymentMethodTaken(int $id, string $category)
   {
+    $currentCategory = $this->db->query(
+      "SELECT `name`
+      FROM  `payment_methods_assigned_to_users`
+      WHERE `id` = :id",
+      [
+        'id' => $id
+      ]
+    )->retrieve();
+
     $nameCount = $this->db->query(
       "SELECT COUNT(*) FROM `payment_methods_assigned_to_users` 
       WHERE `name` = :name AND `user_id` = :user_id",
@@ -393,7 +422,7 @@ class TransactionService
       ]
     )->count();
 
-    if ($nameCount > 0) {
+    if ($nameCount > 0 && $category != $currentCategory['name']) {
       throw new ValidationException(['editPaymentMethod' => ['Payment method taken.'], 'editPaymentMethodId' => $id]);
     }
   }
@@ -412,5 +441,40 @@ class TransactionService
     if ($nameCount > 0) {
       throw new ValidationException(['newPaymentMethod' => ['Payment method taken.']]);
     }
+  }
+
+  public function getCategoryLimit(int $id): ?string
+  {
+    $limit = $this->db->query(
+      "SELECT `category_limit`
+      FROM  `expenses_category_assigned_to_users`
+      WHERE `id` = :id",
+      [
+        'id' => $id,
+      ]
+    )->retrieve();
+
+    return  $limit['category_limit'];
+  }
+
+  public function getMoneySpent(int $id, string $date): ?string
+  {
+    $realDate = new DateTime($date);
+
+    $firstDayOfMonth = $realDate->modify("first day of this month")->format("Y-m-d");
+    $lastDayOfMonth = $realDate->modify("last day of this month")->format("Y-m-d");
+
+    $amount = $this->db->query(
+      "SELECT SUM(`amount`) AS total
+      FROM  `expenses`
+      WHERE `expense_category_assigned_to_user_id` = :id AND `date_of_expense` BETWEEN :beginDate AND :endDate",
+      [
+        'id' => $id,
+        'beginDate' => $firstDayOfMonth,
+        'endDate' => $lastDayOfMonth,
+      ]
+    )->retrieve();
+
+    return $amount['total'];
   }
 }

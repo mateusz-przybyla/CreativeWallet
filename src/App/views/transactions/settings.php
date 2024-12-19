@@ -20,24 +20,6 @@
           <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
         </div>
       <?php endif; ?>
-      <?php if (array_key_exists('newName', $errors)) : ?>
-        <div class="alert alert-warning alert-dismissible fade show d-flex align-items-center" role="alert">
-          <img class="align-items-center justify-content-center" src="/assets/svg/exclamation-triangle.svg" alt="exclamation-triangle" height="17" />
-          <div class="mx-2">
-            <?php echo e($errors['newName'][0]); ?>
-          </div>
-          <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
-        </div>
-      <?php endif; ?>
-      <?php if (array_key_exists('newCategory', $errors)) : ?>
-        <div class="alert alert-warning alert-dismissible fade show d-flex align-items-center" role="alert">
-          <img class="align-items-center justify-content-center" src="/assets/svg/exclamation-triangle.svg" alt="exclamation-triangle" height="17" />
-          <div class="mx-2">
-            <?php echo e($errors['newCategory'][0]); ?>
-          </div>
-          <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
-        </div>
-      <?php endif; ?>
 
       <div class="row">
         <div class="col-lg-6 col-xl-4">

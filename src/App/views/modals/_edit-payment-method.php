@@ -10,7 +10,7 @@
         <div class="modal-body">
           <div class="">
             <label for="editPaymentMethod-<?php echo e($category['id']); ?>" class="col-form-label">Payment method name:</label>
-            <input type="text" name="editPaymentMethod" value="<?php echo e($category['name'] ?? ''); ?>" class="form-control" id="editPaymentMethod-<?php echo e($category['id']); ?>">
+            <input type="text" name="editPaymentMethod" value="<?php echo e($category['name'] ?? ''); ?>" class="form-control" id="editPaymentMethod-<?php echo e($category['id']); ?>" required>
           </div>
           <div class="text-danger text-start small" id="editPaymentMethodError-<?php echo e($category['id']); ?>"></div>
         </div>

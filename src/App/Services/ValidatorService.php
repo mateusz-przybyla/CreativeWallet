@@ -95,8 +95,7 @@ class ValidatorService
   public function validateEditExpenseCategory(int $id, array $formData)
   {
     $this->validator->validate($formData, [
-      'editExpenseCategory' => ['required'],
-      'expenseCategoryId' => $id
+      'editExpenseCategory' => ['required']
     ], $id);
   }
 
@@ -104,7 +103,6 @@ class ValidatorService
   {
     $this->validator->validate($formData, [
       'editPaymentMethod' => ['required'],
-      'paymentMethodId' => $id
     ], $id);
   }
 

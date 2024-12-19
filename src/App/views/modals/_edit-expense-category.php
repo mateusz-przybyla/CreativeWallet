@@ -10,7 +10,7 @@
         <div class="modal-body">
           <div class="">
             <label for="editExpenseCategory-<?php echo e($category['id']); ?>" class="col-form-label">Category name:</label>
-            <input type="text" name="editExpenseCategory" value="<?php echo e($category['name'] ?? ''); ?>" class="form-control" id="editExpenseCategory-<?php echo e($category['id']); ?>">
+            <input type="text" name="editExpenseCategory" value="<?php echo e($category['name'] ?? ''); ?>" class="form-control" id="editExpenseCategory-<?php echo e($category['id']); ?>" required>
           </div>
           <div class="text-danger text-start small" id="editExpenseCategoryError-<?php echo e($category['id']); ?>"></div>
           <div class="form-check mt-4 mb-2">
@@ -21,7 +21,7 @@
           </div>
           <div class="">
             <label for="expenseLimit-<?php echo e($category['id']); ?>" class="col-form-label">Set monthly limit:</label>
-            <input type="number" name="limit" value="<?php echo e($category['category_limit'] ?? ''); ?>" step="0.01" class="form-control" id="expenseLimit-<?php echo e($category['id']); ?>" required>
+            <input type="number" name="expenseLimit" value="<?php echo e($category['category_limit'] ?? ''); ?>" step="0.01" class="form-control" id="expenseLimit-<?php echo e($category['id']); ?>" required>
           </div>
         </div>
         <div class=" modal-footer mt-3">
