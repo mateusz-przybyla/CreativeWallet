@@ -1,3 +1,7 @@
+body {
+  font-family: "Roboto Flex", sans-serif;
+}
+
 .pb-60 {
   padding-bottom: 60px;
 }

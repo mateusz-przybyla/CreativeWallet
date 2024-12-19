@@ -9,7 +9,7 @@
       </div>
       <div class="d-flex justify-content-center mb-3">
         <div class="dropdown">
-          <button class="btn btn-secondary bg-grey-blue dropdown-toggle" type="button" data-bs-toggle="dropdown" aria-expanded="false">
+          <button class="btn btn-dark dropdown-toggle" type="button" data-bs-toggle="dropdown" aria-expanded="false" style="width: 250px">
             Choose time period
           </button>
           <form method="GET">
@@ -201,5 +201,8 @@
 <script>
   const dps = <?php echo json_encode($dataPoints); ?>;
 </script>
+<script src="https://cdn.canvasjs.com/canvasjs.min.js"></script>
+<script src="/assets/js/chart.js" type="text/javascript"></script>
+<script src="/assets/js/scroll-to-top.js" type="text/javascript"></script>
 
 <?php include $this->resolve("partials/_footer.php") ?>

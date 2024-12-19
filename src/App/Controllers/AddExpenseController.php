@@ -17,8 +17,7 @@ class AddExpenseController
     private TemplateEngine $view,
     private ValidatorService $validatorService,
     private TransactionService $transactionService
-  ) {
-  }
+  ) {}
 
   public function addExpenseView()
   {
@@ -45,5 +44,19 @@ class AddExpenseController
     $this->transactionService->createExpense($_POST);
 
     redirectTo('/add-expense');
+  }
+
+  public function getCategoryLimit(array $params)
+  {
+    $expenseCategoryLimit = $this->transactionService->getCategoryLimit((int) $params['id']);
+
+    echo json_encode($expenseCategoryLimit, JSON_UNESCAPED_UNICODE);
+  }
+
+  public function getMoneySpent(array $params)
+  {
+    $amount = $this->transactionService->getMoneySpent((int) $params['id'], $params['date']);
+
+    echo json_encode($amount, JSON_UNESCAPED_UNICODE);
   }
 }

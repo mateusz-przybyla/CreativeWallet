@@ -4,14 +4,13 @@ declare(strict_types=1);
 
 namespace App\Services;
 
+use DateTime;
 use Framework\Database;
 use Framework\Exceptions\ValidationException;
 
 class TransactionService
 {
-  public function __construct(private Database $db)
-  {
-  }
+  public function __construct(private Database $db) {}
 
   public function loadIncomeCategories(): array
   {
@@ -28,7 +27,7 @@ class TransactionService
   public function loadExpenseCategories(): array
   {
     return $this->db->query(
-      "SELECT `name`, `id`
+      "SELECT `name`, `id`, `category_limit`
       FROM `expenses_category_assigned_to_users` 
       WHERE `user_id` = :user_id",
       [
@@ -253,7 +252,7 @@ class TransactionService
       WHERE `id` = :id",
       [
         'id' => $id,
-        'name' => $formData['newName']
+        'name' => $formData['editIncomeCategory']
       ]
     );
   }
@@ -262,11 +261,12 @@ class TransactionService
   {
     $this->db->query(
       "UPDATE `expenses_category_assigned_to_users`
-      SET `name` = :name
+      SET `name` = :name, `category_limit` = :category_limit
       WHERE `id` = :id",
       [
         'id' => $id,
-        'name' => $formData['newName']
+        'name' => $formData['editExpenseCategory'],
+        'category_limit' => $formData['expenseLimit']
       ]
     );
   }
@@ -279,7 +279,7 @@ class TransactionService
       WHERE `id` = :id",
       [
         'id' => $id,
-        'name' => $formData['newName']
+        'name' => $formData['editPaymentMethod']
       ]
     );
   }
@@ -291,7 +291,7 @@ class TransactionService
       VALUES (NULL, :user_id, :name)",
       [
         'user_id' => $_SESSION['user'],
-        'name' => $formData['newCategory']
+        'name' => $formData['newIncomeCategory']
       ]
     );
   }
@@ -300,10 +300,10 @@ class TransactionService
   {
     $this->db->query(
       "INSERT INTO `expenses_category_assigned_to_users`
-      VALUES (NULL, :user_id, :name)",
+      VALUES (NULL, :user_id, :name, NULL)",
       [
         'user_id' => $_SESSION['user'],
-        'name' => $formData['newCategory']
+        'name' => $formData['newExpenseCategory']
       ]
     );
   }
@@ -315,13 +315,22 @@ class TransactionService
       VALUES (NULL, :user_id, :name)",
       [
         'user_id' => $_SESSION['user'],
-        'name' => $formData['newCategory']
+        'name' => $formData['newPaymentMethod']
       ]
     );
   }
 
-  public function isIncomeCategoryTaken(string $category)
+  public function isEditedIncomeCategoryTaken(int $id, string $category)
   {
+    $currentCategory = $this->db->query(
+      "SELECT `name`
+      FROM  `incomes_category_assigned_to_users`
+      WHERE `id` = :id",
+      [
+        'id' => $id
+      ]
+    )->retrieve();
+
     $nameCount = $this->db->query(
       "SELECT COUNT(*) FROM `incomes_category_assigned_to_users` 
       WHERE `name` = :name AND `user_id` = :user_id",
@@ -331,12 +340,53 @@ class TransactionService
       ]
     )->count();
 
-    if ($nameCount > 0) {
-      throw new ValidationException(['newCategory' => ['Category taken.']]);
+    if ($nameCount > 0 && $category != $currentCategory['name']) {
+      throw new ValidationException(['editIncomeCategory' => ['Income category taken.'], 'editIncomeCategoryId' => $id]);
     }
   }
 
-  public function isExpenseCategoryTaken(string $category)
+  public function isNewIncomeCategoryTaken(string $category)
+  {
+    $nameCount = $this->db->query(
+      "SELECT COUNT(*) FROM `incomes_category_assigned_to_users`
+      WHERE `name` = :name AND `user_id` = :user_id",
+      [
+        'name' => $category,
+        'user_id' => $_SESSION['user']
+      ]
+    )->count();
+
+    if ($nameCount > 0) {
+      throw new ValidationException(['newIncomeCategory' => ['Income category taken.']]);
+    }
+  }
+
+  public function isEditedExpenseCategoryTaken(int $id, string $category)
+  {
+    $currentCategory = $this->db->query(
+      "SELECT `name`
+      FROM  `expenses_category_assigned_to_users`
+      WHERE `id` = :id",
+      [
+        'id' => $id
+      ]
+    )->retrieve();
+
+    $nameCount = $this->db->query(
+      "SELECT COUNT(*) FROM `expenses_category_assigned_to_users` 
+      WHERE `name` = :name AND `user_id` = :user_id",
+      [
+        'name' => $category,
+        'user_id' => $_SESSION['user']
+      ]
+    )->count();
+
+    if ($nameCount > 0 && $category != $currentCategory['name']) {
+      throw new ValidationException(['editExpenseCategory' => ['Expense category taken.'], 'editExpenseCategoryId' => $id]);
+    }
+  }
+
+  public function isNewExpenseCategoryTaken(string $category)
   {
     $nameCount = $this->db->query(
       "SELECT COUNT(*) FROM `expenses_category_assigned_to_users` 
@@ -348,11 +398,36 @@ class TransactionService
     )->count();
 
     if ($nameCount > 0) {
-      throw new ValidationException(['newCategory' => ['Category taken.']]);
+      throw new ValidationException(['newExpenseCategory' => ['Expense category taken.']]);
     }
   }
 
-  public function isPaymentMethodTaken(string $category)
+  public function isEditedPaymentMethodTaken(int $id, string $category)
+  {
+    $currentCategory = $this->db->query(
+      "SELECT `name`
+      FROM  `payment_methods_assigned_to_users`
+      WHERE `id` = :id",
+      [
+        'id' => $id
+      ]
+    )->retrieve();
+
+    $nameCount = $this->db->query(
+      "SELECT COUNT(*) FROM `payment_methods_assigned_to_users` 
+      WHERE `name` = :name AND `user_id` = :user_id",
+      [
+        'name' => $category,
+        'user_id' => $_SESSION['user']
+      ]
+    )->count();
+
+    if ($nameCount > 0 && $category != $currentCategory['name']) {
+      throw new ValidationException(['editPaymentMethod' => ['Payment method taken.'], 'editPaymentMethodId' => $id]);
+    }
+  }
+
+  public function isNewPaymentMethodTaken(string $category)
   {
     $nameCount = $this->db->query(
       "SELECT COUNT(*) FROM `payment_methods_assigned_to_users` 
@@ -364,7 +439,42 @@ class TransactionService
     )->count();
 
     if ($nameCount > 0) {
-      throw new ValidationException(['newCategory' => ['Method taken.']]);
+      throw new ValidationException(['newPaymentMethod' => ['Payment method taken.']]);
     }
+  }
+
+  public function getCategoryLimit(int $id): ?string
+  {
+    $limit = $this->db->query(
+      "SELECT `category_limit`
+      FROM  `expenses_category_assigned_to_users`
+      WHERE `id` = :id",
+      [
+        'id' => $id,
+      ]
+    )->retrieve();
+
+    return  $limit['category_limit'];
+  }
+
+  public function getMoneySpent(int $id, string $date): ?string
+  {
+    $realDate = new DateTime($date);
+
+    $firstDayOfMonth = $realDate->modify("first day of this month")->format("Y-m-d");
+    $lastDayOfMonth = $realDate->modify("last day of this month")->format("Y-m-d");
+
+    $amount = $this->db->query(
+      "SELECT SUM(`amount`) AS total
+      FROM  `expenses`
+      WHERE `expense_category_assigned_to_user_id` = :id AND `date_of_expense` BETWEEN :beginDate AND :endDate",
+      [
+        'id' => $id,
+        'beginDate' => $firstDayOfMonth,
+        'endDate' => $lastDayOfMonth,
+      ]
+    )->retrieve();
+
+    return $amount['total'];
   }
 }

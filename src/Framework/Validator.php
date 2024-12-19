@@ -16,7 +16,7 @@ class Validator
     $this->rules[$alias] = $rule;
   }
 
-  public function validate(array $formData, array $fields)
+  public function validate(array $formData, array $fields, int $id = null)
   {
     $errors = [];
 
@@ -35,6 +35,7 @@ class Validator
           continue;
         }
         $errors[$fieldName][] = $ruleValidator->getMessage($formData, $fieldName, $ruleParams);
+        $errors[$fieldName . 'Id'][] = $id; // id potrzebne przy walidacji #Edit...Modal
       }
     }
 

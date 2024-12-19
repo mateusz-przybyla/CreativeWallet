@@ -58,8 +58,8 @@
                                                                                                 if (isset($errors['passwordConfirmed'])) {
                                                                                                   echo "is-invalid";
                                                                                                 }
-                                                                                                ?>" id="register-password" placeholder />
-            <label for="register-password">Password</label>
+                                                                                                ?>" id="register-password1" placeholder />
+            <label for="register-password1">Password</label>
           </div>
         </div>
         <?php if (array_key_exists('password', $errors)) : ?>
@@ -76,8 +76,8 @@
                                                                                                         if (isset($errors['passwordConfirmed'])) {
                                                                                                           echo "is-invalid";
                                                                                                         }
-                                                                                                        ?>" id="register-password" placeholder />
-            <label for="register-password">Repeat password</label>
+                                                                                                        ?>" id="register-password2" placeholder />
+            <label for="register-password2">Repeat password</label>
           </div>
         </div>
         <?php if (array_key_exists('passwordConfirmed', $errors)) : ?>
@@ -85,7 +85,7 @@
             <?php echo e($errors['passwordConfirmed'][0]); ?>
           </div>
         <?php endif; ?>
-        <button class="w-100 btn btn-lg btn-success mt-3" type="submit">
+        <button class="w-100 btn btn-lg btn-dark mt-3" type="submit">
           Sign up
         </button>
         <p class="pt-3 my-0">
