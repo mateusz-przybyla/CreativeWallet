@@ -9,7 +9,7 @@ if (localStorage.checkbox && localStorage.checkbox !== "") {
   emailInput.value = "";
 }
 
-function checkRememberMe() {
+const checkRememberMe = () => {
   if (rmCheck.checked && emailInput.value !== "") {
     localStorage.username = emailInput.value;
     localStorage.checkbox = rmCheck.value;
@@ -17,8 +17,8 @@ function checkRememberMe() {
     localStorage.username = "";
     localStorage.checkbox = "";
   }
-}
+};
 
-document.getElementById("login-submit").addEventListener("click", function () {
+document.getElementById("login-submit").addEventListener("click", () => {
   checkRememberMe();
 });

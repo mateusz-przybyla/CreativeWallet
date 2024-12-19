@@ -241,87 +241,8 @@
 </main>
 <script>
   var errorList = <?php echo json_encode($errors); ?>
-
-  $(document).ready(function() {
-    if (errorList["oldPassword"]) {
-      $("#oldPasswordError").text(errorList["oldPassword"]);
-      $("#changePasswordModal").modal("show");
-    }
-    if (errorList["newPassword"]) {
-      $("#newPasswordError").text(errorList["newPassword"]);
-      $("#changePasswordModal").modal("show");
-    }
-    if (errorList["newPasswordConfirmed"]) {
-      $("#newPasswordConfirmedError").text(errorList["newPasswordConfirmed"]);
-      $("#changePasswordModal").modal("show");
-    }
-
-    if (errorList["newExpenseCategory"]) {
-      $("#addExpenseCategoryError").text(errorList["newExpenseCategory"]);
-      $("#addExpenseCategoryModal").modal("show");
-    }
-    if (errorList["newIncomeCategory"]) {
-      $("#addIncomeCategoryError").text(errorList["newIncomeCategory"]);
-      $("#addIncomeCategoryModal").modal("show");
-    }
-    if (errorList["newPaymentMethod"]) {
-      $("#addPaymentMethodError").text(errorList["newPaymentMethod"]);
-      $("#addPaymentMethodModal").modal("show");
-    }
-
-    if (errorList["editExpenseCategory"]) {
-      $("#editExpenseCategoryError-" + errorList['editExpenseCategoryId']).text(
-        errorList["editExpenseCategory"]
-      );
-      $("#editExpenseCategoryModal-" + errorList['editExpenseCategoryId']).modal(
-        "show"
-      );
-    }
-    if (errorList["editIncomeCategory"]) {
-      $("#editIncomeCategoryError-" + errorList['editIncomeCategoryId']).text(
-        errorList["editIncomeCategory"]
-      );
-      $("#editIncomeCategoryModal-" + errorList['editIncomeCategoryId']).modal(
-        "show"
-      );
-    }
-    if (errorList["editPaymentMethod"]) {
-      $("#editPaymentMethodError-" + errorList['editPaymentMethodId']).text(
-        errorList["editPaymentMethod"]
-      );
-      $("#editPaymentMethodModal-" + errorList['editPaymentMethodId']).modal(
-        "show"
-      );
-    }
-  });
-
-  $("#changePasswordModal").on("hide.bs.modal", function() {
-    $("#oldPasswordError").text("");
-    $("#newPasswordError").text("");
-    $("#newPasswordConfirmedError").text("");
-  });
-
-  $("#addExpenseCategoryModal").on("hide.bs.modal", function() {
-    $("#addExpenseCategoryError").text("");
-  });
-  $("#addIncomeCategoryModal").on("hide.bs.modal", function() {
-    $("#addIncomeCategoryError").text("");
-  });
-  $("#addPaymentMethodModal").on("hide.bs.modal", function() {
-    $("#addPaymentMethodError").text("");
-  });
-
-
-  $("#editExpenseCategoryModal-" + errorList['editExpenseCategoryId']).on("hide.bs.modal", function() {
-    $("#editExpenseCategoryError-" + errorList['editExpenseCategoryId']).text("");
-  });
-  $("#editIncomeCategoryModal-" + errorList['editIncomeCategoryId']).on("hide.bs.modal", function() {
-    $("#editIncomeCategoryError-" + errorList['editIncomeCategoryId']).text("");
-  });
-  $("#editPaymentMethodModal-" + errorList['editPaymentMethodId']).on("hide.bs.modal", function() {
-    $("#editPaymentMethodError-" + errorList['editPaymentMethodId']).text("");
-  });
 </script>
 <script src="/assets/js/scroll-to-top.js" type="text/javascript"></script>
+<script src="/assets/js/settings.js" type="text/javascript"></script>
 
 <?php include $this->resolve("partials/_footer.php") ?>

@@ -1,18 +1,18 @@
-/* Chart */
-
-var chart = new CanvasJS.Chart("chartContainer", {
-  animationEnabled: true,
-  title: {
-    text: "",
-  },
-  data: [
-    {
-      type: "pie",
-      startAngle: 240,
-      yValueFormatString: '##0.00" PLN"',
-      indexLabel: "{label} {y}",
-      dataPoints: dps,
+window.onload = () => {
+  var chart = new CanvasJS.Chart("chartContainer", {
+    animationEnabled: true,
+    title: {
+      text: "",
     },
-  ],
-});
-chart.render();
+    data: [
+      {
+        type: "pie",
+        startAngle: 240,
+        yValueFormatString: '##0.00" PLN"',
+        indexLabel: "{label} {y}",
+        dataPoints: dps,
+      },
+    ],
+  });
+  chart.render();
+};
