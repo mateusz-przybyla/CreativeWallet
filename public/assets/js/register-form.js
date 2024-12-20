@@ -1,5 +1,5 @@
 $(document).ready(() => {
-  jQuery.validator.addMethod(
+  $.validator.addMethod(
     "alphanumeric",
     (value, element) => {
       var regex = new RegExp("^[a-zA-Z0-9]+$");

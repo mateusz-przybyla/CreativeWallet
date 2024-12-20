@@ -29,7 +29,7 @@
             <?php echo e($errors['username'][0]); ?>
           </div>
         <?php endif; ?>
-        <div class="text-danger text-start small" id="usernameError"></div>
+        <div class="text-danger text-end small" id="usernameError"></div>
 
         <div class="d-flex">
           <figure class="d-flex align-items-center rounded-left-3 px-2 mb-1 mt-2 rounded-start-2 bg-grey-blue border">
