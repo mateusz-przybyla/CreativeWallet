@@ -27,9 +27,9 @@ Stages of building a budget application:
 
 2. CreativeWallet - web budget app written in PHP:
 
-- Frontend [link](https://github.com/mateusz-przybyla/CreativeWallet_FE) - using HTML, CSS, JavaScript and Bootstrap library
-- Backend [link](https://github.com/mateusz-przybyla/CreativeWallet_FE_BE) - using PHP (structured paradigm)
-- Backend + custom MVC Framework - using PHP (OOP paradigm) with MVC Framework
+- Frontend [link](https://github.com/mateusz-przybyla/CreativeWallet_FE) - used HTML, CSS, JavaScript and Bootstrap library
+- Frontend + Backend [link](https://github.com/mateusz-przybyla/CreativeWallet_FE_BE) - used PHP (structured paradigm)
+- Frontend + Backend - used PHP (OOP paradigm) with custom MVC Framework
 
 ### About
 
@@ -48,6 +48,7 @@ Other functionalities:
 - a tabular summary of the incomes and expenses (by category),
 - a pie chart showing expenses from the selected period,
 - add/edit/delete categories and payment methods,
+- add monthly limit to expense categories,
 - change password,
 - delete account with related transactions.
 
@@ -79,25 +80,49 @@ App class inside the framework component is like a glue for the available tools 
 
 ### Screenshots
 
-- Sign up:
+- Home page:
 
-  ![](/readme/sign_up.jpg)
+  ![](/readme/home.jpg)
 
-- Add new income:
+- Sign up form:
 
-  ![](/readme/add_income.jpg)
+  ![](/readme/sign-up.jpg)
 
-- Show balance - list of income/expense categories and expenses pie chart:
+- Sign in form:
 
-  ![](/readme/show_balance.jpg)
+  ![](/readme/sign-in.jpg)
+
+- Add new income form:
+
+  ![](/readme/add-income.jpg)
+
+- Frontend and backend form validation:
+
+![](/readme/form-validation.jpg)
+
+- Add new expense form with information about monthly category limit, money spent and money left for that category:
+
+  ![](/readme/add-expense.jpg)
+
+- Balance sheet - show categories of expenses and incomes at selected time:
+
+  ![](/readme/show-balance1.jpg)
+
+- Balance sheet - list of income/expense categories and expenses pie chart:
+
+  ![](/readme/show-balance2.jpg)
 
 - Transaction settings - add/edit/delete categories or payment methods:
 
-  ![](/readme/transaction_settings.jpg)
+  ![](/readme/transaction-settings.jpg)
+
+- Transaction settings - expense limit activation:
+
+  ![](/readme/expense-limit-activation.jpg)
 
 - User account settings:
 
-  ![](/readme/account_settings.jpg)
+  ![](/readme/user-account-settings.jpg)
 
 ## My process
 
@@ -109,6 +134,7 @@ Frontend:
 - HTML,
 - CSS,
 - JavaScript,
+- jQuery Library,
 - JavaScript Chart library
 
 Backend:
@@ -119,7 +145,7 @@ Backend:
 - custom Exceptions,
 - Composer and Packagist.
 - SQL queries,
-- development stage - XAMPP (database MariaDB, Apache server and PHPMyAdmin graphics overlay)
+- development stage - XAMPP (database MySQL, Apache server and PHPMyAdmin graphics overlay)
 
 ### Useful resources
 
@@ -138,3 +164,4 @@ Backend:
 - https://canvasjs.com/
 - https://www.geeksforgeeks.org
 - https://stackoverflow.com
+- https://jquery.com/
