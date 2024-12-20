@@ -98,9 +98,9 @@ App class inside the framework component is like a glue for the available tools 
 
 - Frontend and backend form validation:
 
-![](/readme/form-validation.jpg)
+  ![](/readme/form-validation.jpg)
 
-- Add new expense form with information about monthly category limit, money spent and money left for that category:
+- Add new expense form with information about monthly category limit, money spent and money left for this category:
 
   ![](/readme/add-expense.jpg)
 
@@ -123,6 +123,10 @@ App class inside the framework component is like a glue for the available tools 
 - User account settings:
 
   ![](/readme/user-account-settings.jpg)
+
+- Mobile view:
+
+![](/readme/mobile.jpg)
 
 ## My process
 
