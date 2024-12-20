@@ -3,14 +3,16 @@
 <main class="pb-60">
   <div class="container my-5">
     <div class="bg-light-red shadow p-4 pb-md-5 px-md-5 rounded-3">
-      <?php echo e($newTrans) ?
-        '<div class="alert alert-success alert-dismissible fade show" role="alert">
+
+      <?php if (e($flashNotifications)) : ?>
+        <div class="alert alert-success alert-dismissible fade show" role="alert">
           <p class="text-center pb-0 mb-0">
-            New income added successfully!
+            <?php echo e($flashNotifications); ?>
           </p>
           <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
-        </div>' : ''
-      ?>
+        </div>
+      <?php endif; ?>
+
       <div class="text-center">
         <h1 class="h2">Add your Income</h1>
         <hr />

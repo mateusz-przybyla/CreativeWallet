@@ -31,8 +31,6 @@ class SettingsController
       throw new FormOptionsException("No categories loaded.");
     }
 
-    //dd($expenseCategories);
-
     echo $this->view->render(
       "transactions/settings.php",
       [
@@ -50,6 +48,8 @@ class SettingsController
   {
     $this->transactionService->deleteIncomeCategory((int) $params['id']);
 
+    $_SESSION['flashNotifications'] = "Income category deleted successfully.";
+
     redirectTo('/settings');
   }
 
@@ -57,12 +57,16 @@ class SettingsController
   {
     $this->transactionService->deleteExpenseCategory((int) $params['id']);
 
+    $_SESSION['flashNotifications'] = "Expense category deleted successfully.";
+
     redirectTo('/settings');
   }
 
   public function deletePaymentMethod(array $params)
   {
     $this->transactionService->deletePaymentMethod((int) $params['id']);
+
+    $_SESSION['flashNotifications'] = "Payment method deleted successfully.";
 
     redirectTo('/settings');
   }
@@ -75,6 +79,8 @@ class SettingsController
 
     $this->transactionService->updateIncomeCategory((int) $params['id'], $_POST);
 
+    $_SESSION['flashNotifications'] = "Income category edited successfully.";
+
     redirectTo('/settings');
   }
 
@@ -85,6 +91,8 @@ class SettingsController
     $this->transactionService->isEditedExpenseCategoryTaken((int) $params['id'], $_POST['editExpenseCategory']);
 
     $this->transactionService->updateExpenseCategory((int) $params['id'], $_POST);
+
+    $_SESSION['flashNotifications'] = "Expense category edited successfully.";
 
     redirectTo('/settings');
   }
@@ -97,6 +105,8 @@ class SettingsController
 
     $this->transactionService->updatePaymentMethod((int) $params['id'], $_POST);
 
+    $_SESSION['flashNotifications'] = "Payment method edited successfully.";
+
     redirectTo('/settings');
   }
 
@@ -107,6 +117,8 @@ class SettingsController
     $this->transactionService->isNewIncomeCategoryTaken($_POST['newIncomeCategory']);
 
     $this->transactionService->addIncomeCategory($_POST);
+
+    $_SESSION['flashNotifications'] = "New income category added successfully.";
 
     redirectTo('/settings');
   }
@@ -119,6 +131,8 @@ class SettingsController
 
     $this->transactionService->addExpenseCategory($_POST);
 
+    $_SESSION['flashNotifications'] = "New expense category added successfully.";
+
     redirectTo('/settings');
   }
 
@@ -130,6 +144,8 @@ class SettingsController
 
     $this->transactionService->addPaymentMethod($_POST);
 
+    $_SESSION['flashNotifications'] = "New payment method added successfully.";
+
     redirectTo('/settings');
   }
 
@@ -140,6 +156,8 @@ class SettingsController
     $this->userService->verifyOldPassword($_POST);
 
     $this->userService->updatePassword($_POST);
+
+    $_SESSION['flashNotifications'] = "Password changed successfully.";
 
     redirectTo('/settings');
   }

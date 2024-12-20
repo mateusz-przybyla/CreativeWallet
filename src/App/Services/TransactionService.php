@@ -259,6 +259,10 @@ class TransactionService
 
   public function updateExpenseCategory(int $id, array $formData)
   {
+    if (!isset($formData['expenseLimit'])) {
+      $formData['expenseLimit'] = null;
+    }
+
     $this->db->query(
       "UPDATE `expenses_category_assigned_to_users`
       SET `name` = :name, `category_limit` = :category_limit

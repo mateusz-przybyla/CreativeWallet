@@ -43,6 +43,8 @@ class AddExpenseController
 
     $this->transactionService->createExpense($_POST);
 
+    $_SESSION['flashNotifications'] = "New expense added successfully.";
+
     redirectTo('/add-expense');
   }
 

@@ -17,8 +17,7 @@ class AddIncomeController
     private TemplateEngine $view,
     private ValidatorService $validatorService,
     private TransactionService $transactionService
-  ) {
-  }
+  ) {}
 
   public function addIncomeView()
   {
@@ -38,6 +37,8 @@ class AddIncomeController
     $this->validatorService->validateIncomeTransaction($_POST);
 
     $this->transactionService->createIncome($_POST);
+
+    $_SESSION['flashNotifications'] = "New income added successfully.";
 
     redirectTo('/add-income');
   }
