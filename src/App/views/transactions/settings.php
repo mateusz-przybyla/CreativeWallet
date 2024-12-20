@@ -21,6 +21,15 @@
         </div>
       <?php endif; ?>
 
+      <?php if (e($flashNotifications)) : ?>
+        <div class="alert alert-success alert-dismissible fade show" role="alert">
+          <p class="text-center pb-0 mb-0">
+            <?php echo e($flashNotifications); ?>
+          </p>
+          <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+        </div>
+      <?php endif; ?>
+
       <div class="row">
         <div class="col-lg-6 col-xl-4">
           <table class="table table-striped table-bordered table-hover">
