@@ -92,7 +92,7 @@ App class inside the framework component is like a glue for the available tools 
 
   ![](/readme/sign-in.jpg)
 
-- Add new income form:
+- New income form:
 
   ![](/readme/add-income.jpg)
 
@@ -100,7 +100,7 @@ App class inside the framework component is like a glue for the available tools 
 
   ![](/readme/form-validation.jpg)
 
-- Add new expense form with information about monthly category limit, money spent and money left for this category:
+- New expense form with information about monthly category limit, money spent and money left for this category:
 
   ![](/readme/add-expense.jpg)
 
