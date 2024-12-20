@@ -126,7 +126,7 @@ App class inside the framework component is like a glue for the available tools 
 
 - Mobile view:
 
-![](/readme/mobile.jpg)
+  ![](/readme/mobile.jpg)
 
 ## My process
 
