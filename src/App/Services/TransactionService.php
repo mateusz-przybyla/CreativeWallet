@@ -106,7 +106,7 @@ class TransactionService
       ]
     );
 
-    $_SESSION['newTrans'] = "Transaction added successfully!";
+    $_SESSION['newTrans'] = true;
   }
 
   public function createExpense(array $formData)
@@ -127,7 +127,7 @@ class TransactionService
       ]
     );
 
-    $_SESSION['newTrans'] = "Transaction added successfully!";
+    $_SESSION['newTrans'] = true;
   }
 
   public function getUserIncomes(array $dateRange): array
