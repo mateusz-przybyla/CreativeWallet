@@ -1,5 +1,5 @@
-const rmCheck = document.getElementById("remember-me"),
-  emailInput = document.getElementById("login-email");
+const rmCheck = document.getElementById("rememberMe"),
+  emailInput = document.getElementById("loginEmail");
 
 if (localStorage.checkbox && localStorage.checkbox !== "") {
   rmCheck.setAttribute("checked", "checked");
@@ -19,6 +19,6 @@ const checkRememberMe = () => {
   }
 };
 
-document.getElementById("login-submit").addEventListener("click", () => {
+document.getElementById("loginSubmit").addEventListener("click", () => {
   checkRememberMe();
 });

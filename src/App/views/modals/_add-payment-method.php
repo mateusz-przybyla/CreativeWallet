@@ -1,6 +1,6 @@
 <div class="modal fade" id="addPaymentMethodModal" tabindex="-1" aria-labelledby="addPaymentMethodLabel" aria-hidden="true">
   <div class="modal-dialog">
-    <form action="/settings/add/payment-method" method="POST">
+    <form action="/settings/add/payment-method" method="POST" id="formAddPaymentMethod">
       <?php include $this->resolve("partials/_csrf.php"); ?>
       <div class="modal-content">
         <div class="modal-header">
@@ -8,13 +8,14 @@
           <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
         </div>
         <div class="modal-body">
-          <div class="">
-            <label for="addPaymentMethod" class="col-form-label">Category name:</label>
+          <div class="mb-1">
+            <label for="addPaymentMethod" class="col-form-label">Payment method name:</label>
             <input type="text" name="newPaymentMethod" value="<?php
                                                               echo e($oldFormData['newPaymentMethod'] ?? '');
-                                                              ?>" class="form-control" id="addPaymentMethod" required>
+                                                              ?>" class="form-control" id="addPaymentMethod">
           </div>
           <div class="text-danger text-start small" id="addPaymentMethodError"></div>
+
         </div>
         <div class="modal-footer mt-3">
           <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>

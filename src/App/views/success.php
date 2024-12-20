@@ -2,7 +2,7 @@
 
 <main class="pb-75">
   <div class="container my-5">
-    <div class="bg-main-home shadow p-5 text-center rounded-3">
+    <div class="bg-main-home shadow p-4 p-md-5 text-center rounded-3">
       <img src="/assets/svg/check2-square.svg" alt="graph-up-arrow" height="70" class="mb-3" />
       <h1 class="text-body-emphasis py-3 display-5">
         Success!

@@ -3,7 +3,7 @@
 <main class="pb-75">
   <div class="container my-5">
     <div class="bg-main-home shadow p-4 px-md-5 text-center rounded-3">
-      <form class="w-lg-50 mx-auto" method="POST">
+      <form class="w-lg-50 mx-auto" method="POST" id="formSignUp">
         <?php
         include $this->resolve("partials/_csrf.php");
         ?>
@@ -20,8 +20,8 @@
                                                                                                       if (isset($errors['username'])) {
                                                                                                         echo "is-invalid";
                                                                                                       }
-                                                                                                      ?>" id="register-username" placeholder />
-            <label for="register-username">Username</label>
+                                                                                                      ?>" id="registerUsername" placeholder />
+            <label for="registerUsername">Username</label>
           </div>
         </div>
         <?php if (array_key_exists('username', $errors)) : ?>
@@ -29,6 +29,8 @@
             <?php echo e($errors['username'][0]); ?>
           </div>
         <?php endif; ?>
+        <div class="text-danger text-end small" id="usernameError"></div>
+
         <div class="d-flex">
           <figure class="d-flex align-items-center rounded-left-3 px-2 mb-1 mt-2 rounded-start-2 bg-grey-blue border">
             <img src="/assets/svg/envelope.svg" alt="person-fill" height="25" />
@@ -40,8 +42,8 @@
                                                                                                     if (isset($errors['email'])) {
                                                                                                       echo "is-invalid";
                                                                                                     }
-                                                                                                    ?>" id="register-email" placeholder />
-            <label for="register-email">Email</label>
+                                                                                                    ?>" id="registerEmail" placeholder />
+            <label for="registerEmail">Email</label>
           </div>
         </div>
         <?php if (array_key_exists('email', $errors)) : ?>
@@ -49,6 +51,8 @@
             <?php echo e($errors['email'][0]); ?>
           </div>
         <?php endif; ?>
+        <div class="text-danger text-start small" id="emailError"></div>
+
         <div class="d-flex">
           <figure class="d-flex align-items-center rounded-left-3 px-2 mb-1 mt-2 rounded-start-2 bg-grey-blue border">
             <img src="/assets/svg/lock.svg" alt="lock-fill" height="25" />
@@ -58,8 +62,8 @@
                                                                                                 if (isset($errors['passwordConfirmed'])) {
                                                                                                   echo "is-invalid";
                                                                                                 }
-                                                                                                ?>" id="register-password1" placeholder />
-            <label for="register-password1">Password</label>
+                                                                                                ?>" id="registerPassword1" placeholder />
+            <label for="registerPassword1">Password</label>
           </div>
         </div>
         <?php if (array_key_exists('password', $errors)) : ?>
@@ -67,6 +71,8 @@
             <?php echo e($errors['password'][0]); ?>
           </div>
         <?php endif; ?>
+        <div class="text-danger text-start small" id="password1Error"></div>
+
         <div class="d-flex">
           <figure class="d-flex align-items-center rounded-left-3 px-2 mb-1 mt-2 rounded-start-2 bg-grey-blue border">
             <img src="/assets/svg/lock-fill.svg" alt="lock" height="25" />
@@ -76,8 +82,8 @@
                                                                                                         if (isset($errors['passwordConfirmed'])) {
                                                                                                           echo "is-invalid";
                                                                                                         }
-                                                                                                        ?>" id="register-password2" placeholder />
-            <label for="register-password2">Repeat password</label>
+                                                                                                        ?>" id="registerPassword2" placeholder />
+            <label for="registerPassword2">Repeat password</label>
           </div>
         </div>
         <?php if (array_key_exists('passwordConfirmed', $errors)) : ?>
@@ -85,6 +91,8 @@
             <?php echo e($errors['passwordConfirmed'][0]); ?>
           </div>
         <?php endif; ?>
+        <div class="text-danger text-start small" id="password2Error"></div>
+
         <button class="w-100 btn btn-lg btn-dark mt-3" type="submit">
           Sign up
         </button>
@@ -96,5 +104,6 @@
     </div>
   </div>
 </main>
+<script src="/assets/js/register-form.js" type="text/javascript"></script>
 
 <?php include $this->resolve("partials/_footer.php") ?>

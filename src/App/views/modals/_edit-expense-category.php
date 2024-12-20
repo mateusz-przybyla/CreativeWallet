@@ -1,6 +1,6 @@
 <div class="modal fade" id="editExpenseCategoryModal-<?php echo e($category['id']); ?>" tabindex="-1" aria-labelledby="editExpenseCategoryLabel" aria-hidden="true">
   <div class="modal-dialog">
-    <form action="/settings/edit/expense-category/<?php echo e($category['id']); ?>" method="POST">
+    <form action="/settings/edit/expense-category/<?php echo e($category['id']); ?>" method="POST" id="formEditExpense-<?php echo e($category['id']); ?>">
       <?php include $this->resolve("partials/_csrf.php"); ?>
       <div class="modal-content">
         <div class="modal-header">
@@ -8,21 +8,24 @@
           <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
         </div>
         <div class="modal-body">
-          <div class="">
+          <div class="mb-1">
             <label for="editExpenseCategory-<?php echo e($category['id']); ?>" class="col-form-label">Category name:</label>
-            <input type="text" name="editExpenseCategory" value="<?php echo e($category['name'] ?? ''); ?>" class="form-control" id="editExpenseCategory-<?php echo e($category['id']); ?>" required>
+            <input type="text" name="editExpenseCategory" value="<?php echo e($category['name'] ?? ''); ?>" class="form-control" id="editExpenseCategory-<?php echo e($category['id']); ?>">
           </div>
           <div class="text-danger text-start small" id="editExpenseCategoryError-<?php echo e($category['id']); ?>"></div>
+
           <div class="form-check mt-4 mb-2">
             <input class="form-check-input" type="checkbox" id="activateLimit-<?php echo e($category['id']); ?>" name="activateLimit" <?php echo e($category['category_limit'] ? "checked" : ""); ?>>
             <label class="form-check-label" for="activateLimit-<?php echo e($category['id']); ?>">
               Activate limit
             </label>
           </div>
-          <div class="">
+          <div class="mb-1">
             <label for="expenseLimit-<?php echo e($category['id']); ?>" class="col-form-label">Set monthly limit:</label>
-            <input type="number" name="expenseLimit" value="<?php echo e($category['category_limit'] ?? ''); ?>" step="0.01" class="form-control" id="expenseLimit-<?php echo e($category['id']); ?>" required>
+            <input type="number" name="expenseLimit" value="<?php echo e($category['category_limit'] ?? ''); ?>" step="0.01" class="form-control" id="expenseLimit-<?php echo e($category['id']); ?>">
           </div>
+          <div class="text-danger text-start small" id="expenseLimitError-<?php echo e($category['id']); ?>"></div>
+
         </div>
         <div class=" modal-footer mt-3">
           <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
@@ -34,7 +37,7 @@
 </div>
 
 <script>
-  $(document).ready(function() {
+  $(document).ready(() => {
     if (!"<?php echo e($category['category_limit']); ?>") {
       $("#expenseLimit-<?php echo e($category['id']); ?>").attr("disabled", true);
     }
@@ -44,7 +47,44 @@
 
       if (!(this.checked)) {
         $("#expenseLimit-<?php echo e($category['id']); ?>").val('');
+        $("#expenseLimit-<?php echo e($category['id']); ?>").removeClass("is-invalid");
+        $("#expenseLimitError-<?php echo e($category['id']); ?>").text(
+          ""
+        );
       }
     });
+  });
+</script>
+<script>
+  $(document).ready(() => {
+    $("#formEditExpense-<?php echo e($category['id']); ?>").validate({
+      rules: {
+        editExpenseCategory: {
+          required: true,
+        },
+        expenseLimit: {
+          required: true,
+        }
+      },
+      errorPlacement: (error, element) => {
+        if (element.attr("name") == "editExpenseCategory") {
+          $("#editExpenseCategoryError-<?php echo e($category['id']); ?>").text($(error).text());
+          $("#editExpenseCategory-<?php echo e($category['id']); ?>").addClass("is-invalid");
+        } else if (element.attr("name") == "expenseLimit") {
+          $("#expenseLimitError-<?php echo e($category['id']); ?>").text($(error).text());
+          $("#expenseLimit-<?php echo e($category['id']); ?>").addClass("is-invalid");
+        }
+      },
+    });
+
+    $("#editExpenseCategoryModal-<?php echo e($category['id']); ?>").on(
+      "hide.bs.modal",
+      () => {
+        $("#editExpenseCategoryError-<?php echo e($category['id']); ?>").text(
+          ""
+        );
+        $("#editExpenseCategory-<?php echo e($category['id']); ?>").removeClass("is-invalid");
+      }
+    );
   });
 </script>
