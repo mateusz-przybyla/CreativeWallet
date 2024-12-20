@@ -163,3 +163,42 @@ $("#addPaymentMethodModal").on("hide.bs.modal", () => {
   $("#addPaymentMethodError").text("");
   $("#addPaymentMethod").removeClass("is-invalid");
 });
+
+$("#formChangePassword").validate({
+  rules: {
+    oldPassword: {
+      required: true,
+      minlength: 6,
+    },
+    newPassword: {
+      required: true,
+      minlength: 6,
+    },
+    newPasswordConfirmed: {
+      required: true,
+      minlength: 6,
+      equalTo: "#newPassword",
+    },
+  },
+  errorPlacement: (error, element) => {
+    if (element.attr("name") == "oldPassword") {
+      $("#oldPasswordError").text($(error).text());
+      $("#oldPassword").addClass("is-invalid");
+    } else if (element.attr("name") == "newPassword") {
+      $("#newPasswordError").text($(error).text());
+      $("#newPassword").addClass("is-invalid");
+    } else if (element.attr("name") == "newPasswordConfirmed") {
+      $("#newPasswordConfirmedError").text($(error).text());
+      $("#newPasswordConfirmed").addClass("is-invalid");
+    }
+  },
+});
+
+$("#changePasswordModal").on("hide.bs.modal", () => {
+  $("#oldPasswordError").text("");
+  $("#oldPassword").removeClass("is-invalid");
+  $("#newPasswordError").text("");
+  $("#newPassword").removeClass("is-invalid");
+  $("#newPasswordConfirmedError").text("");
+  $("#newPasswordConfirmed").removeClass("is-invalid");
+});
