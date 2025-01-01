@@ -8,7 +8,7 @@
           <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
         </div>
         <div class="modal-body">
-          <div class="mb-1">
+          <div class="mb-1" id="editPaymentMethodArea-<?php echo e($category['id']); ?>">
             <label for="editPaymentMethod-<?php echo e($category['id']); ?>" class="col-form-label">Payment method name:</label>
             <input type="text" name="editPaymentMethod" value="<?php echo e($category['name'] ?? ''); ?>" class="form-control" id="editPaymentMethod-<?php echo e($category['id']); ?>">
           </div>
@@ -33,8 +33,7 @@
       },
       errorPlacement: (error, element) => {
         if (element.attr("name") == "editPaymentMethod") {
-          $("#editPaymentMethodError-<?php echo e($category['id']); ?>").text($(error).text());
-          $("#editPaymentMethod-<?php echo e($category['id']); ?>").addClass("is-invalid");
+          error.insertAfter("#editPaymentMethodArea-<?php echo e($category['id']); ?>");
         }
       },
     });
@@ -42,9 +41,10 @@
     $("#editPaymentMethodModal-<?php echo e($category['id']); ?>").on(
       "hide.bs.modal",
       () => {
-        $("#editPaymentMethodError-<?php echo e($category['id']); ?>").text(
+        $("#editPaymentMethod-<?php echo e($category['id']); ?>-error").text(
           ""
         );
+        $("#editPaymentMethod-<?php echo e($category['id']); ?>").removeClass("error");
         $("#editPaymentMethod-<?php echo e($category['id']); ?>").removeClass("is-invalid");
       }
     );

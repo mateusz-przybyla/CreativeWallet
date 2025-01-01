@@ -22,7 +22,7 @@
           <?php
           include $this->resolve("partials/_csrf.php");
           ?>
-          <div class="mb-1 mt-2">
+          <div class="mb-1 mt-2" id="incomeCategoryArea">
             <div class="input-group">
               <span class="input-group-text bg-grey-blue rounded-end-0"><img src="/assets/svg/tags-fill.svg" alt="tags-fill" width="25" /></span>
               <select class="form-select" name="category" id="category">
@@ -40,9 +40,8 @@
               <?php echo e($errors['category'][0]); ?>
             </div>
           <?php endif; ?>
-          <div class="text-danger text-start small" id="categoryError"></div>
 
-          <div class="mb-1 mt-2">
+          <div class="mb-1 mt-2" id="incomeDateArea">
             <div class="input-group">
               <span class="input-group-text bg-grey-blue rounded-end-0"><img src="/assets/svg/calendar-date.svg" alt="calendar-date" width="25" /></span>
               <input type="date" name="date" value="<?php echo e($oldFormData['date'] ?? ''); ?>" class="form-control" id="date" />
@@ -53,9 +52,8 @@
               <?php echo e($errors['date'][0]); ?>
             </div>
           <?php endif; ?>
-          <div class="text-danger text-start small" id="dateError"></div>
 
-          <div class="mb-1 mt-2">
+          <div class="mb-1 mt-2" id="incomeAmountArea">
             <div class="input-group">
               <span class="input-group-text bg-grey-blue rounded-end-0"><img src="/assets/svg/123.svg" alt="amount" width="25" /></span>
               <input type="number" name="amount" value="<?php echo e($oldFormData['amount'] ?? ''); ?>" step="0.01" class="form-control" id="amount" placeholder="Amount" />
@@ -67,7 +65,6 @@
               <?php echo e($errors['amount'][0]); ?>
             </div>
           <?php endif; ?>
-          <div class="text-danger text-start small" id="amountError"></div>
 
           <div class="mt-2">
             <div class="input-group">

@@ -37,17 +37,13 @@ $(document).ready(() => {
     },
     errorPlacement: (error, element) => {
       if (element.attr("name") == "username") {
-        $("#usernameError").text($(error).text());
-        $("#registerUsername").addClass("is-invalid");
+        error.insertAfter("#registerUsernameArea");
       } else if (element.attr("name") == "email") {
-        $("#emailError").text($(error).text());
-        $("#registerEmail").addClass("is-invalid");
+        error.insertAfter("#registerEmailArea");
       } else if (element.attr("name") == "password") {
-        $("#password1Error").text($(error).text());
-        $("#registerPassword1").addClass("is-invalid");
+        error.insertAfter("#registerPasswordArea1");
       } else if (element.attr("name") == "passwordConfirmed") {
-        $("#password2Error").text($(error).text());
-        $("#registerPassword2").addClass("is-invalid");
+        error.insertAfter("#registerPasswordArea2");
       }
     },
   });

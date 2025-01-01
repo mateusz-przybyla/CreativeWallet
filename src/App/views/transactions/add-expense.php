@@ -19,19 +19,19 @@
       </div>
       <div class="row d-flex flex-column align-items-center">
         <div class="col-md-9 col-lg-7 col-xxl-5">
-          <div class="card my-2">
+          <div class="card my-2" id="limitInfoCard">
             <h6 class="card-header bg-grey-blue">Monthly limit for this category:</h6>
             <div class="card-body py-2">
               <p class="card-text" id="limitInfo"></p>
             </div>
           </div>
-          <div class="card mb-2">
+          <div class="card mb-2" id="cashSpentCard">
             <h6 class="card-header bg-grey-blue">Cash spent:</h6>
             <div class="card-body py-2">
               <p class="card-text" id="cashSpent"></p>
             </div>
           </div>
-          <div class="card">
+          <div class="card" id="cashLeftCard">
             <h6 class="card-header bg-grey-blue">Limit balance after operation:</h6>
             <div class="card-body py-2">
               <p class="card-text" id="cashLeft"></p>
@@ -42,7 +42,7 @@
           <?php
           include $this->resolve("partials/_csrf.php");
           ?>
-          <div class="mt-4 mb-1">
+          <div class="mt-4 mb-1" id="expenseCategoryArea">
             <div class="input-group">
               <span class="input-group-text bg-grey-blue rounded-end-0"><img src="/assets/svg/tags-fill.svg" alt="tags-fill" width="25" /></span>
               <select class="form-select" name="category" id="category">
@@ -61,9 +61,8 @@
               <?php echo e($errors['category'][0]); ?>
             </div>
           <?php endif; ?>
-          <div class="text-danger text-start small" id="categoryError"></div>
 
-          <div class="mb-1 mt-2">
+          <div class="mb-1 mt-2" id="expenseDateArea">
             <div class="input-group">
               <span class="input-group-text bg-grey-blue rounded-end-0"><img src="/assets/svg/calendar-date.svg" alt="calendar-date" width="25" /></span>
               <input type="date" name="date" value="<?php echo e($oldFormData['date'] ?? ''); ?>" class="form-control" id="date" />
@@ -74,9 +73,8 @@
               <?php echo e($errors['date'][0]); ?>
             </div>
           <?php endif; ?>
-          <div class="text-danger text-start small" id="dateError"></div>
 
-          <div class="mb-1 mt-2">
+          <div class="mb-1 mt-2" id="expenseAmountArea">
             <div class="input-group">
               <span class="input-group-text bg-grey-blue rounded-end-0"><img src="/assets/svg/123.svg" alt="amount" width="25" /></span>
               <input type="number" name="amount" value="<?php echo e($oldFormData['amount'] ?? ''); ?>" step="0.01" class="form-control" id="amount" placeholder="Amount" />
@@ -88,9 +86,8 @@
               <?php echo e($errors['amount'][0]); ?>
             </div>
           <?php endif; ?>
-          <div class="text-danger text-start small" id="amountError"></div>
 
-          <div class="mb-1 mt-2">
+          <div class="mb-1 mt-2" id="expensePaymentMethodArea">
             <div class="input-group">
               <span class="input-group-text bg-grey-blue rounded-end-0"><img src="/assets/svg/credit-card.svg" alt="credit-card" width="25" /></span>
               <select class="form-select" name="paymentMethod" id="paymentMethod">
@@ -108,7 +105,6 @@
               <?php echo e($errors['paymentMethod'][0]); ?>
             </div>
           <?php endif; ?>
-          <div class="text-danger text-start small" id="paymentMethodError"></div>
 
           <div class="mb-1 mt-2">
             <div class="input-group">

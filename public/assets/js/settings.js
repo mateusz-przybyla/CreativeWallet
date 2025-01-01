@@ -1,4 +1,4 @@
-// show backend messages in the modals
+// show backend validation messages in the modals
 
 $(document).ready(() => {
   if (errorList["oldPassword"]) {
@@ -70,18 +70,24 @@ $(document).ready(() => {
 
 $("#changePasswordModal").on("hide.bs.modal", () => {
   $("#oldPasswordError").text("");
+  $("#oldPassword").removeClass("is-invalid");
   $("#newPasswordError").text("");
+  $("#newPassword").removeClass("is-invalid");
   $("#newPasswordConfirmedError").text("");
+  $("#newPasswordConfirmed").removeClass("is-invalid");
 });
 
 $("#addExpenseCategoryModal").on("hide.bs.modal", () => {
   $("#addExpenseCategoryError").text("");
+  $("#addExpenseCategory").removeClass("is-invalid");
 });
 $("#addIncomeCategoryModal").on("hide.bs.modal", () => {
   $("#addIncomeCategoryError").text("");
+  $("#addIncomeCategory").removeClass("is-invalid");
 });
 $("#addPaymentMethodModal").on("hide.bs.modal", () => {
   $("#addPaymentMethodError").text("");
+  $("#addPaymentMethod").removeClass("is-invalid");
 });
 
 $("#editExpenseCategoryModal-" + errorList["editExpenseCategoryId"]).on(
@@ -90,18 +96,21 @@ $("#editExpenseCategoryModal-" + errorList["editExpenseCategoryId"]).on(
     $("#editExpenseCategoryError-" + errorList["editExpenseCategoryId"]).text(
       ""
     );
+    $("#editExpenseCategory").removeClass("is-invalid");
   }
 );
 $("#editIncomeCategoryModal-" + errorList["editIncomeCategoryId"]).on(
   "hide.bs.modal",
   () => {
     $("#editIncomeCategoryError-" + errorList["editIncomeCategoryId"]).text("");
+    $("#editIncomeCategory").removeClass("is-invalid");
   }
 );
 $("#editPaymentMethodModal-" + errorList["editPaymentMethodId"]).on(
   "hide.bs.modal",
   () => {
     $("#editPaymentMethodError-" + errorList["editPaymentMethodId"]).text("");
+    $("#editPaymentMethod").removeClass("is-invalid");
   }
 );
 
@@ -115,15 +124,14 @@ $("#formAddExpenseCategory").validate({
   },
   errorPlacement: (error, element) => {
     if (element.attr("name") == "newExpenseCategory") {
-      $("#addExpenseCategoryError").text($(error).text());
-      $("#addExpenseCategory").addClass("is-invalid");
+      error.insertAfter("#addExpenseCategoryArea");
     }
   },
 });
 
 $("#addExpenseCategoryModal").on("hide.bs.modal", () => {
-  $("#addExpenseCategoryError").text("");
-  $("#addExpenseCategory").removeClass("is-invalid");
+  $("#addExpenseCategory-error").text("");
+  $("#addExpenseCategory").removeClass("error");
 });
 
 $("#formAddIncomeCategory").validate({
@@ -134,15 +142,14 @@ $("#formAddIncomeCategory").validate({
   },
   errorPlacement: (error, element) => {
     if (element.attr("name") == "newIncomeCategory") {
-      $("#addIncomeCategoryError").text($(error).text());
-      $("#addIncomeCategory").addClass("is-invalid");
+      error.insertAfter("#addIncomeCategoryArea");
     }
   },
 });
 
 $("#addIncomeCategoryModal").on("hide.bs.modal", () => {
-  $("#addIncomeCategoryError").text("");
-  $("#addIncomeCategory").removeClass("is-invalid");
+  $("#addIncomeCategory-error").text("");
+  $("#addIncomeCategory").removeClass("error");
 });
 
 $("#formAddPaymentMethod").validate({
@@ -153,15 +160,14 @@ $("#formAddPaymentMethod").validate({
   },
   errorPlacement: (error, element) => {
     if (element.attr("name") == "newPaymentMethod") {
-      $("#addPaymentMethodError").text($(error).text());
-      $("#addPaymentMethod").addClass("is-invalid");
+      error.insertAfter("#addPaymentMethodArea");
     }
   },
 });
 
 $("#addPaymentMethodModal").on("hide.bs.modal", () => {
-  $("#addPaymentMethodError").text("");
-  $("#addPaymentMethod").removeClass("is-invalid");
+  $("#addPaymentMethod-error").text("");
+  $("#addPaymentMethod").removeClass("error");
 });
 
 $("#formChangePassword").validate({
@@ -182,23 +188,20 @@ $("#formChangePassword").validate({
   },
   errorPlacement: (error, element) => {
     if (element.attr("name") == "oldPassword") {
-      $("#oldPasswordError").text($(error).text());
-      $("#oldPassword").addClass("is-invalid");
+      error.insertAfter("#oldPasswordArea");
     } else if (element.attr("name") == "newPassword") {
-      $("#newPasswordError").text($(error).text());
-      $("#newPassword").addClass("is-invalid");
+      error.insertAfter("#newPasswordArea");
     } else if (element.attr("name") == "newPasswordConfirmed") {
-      $("#newPasswordConfirmedError").text($(error).text());
-      $("#newPasswordConfirmed").addClass("is-invalid");
+      error.insertAfter("#newPasswordConfirmedArea");
     }
   },
 });
 
 $("#changePasswordModal").on("hide.bs.modal", () => {
-  $("#oldPasswordError").text("");
-  $("#oldPassword").removeClass("is-invalid");
-  $("#newPasswordError").text("");
-  $("#newPassword").removeClass("is-invalid");
-  $("#newPasswordConfirmedError").text("");
-  $("#newPasswordConfirmed").removeClass("is-invalid");
+  $("#oldPassword-error").text("");
+  $("#oldPassword").removeClass("error");
+  $("#newPassword-error").text("");
+  $("#newPassword").removeClass("error");
+  $("#newPasswordConfirmed-error").text("");
+  $("#newPasswordConfirmed").removeClass("error");
 });

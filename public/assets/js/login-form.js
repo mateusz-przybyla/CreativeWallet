@@ -12,11 +12,9 @@ $(document).ready(() => {
     },
     errorPlacement: (error, element) => {
       if (element.attr("name") == "email") {
-        $("#emailError").text($(error).text());
-        $("#loginEmail").addClass("is-invalid");
+        error.insertAfter("#loginEmailArea");
       } else if (element.attr("name") == "password") {
-        $("#passwordError").text($(error).text());
-        $("#loginPassword").addClass("is-invalid");
+        error.insertAfter("#loginPasswordArea");
       }
     },
   });

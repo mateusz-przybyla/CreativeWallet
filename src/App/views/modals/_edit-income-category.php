@@ -8,7 +8,7 @@
           <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
         </div>
         <div class="modal-body">
-          <div class="mb-1">
+          <div class="mb-1" id="editIncomeCategoryArea-<?php echo e($category['id']); ?>">
             <label for="editIncomeCategory-<?php echo e($category['id']); ?>" class="col-form-label">Category name:</label>
             <input type="text" name="editIncomeCategory" value="<?php echo e($category['name'] ?? ''); ?>" class="form-control" id="editIncomeCategory-<?php echo e($category['id']); ?>">
           </div>
@@ -33,8 +33,7 @@
       },
       errorPlacement: (error, element) => {
         if (element.attr("name") == "editIncomeCategory") {
-          $("#editIncomeCategoryError-<?php echo e($category['id']); ?>").text($(error).text());
-          $("#editIncomeCategory-<?php echo e($category['id']); ?>").addClass("is-invalid");
+          error.insertAfter("#editIncomeCategoryArea-<?php echo e($category['id']); ?>");
         }
       },
     });
@@ -42,9 +41,10 @@
     $("#editIncomeCategoryModal-<?php echo e($category['id']); ?>").on(
       "hide.bs.modal",
       () => {
-        $("#editIncomeCategoryError-<?php echo e($category['id']); ?>").text(
+        $("#editIncomeCategory-<?php echo e($category['id']); ?>-error").text(
           ""
         );
+        $("#editIncomeCategory-<?php echo e($category['id']); ?>").removeClass("error");
         $("#editIncomeCategory-<?php echo e($category['id']); ?>").removeClass("is-invalid");
       }
     );

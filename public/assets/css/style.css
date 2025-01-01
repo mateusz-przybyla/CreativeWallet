@@ -64,6 +64,18 @@ caption {
   --bs-btn-padding-x: 0.3rem;
 }
 
+label.error {
+  color: rgb(220, 53, 69);
+  font-size: 14px;
+  display: block;
+  text-align: start;
+}
+
+input.error,
+select.error {
+  border: 1px solid rgb(220, 53, 69);
+}
+
 @media (min-width: 992px) {
   .w-lg-50 {
     width: 50% !important;

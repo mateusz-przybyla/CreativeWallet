@@ -30,14 +30,11 @@ $(document).ready(() => {
     },
     errorPlacement: (error, element) => {
       if (element.attr("name") == "category") {
-        $("#categoryError").text($(error).text());
-        $("#category").addClass("is-invalid");
+        error.insertAfter("#incomeCategoryArea");
       } else if (element.attr("name") == "date") {
-        $("#dateError").text($(error).text());
-        $("#date").addClass("is-invalid");
+        error.insertAfter("#incomeDateArea");
       } else if (element.attr("name") == "amount") {
-        $("#amountError").text($(error).text());
-        $("#amount").addClass("is-invalid");
+        error.insertAfter("#incomeAmountArea");
       }
     },
   });

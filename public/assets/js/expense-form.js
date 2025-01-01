@@ -33,17 +33,13 @@ $(document).ready(() => {
     },
     errorPlacement: (error, element) => {
       if (element.attr("name") == "category") {
-        $("#categoryError").text($(error).text());
-        $("#category").addClass("is-invalid");
+        error.insertAfter("#expenseCategoryArea");
       } else if (element.attr("name") == "date") {
-        $("#dateError").text($(error).text());
-        $("#date").addClass("is-invalid");
+        error.insertAfter("#expenseDateArea");
       } else if (element.attr("name") == "amount") {
-        $("#amountError").text($(error).text());
-        $("#amount").addClass("is-invalid");
+        error.insertAfter("#expenseAmountArea");
       } else if (element.attr("name") == "paymentMethod") {
-        $("#paymentMethodError").text($(error).text());
-        $("#paymentMethod").addClass("is-invalid");
+        error.insertAfter("#expensePaymentMethodArea");
       }
     },
   });

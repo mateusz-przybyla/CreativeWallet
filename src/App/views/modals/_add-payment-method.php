@@ -8,7 +8,7 @@
           <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
         </div>
         <div class="modal-body">
-          <div class="mb-1">
+          <div class="mb-1" id="addPaymentMethodArea">
             <label for="addPaymentMethod" class="col-form-label">Payment method name:</label>
             <input type="text" name="newPaymentMethod" value="<?php
                                                               echo e($oldFormData['newPaymentMethod'] ?? '');

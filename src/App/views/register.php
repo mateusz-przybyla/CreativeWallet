@@ -9,7 +9,7 @@
         ?>
         <img class="mb-2" src="/assets/svg/person-plus-fill.svg" alt="person-plus-fill" height="70" />
         <h1 class="h3 mb-4">Sign up</h1>
-        <div class="d-flex">
+        <div class="d-flex" id="registerUsernameArea">
           <figure class="d-flex align-items-center rounded-left-3 px-2 mb-1 rounded-start-2 bg-grey-blue border">
             <img src="/assets/svg/person-check.svg" alt="person-chec" height="25" />
           </figure>
@@ -29,9 +29,8 @@
             <?php echo e($errors['username'][0]); ?>
           </div>
         <?php endif; ?>
-        <div class="text-danger text-start small" id="usernameError"></div>
 
-        <div class="d-flex">
+        <div class="d-flex" id="registerEmailArea">
           <figure class="d-flex align-items-center rounded-left-3 px-2 mb-1 mt-2 rounded-start-2 bg-grey-blue border">
             <img src="/assets/svg/envelope.svg" alt="person-fill" height="25" />
           </figure>
@@ -53,7 +52,7 @@
         <?php endif; ?>
         <div class="text-danger text-start small" id="emailError"></div>
 
-        <div class="d-flex">
+        <div class="d-flex" id="registerPasswordArea1">
           <figure class="d-flex align-items-center rounded-left-3 px-2 mb-1 mt-2 rounded-start-2 bg-grey-blue border">
             <img src="/assets/svg/lock.svg" alt="lock-fill" height="25" />
           </figure>
@@ -73,7 +72,7 @@
         <?php endif; ?>
         <div class="text-danger text-start small" id="password1Error"></div>
 
-        <div class="d-flex">
+        <div class="d-flex" id="registerPasswordArea2">
           <figure class="d-flex align-items-center rounded-left-3 px-2 mb-1 mt-2 rounded-start-2 bg-grey-blue border">
             <img src="/assets/svg/lock-fill.svg" alt="lock" height="25" />
           </figure>

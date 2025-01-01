@@ -1,5 +1,9 @@
 const expenseLimitField = document.getElementById("limitInfo");
+const expenseLimitCard = document.getElementById("limitInfoCard");
+
 const moneySpentField = document.getElementById("cashSpent");
+const moneySpentCard = document.getElementById("cashSpentCard");
+
 const moneyLeftField = document.getElementById("cashLeft");
 
 const amountField = document.getElementById("amount");

@@ -8,7 +8,7 @@
           <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
         </div>
         <div class="modal-body">
-          <div class="mb-1">
+          <div class="mb-1" id="editExpenseCategoryArea-<?php echo e($category['id']); ?>">
             <label for="editExpenseCategory-<?php echo e($category['id']); ?>" class="col-form-label">Category name:</label>
             <input type="text" name="editExpenseCategory" value="<?php echo e($category['name'] ?? ''); ?>" class="form-control" id="editExpenseCategory-<?php echo e($category['id']); ?>">
           </div>
@@ -20,7 +20,7 @@
               Activate limit
             </label>
           </div>
-          <div class="mb-1">
+          <div class="mb-1" id="expenseLimitArea-<?php echo e($category['id']); ?>">
             <label for="expenseLimit-<?php echo e($category['id']); ?>" class="col-form-label">Set monthly limit:</label>
             <input type="number" name="expenseLimit" value="<?php echo e($category['category_limit'] ?? ''); ?>" step="0.01" class="form-control" id="expenseLimit-<?php echo e($category['id']); ?>">
           </div>
@@ -46,9 +46,9 @@
       $("#expenseLimit-<?php echo e($category['id']); ?>").attr("disabled", !(this.checked));
 
       if (!(this.checked)) {
-        $("#expenseLimit-<?php echo e($category['id']); ?>").val('');
-        $("#expenseLimit-<?php echo e($category['id']); ?>").removeClass("is-invalid");
-        $("#expenseLimitError-<?php echo e($category['id']); ?>").text(
+        $("#expenseLimit-<?php echo e($category['id']); ?>").val("");
+        $("#expenseLimit-<?php echo e($category['id']); ?>").removeClass("error");
+        $("#expenseLimit-<?php echo e($category['id']); ?>-error").text(
           ""
         );
       }
@@ -68,11 +68,9 @@
       },
       errorPlacement: (error, element) => {
         if (element.attr("name") == "editExpenseCategory") {
-          $("#editExpenseCategoryError-<?php echo e($category['id']); ?>").text($(error).text());
-          $("#editExpenseCategory-<?php echo e($category['id']); ?>").addClass("is-invalid");
+          error.insertAfter("#editExpenseCategoryArea-<?php echo e($category['id']); ?>");
         } else if (element.attr("name") == "expenseLimit") {
-          $("#expenseLimitError-<?php echo e($category['id']); ?>").text($(error).text());
-          $("#expenseLimit-<?php echo e($category['id']); ?>").addClass("is-invalid");
+          error.insertAfter("#expenseLimitArea-<?php echo e($category['id']); ?>");
         }
       },
     });
@@ -80,10 +78,15 @@
     $("#editExpenseCategoryModal-<?php echo e($category['id']); ?>").on(
       "hide.bs.modal",
       () => {
-        $("#editExpenseCategoryError-<?php echo e($category['id']); ?>").text(
+        $("#editExpenseCategory-<?php echo e($category['id']); ?>-error").text(
           ""
         );
+        $("#editExpenseCategory-<?php echo e($category['id']); ?>").removeClass("error");
         $("#editExpenseCategory-<?php echo e($category['id']); ?>").removeClass("is-invalid");
+        $("#expenseLimit-<?php echo e($category['id']); ?>-error").text(
+          ""
+        );
+        $("#expenseLimit-<?php echo e($category['id']); ?>").removeClass("error");
       }
     );
   });

@@ -10,7 +10,7 @@
         <img class=" mb-3" src="/assets/svg/box-arrow-in-right.svg" alt="box-arrow-in-right" height="70" />
         <h1 class="h3 mb-4">Please sign in</h1>
 
-        <div class="d-flex">
+        <div class="d-flex" id="loginEmailArea">
           <figure class="d-flex align-items-center rounded-left-3 px-2 mb-1 rounded-start-2 bg-grey-blue border">
             <img src="/assets/svg/envelope.svg" alt="envelope" height="25" />
           </figure>
@@ -30,9 +30,8 @@
             <?php echo e($errors['email'][0]); ?>
           </div>
         <?php endif; ?>
-        <div class="text-danger text-start small" id="emailError"></div>
 
-        <div class="d-flex">
+        <div class="d-flex" id="loginPasswordArea">
           <figure class="d-flex align-items-center rounded-left-3 px-2 mb-1 mt-2 rounded-start-2 bg-grey-blue border">
             <img src="/assets/svg/lock-fill.svg" alt="lock-fill" height="25" />
           </figure>
@@ -50,7 +49,6 @@
             <?php echo e($errors['password'][0]); ?>
           </div>
         <?php endif; ?>
-        <div class="text-danger text-start small" id="passwordError"></div>
 
         <div class="checkbox my-3">
           <label>

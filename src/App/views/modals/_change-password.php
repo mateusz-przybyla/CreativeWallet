@@ -8,19 +8,19 @@
           <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
         </div>
         <div class="modal-body">
-          <div class="mb-1">
+          <div class="mb-1" id="oldPasswordArea">
             <label for="oldPassword" class="col-form-label">Old password:</label>
             <input type="password" name="oldPassword" class="form-control" id="oldPassword">
           </div>
           <div class="text-danger text-start small" id="oldPasswordError"></div>
 
-          <div class="mt-2 mb-1">
+          <div class="mt-2 mb-1" id="newPasswordArea">
             <label for="newPassword" class="col-form-label">Create new password:</label>
             <input type="password" name="newPassword" class="form-control" id="newPassword">
           </div>
           <div class="text-danger text-start small" id="newPasswordError"></div>
 
-          <div class="mt-2 mb-1">
+          <div class="mt-2 mb-1" id="newPasswordConfirmedArea">
             <label for="newPasswordConfirmed" class="col-form-label">Confirm new password:</label>
             <input type="password" name="newPasswordConfirmed" class="form-control" id="newPasswordConfirmed">
           </div>
