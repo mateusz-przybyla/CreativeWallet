@@ -5,6 +5,7 @@ const moneySpentField = document.getElementById("cashSpent");
 const moneySpentCard = document.getElementById("cashSpentCard");
 
 const moneyLeftField = document.getElementById("cashLeft");
+const moneyLeftCard = document.getElementById("cashLeftCard");
 
 const amountField = document.getElementById("amount");
 const dateField = document.getElementById("date");
@@ -37,16 +38,19 @@ const showCategoryLimit = async () => {
   var categoryId = categoryField.options[categoryField.selectedIndex].id;
   var category = categoryField.options[categoryField.selectedIndex].text.trim();
 
-  if (category === "Choose category") {
-    expenseLimitField.textContent = "Category required";
-  } else {
+  if (category !== "Choose category") {
     var limitAmount = await getCategoryLimit(categoryId);
 
-    if (limitAmount === null) {
-      expenseLimitField.textContent = "No limit set";
-    } else {
+    if (limitAmount !== null) {
+      expenseLimitCard.hidden = false;
       expenseLimitField.textContent = `${limitAmount} PLN`;
+    } else {
+      expenseLimitCard.hidden = true;
+      expenseLimitField.textContent = "";
     }
+  } else {
+    expenseLimitCard.hidden = true;
+    expenseLimitField.textContent = "";
   }
 };
 
@@ -64,15 +68,19 @@ const showMoneySpent = async () => {
   var category = categoryField.options[categoryField.selectedIndex].text.trim();
   var date = dateField.value;
 
-  if (category === "Choose category" || date === "") {
-    moneySpentField.textContent = "Category and date required";
-  } else {
+  if (category !== "Choose category" && date !== "") {
     var amountSpent = await getMoneySpent(categoryId, date);
 
-    if (amountSpent === null) {
-      moneySpentField.textContent =
-        "You did not spent any money for this category this month";
-    } else moneySpentField.textContent = `${amountSpent} PLN`;
+    if (amountSpent !== null) {
+      moneySpentCard.hidden = false;
+      moneySpentField.textContent = `${amountSpent} PLN`;
+    } else {
+      moneySpentCard.hidden = true;
+      moneySpentField.textContent = "";
+    }
+  } else {
+    moneySpentCard.hidden = true;
+    moneySpentField.textContent = "";
   }
 };
 
@@ -91,15 +99,12 @@ const showMoneyLeft = (amountValue) => {
 
   moneyLeftField.style.color = "rgb(33, 37, 41)";
 
-  if (category === "Choose category" || date === "" || amountValue === "") {
-    moneyLeftField.textContent = "Category, date and amount required";
-  } else {
+  if (category !== "Choose category" && date !== "" && amountValue !== "") {
     var limitInfo = expenseLimitField.textContent.replace(/[^0-9\.]/g, "");
     var moneySpent = moneySpentField.textContent.replace(/[^0-9\.]/g, "");
 
-    if (limitInfo === "") {
-      moneyLeftField.textContent = "No limit set";
-    } else {
+    if (limitInfo !== "") {
+      moneyLeftCard.hidden = false;
       var cashLeft = Number(limitInfo) - Number(moneySpent) - amountValue;
       if (cashLeft >= 0) {
         moneyLeftField.style.color = "green";
@@ -107,6 +112,10 @@ const showMoneyLeft = (amountValue) => {
         moneyLeftField.style.color = "red";
       }
       moneyLeftField.textContent = `${cashLeft.toFixed(2)} PLN`;
+    } else {
+      moneyLeftCard.hidden = true;
     }
+  } else {
+    moneyLeftCard.hidden = true;
   }
 };

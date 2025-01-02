@@ -19,19 +19,19 @@
       </div>
       <div class="row d-flex flex-column align-items-center">
         <div class="col-md-9 col-lg-7 col-xxl-5">
-          <div class="card my-2" id="limitInfoCard">
+          <div class="card my-2" id="limitInfoCard" hidden>
             <h6 class="card-header bg-grey-blue">Monthly limit for this category:</h6>
             <div class="card-body py-2">
               <p class="card-text" id="limitInfo"></p>
             </div>
           </div>
-          <div class="card mb-2" id="cashSpentCard">
+          <div class="card mb-2" id="cashSpentCard" hidden>
             <h6 class="card-header bg-grey-blue">Cash spent:</h6>
             <div class="card-body py-2">
               <p class="card-text" id="cashSpent"></p>
             </div>
           </div>
-          <div class="card" id="cashLeftCard">
+          <div class="card" id="cashLeftCard" hidden>
             <h6 class="card-header bg-grey-blue">Limit balance after operation:</h6>
             <div class="card-body py-2">
               <p class="card-text" id="cashLeft"></p>
