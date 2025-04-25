@@ -7,7 +7,7 @@ Final stage of a budget application using PHP and custom MVC framework.
 - [Overview](#overview)
   - [Stages](#stages)
   - [About](#about)
-  - [Framework](#framework)
+  - [Custom Framework](#custom-framework)
   - [Database design](#database-design)
   - [Screenshot](#screenshot)
 - [My process](#my-process)
