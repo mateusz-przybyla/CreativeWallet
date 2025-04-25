@@ -34,48 +34,57 @@ Stages of building a budget application:
 
 ### About
 
-CreativeWallet is a web app and a new version of PersonalBudget app written in C++.
+**CreativeWallet** is a web application and a modern (more complex) version of the original **PersonalBudget** app written in C++.  
+It allows users to keep track of expenses and incomes, with data stored in a **MySQL** database.
 
-An application allows you to keep records of your expenses and incomes.
-Data are saved to the database (MariaDB).
+#### How does it work?
 
-How does it work?
+1. Create a user account and sign in.
+2. Add incomes or expenses using today's date or a selected backdate.
+3. View balances for:
+   - the current month,
+   - the previous month,
+   - or any custom time period.
 
-First create a user account, sign in and then you can add incomes and expenses with today's date or with a selected backdate.
-You can show current month's balance, previous month's balance or selected period balance. The application calculates the sum of incomes, expenses and the difference between them (incomes - expenses).
+The app calculates:
 
-Other functionalities:
+- total incomes,
+- total expenses,
+- and the balance (incomes – expenses).
 
-- a tabular summary of the incomes and expenses (by category),
-- a pie chart showing expenses from the selected period,
-- add/edit/delete categories and payment methods,
-- add monthly limit to expense categories,
-- change password,
-- delete account with related transactions.
+#### Additional features:
+
+- Tabular summaries of incomes and expenses by category.
+- A pie chart showing expenses in a selected time period.
+- Add/edit/delete categories and payment methods.
+- Set monthly limits on expense categories.
+- Change password.
+- Delete your account along with all related transactions.
 
 ---
 
-### Framework
+### Custom Framework
 
-CreativeWallet consist of two components - application and custom framework. Application compoment has a specific code which is tightly coupled to project and it wouldn't work separately without making major adjustments. Framework component has a specific code but this code is portable and flexible.
+CreativeWallet is divided into two components: the **application** and a **custom MVC framework**.
 
-This project also uses MVC design pattern which is responsible for splitting code (dividing responsibilities) into separate files (separation of concerns principle).
+- The **application component** includes project-specific code that is tightly coupled to this project.
+- The **framework component** contains reusable tools designed to be portable and flexible.
 
-The MVC pattern is an acronym for Model-View-Controller:
+This project uses the **MVC (Model-View-Controller)** design pattern to separate concerns and organize code effectively:
 
-- Model refers to the database logic,
-- View refers to the HTML or template of a page,
-- Controller refers to the logic for the page.
+- **Model** – handles database logic.
+- **View** – manages templates and UI rendering (HTML).
+- **Controller** – contains the logic that connects user input with the model and view.
 
-Framework component consists of several tools:
+#### Tools included in the framework:
 
-- Router
-- Validator
-- Database
-- Template Engine
-- Container
+- `Router` - for mapping URLs to controllers.
+- `Validator` - for input validation.
+- `Database` - abstraction layer for DB access (PDO-based).
+- `Template Engine` - for generating dynamic HTML.
+- `Container` – for dependency injection and object management.
 
-App class inside the framework component is like a glue for the available tools and utilizes every tools in our framework.
+The `App` class inside the framework component is like a **glue** for the available tools and utilizes every tools.
 
 ---
 
@@ -134,8 +143,6 @@ App class inside the framework component is like a glue for the available tools 
 **Mobile view**
 
 ![](/readme/mobile.jpg)
-
----
 
 ## My process
 
