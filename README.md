@@ -1,15 +1,18 @@
 # CreativeWallet
 
-Final stage of a budget application using PHP and custom MVC framework.
+CreativeWallet is the final stage of a multi-paradigm budgeting app, now built in PHP with a custom MVC framework.
 
 ## Table of contents
 
 - [Overview](#overview)
   - [Stages](#stages)
   - [About](#about)
+  - [How it works](#how-it-works)
+  - [Additional features](#additional-features)
+- [Architecture](#architecture)
   - [Custom Framework](#custom-framework)
   - [Database design](#database-design)
-  - [Screenshot](#screenshot)
+  - [Screenshots](#screenshots)
 - [My process](#my-process)
   - [Built with](#built-with)
   - [Useful resources](#useful-resources)
@@ -37,7 +40,9 @@ Stages of building a budget application:
 **CreativeWallet** is a web application and a modern (more complex) version of the original **PersonalBudget** app written in C++.  
 It allows users to keep track of expenses and incomes, with data stored in a **MySQL** database.
 
-#### How does it work?
+---
+
+### How it works
 
 1. Create a user account and sign in.
 2. Add incomes or expenses using today's date or a selected backdate.
@@ -52,16 +57,20 @@ The app calculates:
 - total expenses,
 - and the balance (incomes – expenses).
 
-#### Additional features:
+---
 
-- Tabular summaries of incomes and expenses by category.
-- A pie chart showing expenses in a selected time period.
-- Add/edit/delete categories and payment methods.
-- Set monthly limits on expense categories.
-- Change password.
-- Delete your account along with all related transactions.
+### Additional features
+
+- 📋 Tabular summaries of incomes and expenses by category.
+- 📊 A pie chart showing expenses in a selected time period.
+- 🛠️ Add/edit/delete categories and payment methods.
+- 💸 Set monthly limits on expense categories.
+- 🔐 Change password.
+- 🧹 Delete your account along with all related transactions.
 
 ---
+
+## Architecture
 
 ### Custom Framework
 
