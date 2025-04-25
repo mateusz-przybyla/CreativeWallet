@@ -1,6 +1,6 @@
 # CreativeWallet
 
-Final stage of a Web Application using professional PHP (OOP), SQL and custom MVC framework.
+Final stage of a budget application using PHP and custom MVC framework.
 
 ## Table of contents
 
@@ -20,16 +20,17 @@ Final stage of a Web Application using professional PHP (OOP), SQL and custom MV
 
 Stages of building a budget application:
 
-1. PersonalBudget - console budget app written in C++:
+1. **PersonalBudget** - Console app written in **C++**:
 
-- Structured paradigm [link](https://github.com/mateusz-przybyla/PersonalBudget_Structured)
-- OOP paradigm [link](https://github.com/mateusz-przybyla/PersonalBudget_ObjectOriented)
+   - **Structured paradigm:** [View project](https://github.com/mateusz-przybyla/PersonalBudget_Structured)
+   - **Object-oriented paradigm:** [View project](https://github.com/mateusz-przybyla/PersonalBudget_ObjectOriented)
 
-2. CreativeWallet - web budget app written in PHP:
+2. **CreativeWallet** – Web app written in **PHP**:
+   - **Frontend only:** [View project](https://github.com/mateusz-przybyla/CreativeWallet_FE)
+   - **Frontend + Backend (structured paradigm):** [View project](https://github.com/mateusz-przybyla/CreativeWallet_FE_BE)
+   - **Frontend + Backend (OOP with custom MVC framework):** _this repository_
 
-- Frontend [link](https://github.com/mateusz-przybyla/CreativeWallet_FE) - used HTML, CSS, JavaScript and Bootstrap library
-- Frontend + Backend [link](https://github.com/mateusz-przybyla/CreativeWallet_FE_BE) - used PHP (structured paradigm)
-- Frontend + Backend - used PHP (OOP paradigm) with custom MVC Framework
+---
 
 ### About
 
@@ -51,6 +52,8 @@ Other functionalities:
 - add monthly limit to expense categories,
 - change password,
 - delete account with related transactions.
+
+---
 
 ### Framework
 
@@ -74,82 +77,88 @@ Framework component consists of several tools:
 
 App class inside the framework component is like a glue for the available tools and utilizes every tools in our framework.
 
+---
+
 ### Database design
 
-[DB project](https://github.com/mateusz-przybyla/CreativeWallet_FE_BE/blob/main/DB_project.pdf)
+📄 [View DB project (PDF)](https://github.com/mateusz-przybyla/CreativeWallet_FE_BE/blob/main/DB_project.pdf)
+
+---
 
 ### Screenshots
 
-- Home page:
+**Home page**
 
-  ![](/readme/home.jpg)
+![](/readme/home.jpg)
 
-- Sign up form:
+**Sign up form**
 
-  ![](/readme/sign-up.jpg)
+![](/readme/sign-up.jpg)
 
-- Sign in form:
+**Sign in form**
 
-  ![](/readme/sign-in.jpg)
+![](/readme/sign-in.jpg)
 
-- New income form:
+**New income form**
 
-  ![](/readme/add-income.jpg)
+![](/readme/add-income.jpg)
 
-- Frontend and backend form validation:
+**Frontend and backend form validation**
 
-  ![](/readme/form-validation.jpg)
+![](/readme/form-validation.jpg)
 
-- New expense form with information about monthly category limit, money spent and money left for this category:
+**New expense form with limit info**
 
-  ![](/readme/add-expense.jpg)
+![](/readme/add-expense.jpg)
 
-- Balance sheet - show categories of expenses and incomes at selected time:
+**Balance sheet – view expenses and incomes by category for a selected time period**
 
-  ![](/readme/show-balance1.jpg)
+![](/readme/show-balance1.jpg)
 
-- Balance sheet - list of income/expense categories and expenses pie chart:
+**Balance sheet - income/expense list + pie chart**
 
-  ![](/readme/show-balance2.jpg)
+![](/readme/show-balance2.jpg)
 
-- Transaction settings - add/edit/delete categories or payment methods:
+**Transaction settings – category/payment method management**
 
-  ![](/readme/transaction-settings.jpg)
+![](/readme/transaction-settings.jpg)
 
-- Transaction settings - expense limit activation:
+**Transaction settings – expense limit activation**
 
-  ![](/readme/expense-limit-activation.jpg)
+![](/readme/expense-limit-activation.jpg)
 
-- User account settings:
+**User account settings**
 
-  ![](/readme/user-account-settings.jpg)
+![](/readme/user-account-settings.jpg)
 
-- Mobile view:
+**Mobile view**
 
-  ![](/readme/mobile.jpg)
+![](/readme/mobile.jpg)
+
+---
 
 ## My process
 
 ### Built with
 
-Frontend:
+**Frontend:**
 
-- Bootstrap library,
-- HTML,
-- CSS,
-- JavaScript,
-- jQuery Library,
-- JavaScript Chart library
+- Bootstrap
+- HTML, CSS
+- JavaScript, jQuery
+- JavaScript chart library
 
-Backend:
+**Backend:**
 
-- OOP PHP, PDO library,
-- design patterns: MVC, singleton pattern, factory pattern, dependency injection,
-- Reflective programming (Reflective class),
-- custom Exceptions,
-- Composer and Packagist.
-- SQL queries,
-- development stage - XAMPP (database MySQL, Apache server and PHPMyAdmin graphics overlay)
+- OOP PHP
+- Design patterns: MVC, Singleton, Factory, Dependency Injection
+- Reflective programming (`ReflectionClass`)
+- SQL queries
+- Custom Exceptions
+- Composer & Packagist
+- Development environment - XAMPP (MySQL, Apache, phpMyAdmin)
+
+---
 
 ### Useful resources
 
